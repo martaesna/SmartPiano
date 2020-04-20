@@ -8,4 +8,6 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 public class MainView extends JFrame {
+
+
 }
