@@ -1,20 +1,43 @@
 package Controller;
+import View.ErrorView;
+import View.MainView;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import Model.DB.ConectorDB;
-        import View.MainView;
 
-        import javax.swing.*;
-        import java.awt.event.ActionEvent;
-        import java.awt.event.ActionListener;
-        import java.sql.ResultSet;
-        import java.sql.SQLException;
+public class Controller implements ActionListener {
+    private MainView view;
 
-public class Controller {
-    private boolean connected;
-    private ConectorDB conn;
 
-    public Controller(MainView mainView) {
-        this.connected = false;
+    private MainView v;
+
+    public Controller(MainView v) {
+        this.v = v;
+
+    }
+
+    public void actionPerformed(ActionEvent e) {
+
+        if (e.getActionCommand().equals(MainView.ACTION)) { //cuando apretamos el boton
+
+            System.out.println("has apretat login");
+
+        } else {
+            ErrorView er = new ErrorView(); //salta la finestra de error
+            er.setVisible(true);
+        }
+
+
+        if (e.getActionCommand().equals(MainView.ACTION2)) { //cuando apretamos el boton
+
+            System.out.println("has apretat Registre");
+
+        }else{
+            ErrorView er = new ErrorView(); //salta la finestra de error
+            er.setVisible(true);
+
+
+        }
     }
 }
 
