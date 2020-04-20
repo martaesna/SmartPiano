@@ -4,8 +4,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
     public class MainView extends JFrame {
-        public static final String ACTION = "ACTION";
-        public static final String ACTION2 = "ACTION2";
+        public static final String ACTION = "Log in";
+        public static final String ACTION2 = "Reg";
         private JLabel jllogin;
         private JLabel jlpasword;
         private JTextField jllogin2;
@@ -64,8 +64,8 @@ import java.awt.event.ActionListener;
 
 
             jbregistre = new JButton("Registrat");
-            jblogin.setActionCommand(ACTION2);
-            jblogin.setPreferredSize(new Dimension(275,30)); //amb unes dimensions
+            jbregistre.setActionCommand(ACTION2);
+            jbregistre.setPreferredSize(new Dimension(275,30)); //amb unes dimensions
             setVisible(true);
             jpInferior.add(jbregistre);
 
