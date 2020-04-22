@@ -6,7 +6,7 @@ public class ErrorView extends JOptionPane {
 
     public ErrorView(){
 
-        JOptionPane.showMessageDialog(null,"The credentials are not vaild","Warning", WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null,"El usuari o la contrasenya no son correctes","Warning", WARNING_MESSAGE);
 
     }
 

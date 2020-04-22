@@ -1,9 +1,10 @@
 package Controller;
+import View.ErrorView;
 import View.MainView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainViewController Extends ActionListener {
+public class MainViewController implements ActionListener {
     private MainView view;
 
 
@@ -39,22 +40,3 @@ public class MainViewController Extends ActionListener {
     }
 }
 
-/* S ha de crear un alte view per el missatge de error amb aixo.
-package View;
-
-import javax.swing.*;
-
-
-public class ErrorView extends JOptionPane {
-
-
-    public ErrorView(){
-
-        JOptionPane.showMessageDialog(null,"The credentials are not vaild","Warning", WARNING_MESSAGE);
-
-    }
-
-
-
-}
- */
