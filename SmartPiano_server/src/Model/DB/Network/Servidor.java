@@ -1,4 +1,5 @@
 package Model.DB.Network;
+import Controller.MainViewController;
 import Model.DB.Usuari;
 import View.MainView;
 
@@ -9,13 +10,14 @@ import java.net.Socket;
 import java.util.LinkedList;
 
 public class Servidor extends Thread{
+    private boolean isOn;
     private String user;
     private String password;
     private int portPeticions;
     private ServerSocket sSocket;
     private boolean isRunning;
-    private LinkedList<ServidorDedicat> dServers;
-    private MainView view;
+    private LinkedList<ServidorDedicat> dServers; // els servidors dedicats
+    private MainViewController controller;
     public static final int SERVER_PORT = 40000;
 
 
@@ -26,13 +28,15 @@ public class Servidor extends Thread{
 
 
     //constructor del servidor
-    public Servidor(MainView vista) {
+    public Servidor(MainViewController controller) {
         try {
             //creem un socket al port 40000
+            this.isOn = false;
+            this.controller = controller;
             this.sSocket = new ServerSocket(SERVER_PORT);
             this.isRunning = false;
             this.dServers = new LinkedList<ServidorDedicat>();
-            this.view = vista;
+
 
         } catch (IOException e) {
             e.printStackTrace();
