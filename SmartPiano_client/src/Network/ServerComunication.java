@@ -31,4 +31,4 @@ public class ServerComunication extends Thread  {
     }
 
 }
-NetworkConfiguration.SERVER_IP, NetworkConfiguration.SERVER_PORT
+//sss
