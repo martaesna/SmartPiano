@@ -1,10 +1,6 @@
 package Model.DB;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import Model.DB.DDBB.ConectorDB;
 
 public class SQLOperations {
     public static void registreUsuari (String name, String password, String mail) {

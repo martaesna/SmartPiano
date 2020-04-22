@@ -1,5 +1,6 @@
-package Model.DB;
+package Model.DB.Network;
 
+import Model.DB.Usuari;
 import View.MainView;
 
 import java.io.*;

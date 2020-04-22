@@ -1,4 +1,5 @@
-package Model.DB;
+package Model.DB.Network;
+import Model.DB.Usuari;
 import View.MainView;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ public class Servidor extends Thread{
     private boolean isRunning;
     private LinkedList<ServidorDedicat> dServers;
     private MainView view;
+    public static final int SERVER_PORT = 40000;
 
 
     /////////////NO ESTAN AL UML/////////////
@@ -26,8 +28,8 @@ public class Servidor extends Thread{
     //constructor del servidor
     public Servidor(MainView vista) {
         try {
-            //creem un socket al port 50000
-            this.sSocket = new ServerSocket(50000);
+            //creem un socket al port 40000
+            this.sSocket = new ServerSocket(SERVER_PORT);
             this.isRunning = false;
             this.dServers = new LinkedList<ServidorDedicat>();
             this.view = vista;
