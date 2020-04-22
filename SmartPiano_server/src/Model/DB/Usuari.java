@@ -16,7 +16,7 @@ public class Usuari implements Serializable {
         this.password = password;
         this.code = code;
     }
-
+///madafakaa
     public String getNickname() {
         return nickname;
     }
