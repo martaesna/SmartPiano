@@ -1,4 +1,4 @@
-package Network;
+package network;
 
 public class NetworkConfiguration {
     // constants relacionades amb la comunicacio
