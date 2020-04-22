@@ -2,7 +2,7 @@ package Controller;
 
 import javax.swing.JPanel;
 
-import network.ServerComunication;
+import Network.ServerComunication;
 import View.MainView;
 
 
