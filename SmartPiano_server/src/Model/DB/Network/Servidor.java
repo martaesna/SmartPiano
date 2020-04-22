@@ -2,6 +2,7 @@ package Model.DB.Network;
 import Controller.MainViewController;
 import Model.DB.Usuari;
 import View.MainView;
+import Network.NetworkConfiguration;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -18,7 +19,7 @@ public class Servidor extends Thread{
     private boolean isRunning;
     private LinkedList<ServidorDedicat> dServers; // els servidors dedicats
     private MainViewController controller;
-    public static final int SERVER_PORT = 40000;
+
     private MainView view;
 
 
@@ -33,7 +34,7 @@ public class Servidor extends Thread{
         try {
             //creem un socket al port 40000
             this.controller = controller;
-            this.sSocket = new ServerSocket(SERVER_PORT);
+            this.sSocket = new ServerSocket(NetworkConfiguration.SERVER_PORT);
             this.isRunning = false;
             this.dServers = new LinkedList<ServidorDedicat>();
             this.view = view;
