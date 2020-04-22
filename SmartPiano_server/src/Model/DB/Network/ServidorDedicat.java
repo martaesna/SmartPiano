@@ -1,5 +1,6 @@
 package Model.DB.Network;
 
+import Controller.MainViewController;
 import Model.DB.Usuari;
 import View.MainView;
 
@@ -18,7 +19,7 @@ public class ServidorDedicat extends Thread {
     private Servidor server;
 
 
-    public ServidorDedicat (Socket socket, MainView vista, LinkedList<ServidorDedicat> clients, Servidor server) {
+    public ServidorDedicat (MainView socket, Socket vista, MainViewController clients, Servidor server) {
         this.sClient = socket;
         this.sClient = sClient;
         this.vista = vista;

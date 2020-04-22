@@ -32,4 +32,24 @@ public class ServerComunication extends Thread  {
         }
     }
 
+    public void startServerComunication() {
+        // iniciem la comunicacio amb el servidor
+        isOn = true;
+        this.start();
+    }
+
+    public void stopServerComunication() {
+        // aturem la comunicacio amb el servidor
+        this.isOn = false;
+        this.interrupt();
+    }
+
+    public void run() {
+        while (isOn) {
+            System.out.println("sembla que funciona");
+
+        }
+        stopServerComunication();
+    }
+
 }

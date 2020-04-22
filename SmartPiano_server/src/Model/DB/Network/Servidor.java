@@ -10,7 +10,7 @@ import java.net.Socket;
 import java.util.LinkedList;
 
 public class Servidor extends Thread{
-    private boolean isOn;
+
     private String user;
     private String password;
     private int portPeticions;
@@ -19,6 +19,7 @@ public class Servidor extends Thread{
     private LinkedList<ServidorDedicat> dServers; // els servidors dedicats
     private MainViewController controller;
     public static final int SERVER_PORT = 40000;
+    private MainView view;
 
 
     /////////////NO ESTAN AL UML/////////////
@@ -28,15 +29,14 @@ public class Servidor extends Thread{
 
 
     //constructor del servidor
-    public Servidor(MainViewController controller) {
+    public Servidor(MainViewController controller, MainView view) {
         try {
             //creem un socket al port 40000
-            this.isOn = false;
             this.controller = controller;
             this.sSocket = new ServerSocket(SERVER_PORT);
             this.isRunning = false;
             this.dServers = new LinkedList<ServidorDedicat>();
-
+            this.view = view;
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -78,10 +78,14 @@ public class Servidor extends Thread{
                 sClient = sSocket.accept();
 
                 //segurament caldra afegir mes parametres
-                ServidorDedicat dsClient = new ServidorDedicat(sClient, view, dServers, this);
+                ServidorDedicat dsClient = new ServidorDedicat(view,sClient,controller,this);
 
                 //afegim a la cua de servidors dedicats el client q sacaba de conectar
                 dServers.add(dsClient);
+
+                //encenem el servidor dedicat
+                dsClient.startDedicatedServer();
+                mostraClients();
 
                 // llegim objecte usuari
                 objectIn = new ObjectInputStream(sClient.getInputStream());
