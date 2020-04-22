@@ -31,4 +31,4 @@ public class ServerComunication extends Thread  {
     }
 
 }
-//sss
+//sssda
