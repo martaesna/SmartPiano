@@ -16,8 +16,7 @@ public class ServerComunication extends Thread  {
     private Socket socketToServer;
     private DataOutputStream dataOut;
     private ObjectInputStream objectIn;
-    public static final String SERVER_IP = "127.0.0.1";
-    public static final int SERVER_PORT = 40000;
+
 
     public ServerComunication(MainView vista) {
         try {

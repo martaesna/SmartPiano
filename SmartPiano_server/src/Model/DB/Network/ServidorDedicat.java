@@ -15,18 +15,16 @@ public class ServidorDedicat extends Thread {
     private DataInputStream dataInput;
     private ObjectOutputStream objectOut;
     private LinkedList<ServidorDedicat> clients;
-    private MainView vista;
-    private Servidor server;
+    private MainView view;
+    private Servidor servidor;
+    private MainViewController controller;
 
 
-    public ServidorDedicat(boolean isRunning, Socket sClient, DataInputStream dataInput, ObjectOutputStream objectOut, LinkedList<ServidorDedicat> clients, MainView vista, Servidor server) {
-        this.isRunning = isRunning;
+    public ServidorDedicat(MainView view, Socket sClient, MainViewController controller, Servidor servidor) {
+        this.view = view;
         this.sClient = sClient;
-        this.dataInput = dataInput;
-        this.objectOut = objectOut;
-        this.clients = clients;
-        this.vista = vista;
-        this.server = server;
+        this.controller = controller;
+        this.servidor = servidor;
     }
 
     public void startDedicatedServer() {
