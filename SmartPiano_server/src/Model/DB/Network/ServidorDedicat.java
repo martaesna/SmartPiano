@@ -1,5 +1,7 @@
-package Model.DB;
+package Model.DB.Network;
 
+import Controller.MainViewController;
+import Model.DB.Usuari;
 import View.MainView;
 
 import java.io.*;
@@ -13,18 +15,18 @@ public class ServidorDedicat extends Thread {
     private DataInputStream dataInput;
     private ObjectOutputStream objectOut;
     private LinkedList<ServidorDedicat> clients;
-    private MainView vista;
-    private Servidor server;
+    private MainView view;
+    private Servidor servidor;
+    private MainViewController controller;
 
 
-    public ServidorDedicat (Socket socket, MainView vista, LinkedList<ServidorDedicat> clients, Servidor server) {
-        this.sClient = socket;
+    public ServidorDedicat(MainView view, Socket sClient, MainViewController controller, Servidor servidor) {
+        this.view = view;
         this.sClient = sClient;
-        this.vista = vista;
-        this.clients = clients;
-        this.server = server;
-
+        this.controller = controller;
+        this.servidor = servidor;
     }
+
     public void startDedicatedServer() {
         isRunning = true;
         this.start();

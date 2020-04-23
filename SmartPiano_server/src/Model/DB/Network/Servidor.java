@@ -1,5 +1,8 @@
-package Model.DB;
+package Model.DB.Network;
+import Controller.MainViewController;
+import Model.DB.Usuari;
 import View.MainView;
+import Network.NetworkConfiguration;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -8,12 +11,15 @@ import java.net.Socket;
 import java.util.LinkedList;
 
 public class Servidor extends Thread{
+
     private String user;
     private String password;
     private int portPeticions;
     private ServerSocket sSocket;
     private boolean isRunning;
-    private LinkedList<ServidorDedicat> dServers;
+    private LinkedList<ServidorDedicat> dServers; // els servidors dedicats
+    private MainViewController controller;
+
     private MainView view;
 
 
@@ -24,13 +30,14 @@ public class Servidor extends Thread{
 
 
     //constructor del servidor
-    public Servidor(MainView vista) {
+    public Servidor(MainViewController controller, MainView view) {
         try {
-            //creem un socket al port 50000
-            this.sSocket = new ServerSocket(50000);
+            //creem un socket al port 40000
+            this.controller = controller;
+            this.sSocket = new ServerSocket(NetworkConfiguration.SERVER_PORT);
             this.isRunning = false;
             this.dServers = new LinkedList<ServidorDedicat>();
-            this.view = vista;
+            this.view = view;
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,10 +79,14 @@ public class Servidor extends Thread{
                 sClient = sSocket.accept();
 
                 //segurament caldra afegir mes parametres
-                ServidorDedicat dsClient = new ServidorDedicat(sClient, view, dServers, this);
+                ServidorDedicat dsClient = new ServidorDedicat(view,sClient,controller,this);
 
                 //afegim a la cua de servidors dedicats el client q sacaba de conectar
                 dServers.add(dsClient);
+
+                //encenem el servidor dedicat
+                dsClient.startDedicatedServer();
+                mostraClients();
 
                 // llegim objecte usuari
                 objectIn = new ObjectInputStream(sClient.getInputStream());
