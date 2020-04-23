@@ -73,7 +73,7 @@ public class MainView extends JFrame {
 
     }
 
-    public void registerController(ActionListener actionListener) {
+    public void registerController2(ActionListener actionListener) {
         jblogin.addActionListener(actionListener);
         jbregistre.addActionListener(actionListener);// creamos las realciones con el controlador
 
