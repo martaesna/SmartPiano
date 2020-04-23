@@ -17,6 +17,8 @@ public class MainViewControllerCl implements ActionListener {
 
         if (e.getActionCommand().equals(v.ACTION)) { //cuando apretamos el boton
 
+
+
             System.out.println("has apretat login");
 
         } else {
