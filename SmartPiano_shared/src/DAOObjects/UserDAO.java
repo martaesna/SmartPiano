@@ -36,5 +36,7 @@ public class UserDAO implements Serializable {
     public void setPassword(String password){
         this.password = password;
     }
+
+    //changes are here!
 }
 
