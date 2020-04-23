@@ -1,7 +1,7 @@
 package Model.DB;
 
 import Model.DB.SQLOperations;
-import Controller.Controller;
+import Controller.*;
 import View.MainView;
 
 import javax.swing.*;
@@ -11,7 +11,7 @@ public class Main {
         MainView v = new MainView();
 
 
-        Controller controller = new Controller(v);
+        MainViewController controller = new MainViewController(v);
         SQLOperations sqlOperations = new SQLOperations();
 
         /*Servidor server = new Servidor();
@@ -22,10 +22,10 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                //MainView v = new MainView();
+
 
                 Controller c = new Controller(v);
-                v.registerController(c);
+                v.registerMainViewController(controller);
                 v.setVisible(true);
             }
         });
