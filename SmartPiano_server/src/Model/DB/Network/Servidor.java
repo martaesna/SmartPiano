@@ -30,7 +30,7 @@ public class Servidor extends Thread{
 
 
     //constructor del servidor
-    public Servidor(MainViewController controller, MainView view) {
+    public Servidor() {
         try {
             //creem un socket al port 40000
             this.controller = controller;

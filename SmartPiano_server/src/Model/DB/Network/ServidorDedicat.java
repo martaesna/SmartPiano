@@ -42,17 +42,17 @@ public class ServidorDedicat extends Thread {
         try {
             ObjectInputStream ois = new ObjectInputStream(sClient.getInputStream());
             DataOutputStream dos = new DataOutputStream(sClient.getOutputStream());
-            dos.writeUTF("I'm ready!");
+            dos.writeUTF("Estic llest");
             int value = (Integer) ois.readObject();
-            System.out.println("Client said: " + value);
+            System.out.println("Client diu: " + value);
             Usuari user = (Usuari) ois.readObject();
-            System.out.println("Client also said: " + user.toString());
+            System.out.println("Client també diu: " + user.toString());
             try {
                 sleep(10000);
             } catch (InterruptedException e) {
             }
-            dos.writeUTF("Ok I got " + value);
-            System.out.println("Ok I got " + value);
+            dos.writeUTF("Ok " + value);
+            System.out.println("Ok " + value);
         } catch (IOException | ClassNotFoundException e) {
 
         } finally {

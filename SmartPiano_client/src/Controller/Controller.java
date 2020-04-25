@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class Controller implements ActionListener {
+public class Controller {
 
     //relacio vista
     private MainView view;
@@ -30,9 +30,4 @@ public class Controller implements ActionListener {
         sComunication.startServerComunication();
     }
 
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
 }
