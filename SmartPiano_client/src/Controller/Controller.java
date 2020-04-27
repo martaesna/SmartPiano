@@ -1,12 +1,7 @@
 package Controller;
 
-import javax.swing.JPanel;
-
-import Network.ServerComunication;
+import Model.Network.ServerComunication;
 import View.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 
 public class Controller {

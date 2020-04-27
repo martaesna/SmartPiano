@@ -33,7 +33,7 @@ public class MainViewControllerCl implements ActionListener {
             rv.setVisible(true);
             v.setVisible(false);
         }
-        if (e.getActionCommand().equals(rv.CANCEL)) {
+        if (e.getActionCommand().equals(rv.CANCEL2)) {
             System.out.println("Has tornat al menú principal");
             rv.setVisible(false);
             v.setVisible(true);
@@ -42,6 +42,17 @@ public class MainViewControllerCl implements ActionListener {
             System.out.println("Has tornat al menú principal");
             lv.setVisible(false);
             v.setVisible(true);
+        }
+        if (e.getActionCommand().equals(rv.REG)) {
+            System.out.println("Vols registrarte");
+
+            // Recorrem el json comparan
+            //if()
+
+        }
+        if (e.getActionCommand().equals(lv.LOGIN)) {
+            System.out.println("Vols fer log in");
+
         }
     }
 }

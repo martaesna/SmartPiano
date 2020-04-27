@@ -1,3 +1,4 @@
+package Model;
 
 import Controller.Controller;
 import View.LoginView;
