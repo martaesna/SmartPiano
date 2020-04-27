@@ -1,5 +1,3 @@
-package Model.DB;
-
 import Model.DB.Network.Servidor;
 import Model.DB.SQLOperations;
 import Controller.*;
