@@ -47,7 +47,7 @@ public class MainViewControllerCl implements ActionListener {
             System.out.println("Vols registrarte");
 
             // Recorrem el json comparan
-            //if()sda
+            //if()sdaadasdasd
 
         }
         if (e.getActionCommand().equals(lv.LOGIN)) {
