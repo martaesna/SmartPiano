@@ -25,16 +25,19 @@ public class MainViewControllerCl implements ActionListener {
 
             System.out.println("has apretat login");
             lv.setVisible(true);
-
-
+            v.setVisible(false);
         }
-
 
         if (e.getActionCommand().equals(v.ACTION2)) { //cuando apretamos el boton
 
             System.out.println("has apretat Registre");
             rv.setVisible(true);
-
+            v.setVisible(false);
+        }
+        if (e.getActionCommand().equals(rv.CANCEL)) {
+            System.out.println("Has tornat al menú principal");
+            rv.setVisible(false);
+            v.setVisible(true);
         }
     }
 }

@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class LoginView extends JFrame {
-    public static final String ACTION = "Cancel";
+    public static final String CANCEL = "Cancel";
     public static final String ACTION2 = "Log in";
     private JLabel jllogin;
     private JLabel jlpasword;
@@ -17,6 +17,7 @@ public class LoginView extends JFrame {
 
 
     public LoginView() {
+        setVisible(false);
         setTitle("Login"); // titol
         setSize(300, 110); // tamaño de la caja
         setResizable(false); //para que no se pueda mover
@@ -29,23 +30,23 @@ public class LoginView extends JFrame {
 
         //Etiqueta per el username
         jllogin = new JLabel("Username"); // label de username
-        setVisible(true); //fem visible
+        //setVisible(true); //fem visible
         jpsuperior.add(jllogin); // la afegim al jpanel
 
         //caixa de text per el username
         jllogin2 = new JTextField(); // creem una caixa de text
-        setVisible(true); // fem visible
+        //setVisible(true); // fem visible
         jpsuperior.add(jllogin2); // afegim al jpanel
 
         //Etiqueta per la Password
         jlpasword = new JLabel("Password"); // etiqueta pasword
-        setVisible(true);
+        //setVisible(true);
         jpsuperior.add(jlpasword);
 
 
         //caixa de text per el username
         jlpasword2 = new JPasswordField();
-        setVisible(true);
+        //setVisible(true);
         jpsuperior.add(jlpasword2);
 
 
@@ -56,16 +57,16 @@ public class LoginView extends JFrame {
         jpInferior.setLayout(new GridLayout(1, 2));
 
         jblogin = new JButton("Cancel"); // fiquem un boto
-        jblogin.setActionCommand(ACTION); // creamos el comando de accion.
+        jblogin.setActionCommand(CANCEL); // creamos el comando de accion.
         jblogin.setPreferredSize(new Dimension(275, 30)); //amb unes dimensions
-        setVisible(true);
+        //setVisible(true);
         jpInferior.add(jblogin);
 
 
         jbregistre = new JButton("Log in");
         jbregistre.setActionCommand(ACTION2);
         jbregistre.setPreferredSize(new Dimension(275, 30)); //amb unes dimensions
-        setVisible(true);
+        //setVisible(true);
         jpInferior.add(jbregistre);
 
         getContentPane().add(jpsuperior, BorderLayout.NORTH); //coloquem els panels on necesitem

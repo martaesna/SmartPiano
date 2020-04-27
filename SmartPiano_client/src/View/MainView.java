@@ -13,6 +13,7 @@ public class MainView extends JFrame {
 
 
     public MainView() {
+        setVisible(true);
         setTitle("Selecciona una opció"); // titol
         setSize(300, 110); // tamaño de la caja
         setResizable(false); //para que no se pueda mover
@@ -32,14 +33,14 @@ public class MainView extends JFrame {
         jblogin = new JButton("Log in"); // fiquem un boto
         jblogin.setActionCommand(ACTION); // creamos el comando de accion.
         jblogin.setPreferredSize(new Dimension(275, 30)); //amb unes dimensions
-        setVisible(true);
+        //setVisible(true);
         jpInferior.add(jblogin);
 
 
         jbregistre = new JButton("Registrat");
         jbregistre.setActionCommand(ACTION2);
         jbregistre.setPreferredSize(new Dimension(275, 30)); //amb unes dimensions
-        setVisible(true);
+        //setVisible(true);
         jpInferior.add(jbregistre);
 
         getContentPane().add(jpsuperior, BorderLayout.NORTH); //coloquem els panels on necesitem
