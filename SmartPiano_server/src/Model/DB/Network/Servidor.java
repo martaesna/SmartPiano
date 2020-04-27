@@ -12,33 +12,22 @@ import java.util.LinkedList;
 
 public class Servidor extends Thread{
 
+    private boolean isOn;
     private String user;
     private String password;
     private int portPeticions;
     private ServerSocket sSocket;
-    private boolean isRunning;
     private LinkedList<ServidorDedicat> dServers; // els servidors dedicats
-    private MainViewController controller;
-
-    private MainView view;
-
-
-    /////////////NO ESTAN AL UML/////////////
-    private ObjectInputStream objectIn;
-    private Socket sClient;
-    /////////////NO ESTAN AL UML/////////////
-
+    private MainViewController controller; // relació amb el controlador de la vista
 
     //constructor del servidor
     public Servidor() {
         try {
-            //creem un socket al port 40000
+            this.isOn = false;
+            //creem un socket al port 2222
             this.controller = controller;
             this.sSocket = new ServerSocket(NetworkConfiguration.SERVER_PORT);
-            this.isRunning = false;
             this.dServers = new LinkedList<ServidorDedicat>();
-            this.view = view;
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,16 +43,16 @@ public class Servidor extends Thread{
 
     //////////////////A IMPLEMENTAR/////////////////////////
 
-    //iniciem servidor
+    //iniciem el thread del servidor
     public void startServer() {
-        isRunning = true;
+        isOn = true;
         System.out.println("Servidor iniciat...");
         this.start();
     }
 
-    //aturem servidor
+    //aturem el thread del servidor
     public void stopServer() {
-        isRunning = false;
+        isOn = false;
         this.interrupt();
     }
     public void mostraClients(){
@@ -72,14 +61,14 @@ public class Servidor extends Thread{
 
     public void run() {
         Usuari user;
-        while (isRunning) {
+        while (isOn) {
             try {
                 // esperem peticions de connexio de clients
                 System.out.println("Esperant peticio...");
-                sClient = sSocket.accept();
+                Socket sClient = sSocket.accept();
 
                 //segurament caldra afegir mes parametres
-                ServidorDedicat dsClient = new ServidorDedicat(view,sClient,controller,this);
+                ServidorDedicat dsClient = new ServidorDedicat(sClient, controller, this);
 
                 //afegim a la cua de servidors dedicats el client q sacaba de conectar
                 dServers.add(dsClient);
@@ -87,30 +76,15 @@ public class Servidor extends Thread{
                 //encenem el servidor dedicat
                 dsClient.startDedicatedServer();
                 mostraClients();
-
-                // llegim objecte usuari
-                objectIn = new ObjectInputStream(sClient.getInputStream());
-                user = (Usuari)objectIn.readObject();
-
-
-
-                // tanquem la connexio amb el client
-                sClient.close();
-
-                //System.out.println(user.getNickname);
-
-
             } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
+        // aturem tots els servidors dedicats creats
+        // quan ja no atenem mes peticions de clients
+        for (ServidorDedicat dServer : dServers) {
+            dServer.startDedicatedServer();
+        }
     }
-
-
-
-
-
 }
 

@@ -15,13 +15,11 @@ public class ServidorDedicat extends Thread {
     private DataInputStream dataInput;
     private ObjectOutputStream objectOut;
     private LinkedList<ServidorDedicat> clients;
-    private MainView view;
     private Servidor servidor;
     private MainViewController controller;
 
 
-    public ServidorDedicat(MainView view, Socket sClient, MainViewController controller, Servidor servidor) {
-        this.view = view;
+    public ServidorDedicat(Socket sClient, MainViewController controller, Servidor servidor) {
         this.sClient = sClient;
         this.controller = controller;
         this.servidor = servidor;
