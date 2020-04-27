@@ -5,23 +5,30 @@ import java.util.*;
 
 public class Data {
 
-    private ArrayList<Data> data;
+    private String serverIP;
+    private int listeningPort;
 
-    public Data(ArrayList<Data> data) {
-        this.data = data;
+    public Data(String serverIP, int listeningPort) {
+        this.serverIP = serverIP;
+        this.listeningPort = listeningPort;
     }
 
-    public Data(Data dades) {
 
+
+    public String getServerIP() {
+        return serverIP;
     }
 
-    public ArrayList<Data> getData() {
-        return data;
+    public void setServerIP(String serverIP) {
+        this.serverIP = serverIP;
     }
 
-    public void setData(ArrayList<Data> data) {
-        this.data = data;
+    public int getListeningPort() {
+        return listeningPort;
     }
 
+    public void setListeningPort(int listeningPort) {
+        this.listeningPort = listeningPort;
+    }
 }
 

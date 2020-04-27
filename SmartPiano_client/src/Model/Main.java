@@ -34,7 +34,8 @@ public class Main {
         Rj.llegeixJSON();
 
         //Converting the JSON data to DataModel
-        Data dataModel = new Data(Rj.getDades());
+
+
 
 
 
