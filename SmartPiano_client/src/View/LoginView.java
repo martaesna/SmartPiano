@@ -5,13 +5,13 @@ import java.awt.event.ActionListener;
 
 public class LoginView extends JFrame {
     public static final String CANCEL = "Cancel";
-    public static final String ACTION2 = "Log in";
+    public static final String LOGIN = "Log in2";
     private JLabel jllogin;
     private JLabel jlpasword;
     private JTextField jllogin2;
     private JTextField jlpasword2;
+    private JButton jbcancel;
     private JButton jblogin;
-    private JButton jbregistre;
     private JPanel jpInferior;
     private JPanel jpsuperior;
 
@@ -56,28 +56,28 @@ public class LoginView extends JFrame {
         //Creem l esquema de diseny
         jpInferior.setLayout(new GridLayout(1, 2));
 
-        jblogin = new JButton("Cancel"); // fiquem un boto
-        jblogin.setActionCommand(CANCEL); // creamos el comando de accion.
+        jbcancel= new JButton("Cancel"); // fiquem un boto
+        jbcancel.setActionCommand(CANCEL); // creamos el comando de accion.
+        jbcancel.setPreferredSize(new Dimension(275, 30)); //amb unes dimensions
+        //setVisible(true);
+        jpInferior.add(jbcancel);
+
+
+        jblogin = new JButton("Log in");
+        jblogin.setActionCommand(LOGIN);
         jblogin.setPreferredSize(new Dimension(275, 30)); //amb unes dimensions
         //setVisible(true);
         jpInferior.add(jblogin);
-
-
-        jbregistre = new JButton("Log in");
-        jbregistre.setActionCommand(ACTION2);
-        jbregistre.setPreferredSize(new Dimension(275, 30)); //amb unes dimensions
-        //setVisible(true);
-        jpInferior.add(jbregistre);
 
         getContentPane().add(jpsuperior, BorderLayout.NORTH); //coloquem els panels on necesitem
         getContentPane().add(jpInferior, BorderLayout.SOUTH);
 
     }
 
-    public void registerController2(ActionListener actionListener) {
+    public void registerControllerL(ActionListener actionListener)
+    {
+        jbcancel.addActionListener(actionListener);
         jblogin.addActionListener(actionListener);
-        jbregistre.addActionListener(actionListener);// creamos las realciones con el controlador
-
     }
 
     public String Getusername() {

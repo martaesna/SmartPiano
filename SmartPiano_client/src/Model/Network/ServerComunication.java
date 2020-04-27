@@ -1,13 +1,11 @@
-package Network;
+package Model.Network;
 
+import Model.NetworkConfiguration;
 import View.MainView;
-
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.net.InetAddress;
 import java.net.Socket;
-import Network.NetworkConfiguration;
 
 public class ServerComunication extends Thread  {
 
@@ -18,10 +16,9 @@ public class ServerComunication extends Thread  {
     private ObjectInputStream objectIn;
 
 
-    public ServerComunication(MainView vista) {
+    public ServerComunication() {
         try {
             this.isOn = false;
-            this.view = vista;
             // connectem amb el servidor i obrim els canals de comunicacio
             this.socketToServer = new Socket(NetworkConfiguration.SERVER_IP,NetworkConfiguration.SERVER_PORT);
             this.dataOut = new DataOutputStream(socketToServer.getOutputStream());

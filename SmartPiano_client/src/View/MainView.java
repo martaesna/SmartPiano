@@ -9,7 +9,6 @@ public class MainView extends JFrame {
     private JButton jblogin;
     private JButton jbregistre;
     private JPanel jpInferior;
-    private JPanel jpsuperior;
 
 
     public MainView() {
@@ -20,9 +19,6 @@ public class MainView extends JFrame {
         setLocationRelativeTo(null); //Centrarlo
         setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x
 
-
-        jpsuperior = new JPanel(); // creamos un jpanel
-        jpsuperior.setLayout(new GridLayout(2, 2)); // con el grid de 2 2
 
         //Creem un panell
         jpInferior = new JPanel();
@@ -43,12 +39,11 @@ public class MainView extends JFrame {
         //setVisible(true);
         jpInferior.add(jbregistre);
 
-        getContentPane().add(jpsuperior, BorderLayout.NORTH); //coloquem els panels on necesitem
         getContentPane().add(jpInferior, BorderLayout.SOUTH);
 
     }
 
-    public void registerController2(ActionListener actionListener) {
+    public void registerController(ActionListener actionListener) {
         jblogin.addActionListener(actionListener);
         jbregistre.addActionListener(actionListener);// creamos las realciones con el controlador
     }

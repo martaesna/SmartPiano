@@ -4,8 +4,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class RegisterView extends JFrame {
-    public static final String CANCEL = "Cancel";
-    public static final String ACTION2 = "Reg";
+    public static final String CANCEL2 = "Cancel2";
+    public static final String REG = "Reg2";
     private JLabel jllogin;
     private JLabel jlmail;
     private JLabel jlpasword;
@@ -14,7 +14,7 @@ public class RegisterView extends JFrame {
     private JTextField jlmail2;
     private JTextField jlpasword2;
     private JTextField jlconfirma2;
-    private JButton jblogin;
+    private JButton jbcancel;
     private JButton jbregistre;
     private JPanel jpInferior;
     private JPanel jpsuperior;
@@ -79,15 +79,15 @@ public class RegisterView extends JFrame {
         //Creem l esquema de diseny
         jpInferior.setLayout(new GridLayout(1, 2));
 
-        jblogin = new JButton("Cancel"); // fiquem un boto
-        jblogin.setActionCommand(CANCEL); // creamos el comando de accion.
-        jblogin.setPreferredSize(new Dimension(275, 30)); //amb unes dimensions
+        jbcancel = new JButton("Cancel"); // fiquem un boto
+        jbcancel.setActionCommand(CANCEL2); // creamos el comando de accion.
+        jbcancel.setPreferredSize(new Dimension(275, 30)); //amb unes dimensions
         //setVisible(true);
-        jpInferior.add(jblogin);
+        jpInferior.add(jbcancel);
 
 
         jbregistre = new JButton("Registrat");
-        jbregistre.setActionCommand(ACTION2);
+        jbregistre.setActionCommand(REG);
         jbregistre.setPreferredSize(new Dimension(275, 30)); //amb unes dimensions
         //setVisible(true);
         jpInferior.add(jbregistre);
@@ -97,11 +97,9 @@ public class RegisterView extends JFrame {
 
     }
 
-    public void registerController2(ActionListener actionListener) {
-        jblogin.addActionListener(actionListener);
+    public void registerControllerR(ActionListener actionListener) {
+        jbcancel.addActionListener(actionListener);// creamos las realciones con el controlador
         jbregistre.addActionListener(actionListener);// creamos las realciones con el controlador
-
-
     }
 
     public String Getusername() {
