@@ -11,6 +11,10 @@ public class Data {
         this.data = data;
     }
 
+    public Data(Data dades) {
+
+    }
+
     public ArrayList<Data> getData() {
         return data;
     }

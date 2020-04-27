@@ -29,13 +29,12 @@ public class Main {
 
 
 
-        try{
-            rj.llegeixJSON();
-            System.out.println(data.getData());
+        //Reading the JSON file
+        ReadJson Rj = new ReadJson();
+        Rj.llegeixJSON();
 
-        }catch(Exception e){
-            System.out.println("No s'ha pogut llegir el fitxer JSON: " + e.getMessage());
-        }
+        //Converting the JSON data to DataModel
+        Data dataModel = new Data(Rj.getDades());
 
 
 
