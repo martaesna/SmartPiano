@@ -97,11 +97,8 @@ public class RegisterView extends JFrame {
 
     }
 
-    public void registerController2(ActionListener actionListener) {
-        jblogin.addActionListener(actionListener);
+    public void registerControllerR(ActionListener actionListener) {
         jbregistre.addActionListener(actionListener);// creamos las realciones con el controlador
-
-
     }
 
     public String Getusername() {

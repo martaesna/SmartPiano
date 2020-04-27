@@ -16,13 +16,15 @@ public class Main {
 
         MainViewControllerCl controller = new MainViewControllerCl(v, lv, rv);
 
-
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
 
                 Controller c = new Controller(v);
-                v.registerController2(controller);
+                v.registerController(controller);
+                lv.registerControllerL(controller);
+                rv.registerControllerR(controller);
+
                 v.setVisible(true);
             }
         });
