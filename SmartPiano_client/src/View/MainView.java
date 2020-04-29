@@ -1,4 +1,6 @@
 package View;
+import Model.Json.ReadJson;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -11,7 +13,9 @@ public class MainView extends JFrame {
     private JPanel jpInferior;
 
 
+
     public MainView() {
+
         setVisible(true);
         setTitle("Selecciona una opció"); // titol
         setSize(300, 110); // tamaño de la caja

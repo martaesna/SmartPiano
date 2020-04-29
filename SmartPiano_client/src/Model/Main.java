@@ -13,6 +13,7 @@ import com.google.gson.stream.JsonReader;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class Main {
@@ -21,22 +22,18 @@ public class Main {
 
 
     public static void main(String[] args) {
-        MainView v = new MainView();
-        LoginView lv = new LoginView();
-        RegisterView rv = new RegisterView ();
-
-        MainViewControllerCl controller = new MainViewControllerCl(v, lv, rv);
-
 
 
         //Reading the JSON file
         ReadJson Rj = new ReadJson();
         Rj.llegeixJSON();
+        System.out.println(Rj.getDades().getListeningPort());
 
-        //Converting the JSON data to DataModel
+        MainView v = new MainView();
+        LoginView lv = new LoginView();
+        RegisterView rv = new RegisterView ();
 
-
-
+        MainViewControllerCl controller = new MainViewControllerCl(v, lv, rv);
 
 
         SwingUtilities.invokeLater(new Runnable() {
