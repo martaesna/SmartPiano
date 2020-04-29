@@ -20,9 +20,11 @@ public class ServerComunication extends Thread  {
 
     public ServerComunication() {
         try {
+            ReadJson Rj = new ReadJson();
+            Rj.llegeixJSON();
             this.isOn = false;
             // connectem amb el servidor i obrim els canals de comunicacio
-            this.socketToServer = new Socket(data.getServerIP(),data.getListeningPort());
+            this.socketToServer = new Socket(Rj.getDades().getServerIP(),Rj.getDades().getListeningPort());
             this.dataOut = new DataOutputStream(socketToServer.getOutputStream());
             this.objectIn = new ObjectInputStream(socketToServer.getInputStream());
         } catch (IOException e) {

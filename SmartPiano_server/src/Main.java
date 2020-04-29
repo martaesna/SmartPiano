@@ -22,11 +22,6 @@ public class Main {
 
             System.out.println(Rj.getDades().getListeningPort());
 
-
-
-
-
-
         MainView v = new MainView();
 
         MainViewController controller = new MainViewController(v);
@@ -35,13 +30,6 @@ public class Main {
 
         Servidor server = new Servidor();
         server.startServer();
-
-
-
-
-
-
-
 
     }
 

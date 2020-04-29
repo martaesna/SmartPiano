@@ -29,6 +29,7 @@ public class Servidor extends Thread{
 
 
 
+
     /////////////NO ESTAN AL UML/////////////
     private ObjectInputStream objectIn;
     private Socket sClient;
@@ -40,6 +41,7 @@ public class Servidor extends Thread{
     public Servidor() {
         try {
             JsonReader Rj = new JsonReader();
+            Rj.llegeixJSON();
             //creem un socket al port 40000
             this.controller = controller;
             this.sSocket = new ServerSocket(Rj.getDades().getListeningPort());
