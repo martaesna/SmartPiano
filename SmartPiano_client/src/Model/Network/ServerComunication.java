@@ -15,7 +15,7 @@ public class ServerComunication extends Thread  {
     private Socket socketToServer;
     private DataOutputStream dataOut;
     private ObjectInputStream objectIn;
-    private Data data;
+
 
 
     public ServerComunication() {
