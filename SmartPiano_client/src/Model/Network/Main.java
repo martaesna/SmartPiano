@@ -6,6 +6,7 @@ import Model.Json.Data;
 import View.LoginView;
 import View.MainView;
 import Controller.MainViewControllerCl;
+import Model.Network.ServerComunication;
 import View.RegisterView;
 
 import com.google.gson.Gson;
@@ -41,7 +42,6 @@ public class Main {
             @Override
             public void run() {
 
-                Controller c = new Controller(v);
                 v.registerController(controller);
                 lv.registerControllerL(controller);
                 rv.registerControllerR(controller);
