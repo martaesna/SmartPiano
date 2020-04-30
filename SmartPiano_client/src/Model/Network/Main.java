@@ -1,4 +1,4 @@
-package Model;
+package Model.Network;
 
 import Controller.Controller;
 import Model.Json.ReadJson;
@@ -7,6 +7,7 @@ import View.LoginView;
 import View.MainView;
 import Controller.MainViewControllerCl;
 import View.RegisterView;
+
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
