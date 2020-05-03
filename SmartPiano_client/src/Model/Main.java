@@ -9,6 +9,7 @@ import Controller.MainViewControllerCl;
 import Model.Network.ServerComunication;
 import View.RegisterView;
 
+
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
@@ -22,7 +23,7 @@ public class Main {
     private static ReadJson rj;
     private static Data data;
     private Controller c;
-    ServerComunication sc;
+    private ServerComunication sc;
 
 
     public static void main(String[] args) {
@@ -42,10 +43,7 @@ public class Main {
 
 
         Controller c = new Controller(v,sc);
-
-
-
-
+        System.out.println("estem abans de la vista");
         MainViewControllerCl controller = new MainViewControllerCl(v, lv, rv);
 
 
@@ -58,7 +56,7 @@ public class Main {
                 rv.registerControllerR(controller);
 
                 v.setVisible(true);
-                System.out.println("tot fet");
+
             }
         });
 

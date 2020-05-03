@@ -29,7 +29,7 @@ public class ServerComunication extends Thread  {
             this.objectIn = new ObjectInputStream(socketToServer.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("*** ESTA EL SERVIDOR EN EXECUCIO? ***");
+            System.out.println("** ESTA EL SERVIDOR EN EXECUCIO? ***");
         }
     }
 

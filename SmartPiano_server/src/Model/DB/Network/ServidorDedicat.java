@@ -29,6 +29,7 @@ public class ServidorDedicat extends Thread {
         isRunning = true;
         this.start();
     }
+
     public void stopDedicatedServer() {
         // aturem el servidor dedicat
         this.isRunning = false;
@@ -38,8 +39,9 @@ public class ServidorDedicat extends Thread {
     @Override
     public void run () {
         try {
-            ObjectInputStream ois = new ObjectInputStream(sClient.getInputStream());
-            DataOutputStream dos = new DataOutputStream(sClient.getOutputStream());
+            ObjectInput ois = new ObjectInputStream(sClient.getInputStream());
+            System.out.println("estem al run");
+            DataOutput dos = new DataOutputStream(sClient.getOutputStream());
             dos.writeUTF("Estic llest");
             int value = (Integer) ois.readObject();
             System.out.println("Client diu: " + value);

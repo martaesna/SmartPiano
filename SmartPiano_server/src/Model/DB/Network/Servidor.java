@@ -9,6 +9,7 @@ import Model.NetworkConfiguration;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
@@ -29,6 +30,7 @@ public class Servidor extends Thread{
 
     /////////////NO ESTAN AL UML/////////////
     private ObjectInputStream objectIn;
+    private ObjectOutputStream objectOut;
     private Socket sClient;
     /////////////NO ESTAN AL UML/////////////
 
@@ -50,6 +52,7 @@ public class Servidor extends Thread{
             e.printStackTrace();
         }
     }
+
 
 
     //////////////////A IMPLEMENTAR/////////////////////////
@@ -94,11 +97,12 @@ public class Servidor extends Thread{
                 //encenem el servidor dedicat
                 dsClient.startDedicatedServer();
                 mostraClients();
+                dsClient.run();
+
 
                 // llegim objecte usuari
                 objectIn = new ObjectInputStream(sClient.getInputStream());
                 user = (Usuari)objectIn.readObject();
-
 
 
                 // tanquem la connexio amb el client
