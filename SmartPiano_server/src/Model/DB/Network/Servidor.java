@@ -1,9 +1,12 @@
 package Model.DB.Network;
 import Controller.MainViewController;
+import Model.DB.Json.Data;
+import Model.DB.Json.JsonReader;
 import Model.DB.Usuari;
 import View.MainView;
 import Model.NetworkConfiguration;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
@@ -19,8 +22,9 @@ public class Servidor extends Thread{
     private boolean isRunning;
     private LinkedList<ServidorDedicat> dServers; // els servidors dedicats
     private MainViewController controller;
-
+    private Data data;
     private MainView view;
+
 
 
     /////////////NO ESTAN AL UML/////////////
@@ -29,12 +33,15 @@ public class Servidor extends Thread{
     /////////////NO ESTAN AL UML/////////////
 
 
+
     //constructor del servidor
     public Servidor() {
         try {
+            JsonReader Rj = new JsonReader();
+            Rj.llegeixJSON();
             //creem un socket al port 40000
             this.controller = controller;
-            this.sSocket = new ServerSocket(NetworkConfiguration.SERVER_PORT);
+            this.sSocket = new ServerSocket(Rj.getDades().getListeningPort());
             this.isRunning = false;
             this.dServers = new LinkedList<ServidorDedicat>();
             this.view = view;
@@ -48,7 +55,7 @@ public class Servidor extends Thread{
     //////////////////A IMPLEMENTAR/////////////////////////
 
     //public boolean registerUser(Usuari u){}
-    //ublic boolean loginUser(Usuari u){}
+    //public boolean loginUser(Usuari u){}
     //public void gestionaRepros(Song c){}
 
 

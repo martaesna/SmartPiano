@@ -12,10 +12,6 @@ public class Controller {
     //realcio server
     private ServerComunication sComunication;
 
-    public Controller(MainView v){
-        this.view = v;
-    }
-
     public Controller(MainView vista,ServerComunication sComunication) {
 
         this.view = vista;
