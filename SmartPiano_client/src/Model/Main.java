@@ -29,7 +29,7 @@ public class Main {
         //Reading the JSON file
         ReadJson Rj = new ReadJson();
         Rj.llegeixJSON();
-        System.out.println(Rj.getDades().getListeningPort());
+
 
         MainView v = new MainView();
         LoginView lv = new LoginView();

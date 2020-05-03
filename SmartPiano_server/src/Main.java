@@ -20,7 +20,7 @@ public class Main {
             JsonReader Rj = new JsonReader();
             Rj.llegeixJSON();
 
-            System.out.println(Rj.getDades().getListeningPort());
+            
 
         MainView v = new MainView();
 
