@@ -21,6 +21,8 @@ import java.io.FileReader;
 public class Main {
     private static ReadJson rj;
     private static Data data;
+    private Controller c;
+    ServerComunication sc;
 
 
     public static void main(String[] args) {
@@ -31,9 +33,18 @@ public class Main {
         Rj.llegeixJSON();
 
 
+
+
         MainView v = new MainView();
         LoginView lv = new LoginView();
         RegisterView rv = new RegisterView ();
+        ServerComunication sc = new ServerComunication();
+
+
+        Controller c = new Controller(v,sc);
+
+
+
 
         MainViewControllerCl controller = new MainViewControllerCl(v, lv, rv);
 
@@ -47,7 +58,10 @@ public class Main {
                 rv.registerControllerR(controller);
 
                 v.setVisible(true);
+                System.out.println("tot fet");
             }
         });
+
+
     }
 }

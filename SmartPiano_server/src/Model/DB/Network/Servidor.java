@@ -74,7 +74,7 @@ public class Servidor extends Thread{
         this.interrupt();
     }
     public void mostraClients(){
-        System.out.println("El servidor te" + dServers.size() + "clients connectats");
+        System.out.println("El servidor te " + dServers.size() + " clients connectats");
     }
 
     public void run() {
@@ -102,7 +102,7 @@ public class Servidor extends Thread{
 
 
                 // tanquem la connexio amb el client
-                sClient.close();
+                //sClient.close();
 
                 //System.out.println(user.getNickname);
 
