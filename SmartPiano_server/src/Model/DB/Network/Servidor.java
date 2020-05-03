@@ -27,9 +27,6 @@ public class Servidor extends Thread{
 
 
 
-
-
-
     /////////////NO ESTAN AL UML/////////////
     private ObjectInputStream objectIn;
     private Socket sClient;
@@ -58,7 +55,7 @@ public class Servidor extends Thread{
     //////////////////A IMPLEMENTAR/////////////////////////
 
     //public boolean registerUser(Usuari u){}
-    //ublic boolean loginUser(Usuari u){}
+    //public boolean loginUser(Usuari u){}
     //public void gestionaRepros(Song c){}
 
 
