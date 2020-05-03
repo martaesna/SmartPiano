@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.DataInputStream;
 import java.net.Socket;
 import Model.Json.*;
-
+import Model.User;
 public class ServerComunication extends Thread  {
 
     private boolean isOn;
@@ -15,8 +15,7 @@ public class ServerComunication extends Thread  {
     private Socket socketToServer;
     private ObjectOutputStream objectOut;
     private DataInputStream dataIn;
-
-
+    private User usuari;
 
     public ServerComunication() {
         try {
@@ -45,11 +44,19 @@ public class ServerComunication extends Thread  {
         this.interrupt();
     }
 
+    //------------------------------
+    //------------PETA--------------
+    //------------------------------
+    public void enviaRegistre (User usuari) throws IOException{
+            objectOut.writeObject(usuari);
+    }
+
     public void run() {
         while (isOn) {
-            System.out.println("sembla que funciona");
+            //System.out.println("sembla que funciona");
         }
         stopServerComunication();
     }
+
 
 }
