@@ -13,9 +13,6 @@ public class Data {
         this.listeningPort = listeningPort;
     }
 
-
-
-
     public String getServerIP() {
         return serverIP;
     }

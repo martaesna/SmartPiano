@@ -15,12 +15,10 @@ public class ReadJson {
         com.google.gson.stream.JsonReader reader;
         try{
 
-
             reader = new com.google.gson.stream.JsonReader(new FileReader(PATH));
             data = gson.fromJson(reader, Data.class);
 
             System.out.println("\nLectura JSON finalitzada.\n");
-
 
 
         }catch(Exception e){

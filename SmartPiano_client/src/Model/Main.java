@@ -1,4 +1,4 @@
-package Model.Network;
+package Model;
 
 import Controller.Controller;
 import Model.Json.ReadJson;
