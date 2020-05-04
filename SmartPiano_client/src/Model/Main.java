@@ -9,6 +9,7 @@ import Controller.MainViewControllerCl;
 import Model.Network.ServerComunication;
 import View.RegisterView;
 
+
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
@@ -21,6 +22,8 @@ import java.io.FileReader;
 public class Main {
     private static ReadJson rj;
     private static Data data;
+    private Controller c;
+    private ServerComunication sc;
 
 
     public static void main(String[] args) {
@@ -29,12 +32,18 @@ public class Main {
         //Reading the JSON file
         ReadJson Rj = new ReadJson();
         Rj.llegeixJSON();
-        System.out.println(Rj.getDades().getListeningPort());
+
+
+
 
         MainView v = new MainView();
         LoginView lv = new LoginView();
         RegisterView rv = new RegisterView ();
+        ServerComunication sc = new ServerComunication();
 
+
+        Controller c = new Controller(v,sc);
+        System.out.println("estem abans de la vista");
         MainViewControllerCl controller = new MainViewControllerCl(v, lv, rv);
 
 
@@ -47,7 +56,9 @@ public class Main {
                 rv.registerControllerR(controller);
 
                 v.setVisible(true);
+
             }
         });
+        //hola
     }
 }

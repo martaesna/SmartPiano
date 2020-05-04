@@ -3,7 +3,7 @@ package Model.DB.Network;
 import Controller.MainViewController;
 import Model.DB.Usuari;
 import View.MainView;
-
+import Model.DB.User_Client;
 import java.io.*;
 import java.net.Socket;
 import java.util.LinkedList;
@@ -17,6 +17,7 @@ public class ServidorDedicat extends Thread {
     private LinkedList<ServidorDedicat> clients;
     private Servidor servidor;
     private MainViewController controller;
+    private User_Client userclient;
 
 
     public ServidorDedicat(Socket sClient, MainViewController controller, Servidor servidor) {
@@ -29,36 +30,30 @@ public class ServidorDedicat extends Thread {
         isRunning = true;
         this.start();
     }
+
     public void stopDedicatedServer() {
         // aturem el servidor dedicat
         this.isRunning = false;
         this.interrupt();
     }
 
+
+
     @Override
     public void run () {
         try {
-            ObjectInputStream ois = new ObjectInputStream(sClient.getInputStream());
-            DataOutputStream dos = new DataOutputStream(sClient.getOutputStream());
-            dos.writeUTF("Estic llest");
-            int value = (Integer) ois.readObject();
-            System.out.println("Client diu: " + value);
-            Usuari user = (Usuari) ois.readObject();
-            System.out.println("Client també diu: " + user.toString());
+            ObjectInput ois = new ObjectInputStream(sClient.getInputStream());
+            System.out.println("estem al run");
+            DataOutput dos = new DataOutputStream(sClient.getOutputStream());
             try {
-                sleep(10000);
-            } catch (InterruptedException e) {
-            }
-            dos.writeUTF("Ok " + value);
-            System.out.println("Ok " + value);
-        } catch (IOException | ClassNotFoundException e) {
-
-        } finally {
-            try {
-                sClient.close();
-            } catch (IOException e) {
+                userclient = (User_Client) ois.readObject();
+                System.out.println(userclient.getName());
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
     }
 }
