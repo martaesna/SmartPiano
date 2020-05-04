@@ -1,12 +1,13 @@
 package Model.DB;
+import java.io.Serializable;
 
-public class User_Client {
+
+public class User implements Serializable {
     private String name;
     private String mail;
     private String password;
-    private User_Client user;
 
-    public User_Client(String name, String mail, String password) {
+    public User(String name, String mail, String password) {
         this.name = name;
         this.mail = mail;
         this.password = password;

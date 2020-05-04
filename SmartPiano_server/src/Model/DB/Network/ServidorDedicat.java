@@ -3,7 +3,7 @@ package Model.DB.Network;
 import Controller.MainViewController;
 import Model.DB.Usuari;
 import View.MainView;
-import Model.DB.User_Client;
+import Model.DB.User;
 import java.io.*;
 import java.net.Socket;
 import java.util.LinkedList;
@@ -17,7 +17,7 @@ public class ServidorDedicat extends Thread {
     private LinkedList<ServidorDedicat> clients;
     private Servidor servidor;
     private MainViewController controller;
-    private User_Client userclient;
+    private User usuari;
 
 
     public ServidorDedicat(Socket sClient, MainViewController controller, Servidor servidor) {
@@ -46,8 +46,8 @@ public class ServidorDedicat extends Thread {
             System.out.println("estem al run");
             DataOutput dos = new DataOutputStream(sClient.getOutputStream());
             try {
-                userclient = (User_Client) ois.readObject();
-                System.out.println(userclient.getName());
+                usuari = (User) ois.readObject();
+                System.out.println(usuari.getName());
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
