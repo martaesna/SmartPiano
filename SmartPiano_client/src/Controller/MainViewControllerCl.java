@@ -15,13 +15,13 @@ public class MainViewControllerCl implements ActionListener {
     private MainView v;
     private LoginView lv;
     private RegisterView rv;
-    private User usuari;
     private ServerComunication sc;
 
-    public MainViewControllerCl(MainView v, LoginView lv, RegisterView rv) {
+    public MainViewControllerCl(MainView v, LoginView lv, RegisterView rv, ServerComunication sc) {
         this.v = v;
         this.lv = lv;
         this.rv = rv;
+        this.sc = sc;
     }
 
     public void actionPerformed(ActionEvent e) {

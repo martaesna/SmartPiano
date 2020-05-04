@@ -44,7 +44,7 @@ public class Main {
 
         Controller c = new Controller(v,sc);
         System.out.println("estem abans de la vista");
-        MainViewControllerCl controller = new MainViewControllerCl(v, lv, rv);
+        MainViewControllerCl controller = new MainViewControllerCl(v, lv, rv, sc);
 
 
         SwingUtilities.invokeLater(new Runnable() {
@@ -59,6 +59,5 @@ public class Main {
 
             }
         });
-        //hola
     }
 }
