@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 
 public class JsonReader {
     private Data data;
-    final String PATH = "D:\\Trabajos\\Any Actual 2019-2020\\DPO\\Semestre2\\Projecte\\SmartPiano\\SmartPiano_server\\files\\config.json";
+    final String PATH = "SmartPiano_server\\files\\config.json";
     public void llegeixJSON(){
         Gson gson = new Gson();
         com.google.gson.stream.JsonReader reader;
