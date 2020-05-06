@@ -1,9 +1,8 @@
-package Model.DB.Network;
+package Model.Network;
 
 import Controller.MainViewController;
-import Model.DB.Usuari;
-import View.MainView;
-import Model.DB.User;
+import Model.User;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.LinkedList;
@@ -44,11 +43,17 @@ public class ServidorDedicat extends Thread {
     public void run () {
         try {
             ois = new ObjectInputStream(sClient.getInputStream());
+            //while is running(bucle infinit)
             System.out.println("estem al run");
             //dos = new DataOutputStream(sClient.getOutputStream());
             try {
-                usuari = (User)ois.readObject();
-                System.out.println(usuari.getName());
+                Object object = ois.readObject();
+                //si el object es "tipus" User entra al if
+                if (object instanceof User){
+                    User usuari = (User) object;
+                    System.out.println(usuari.getName());
+                }
+
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }

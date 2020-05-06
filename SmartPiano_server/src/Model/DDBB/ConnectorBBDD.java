@@ -1,6 +1,6 @@
-package Model.DB.DDBB;
+package Model.DDBB;
 
-import Model.DB.Usuari;
+import Model.Usuari;
 
 public class ConnectorBBDD {
     private int portBBDD;

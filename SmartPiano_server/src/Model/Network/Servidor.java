@@ -1,11 +1,9 @@
-package Model.DB.Network;
+package Model.Network;
 import Controller.MainViewController;
-import Model.DB.Json.Data;
-import Model.DB.Json.JsonReader;
-import Model.DB.User;
-import Model.DB.Usuari;
+import Model.Json.Data;
+import Model.Json.JsonReader;
+import Model.User;
 import View.MainView;
-import Model.NetworkConfiguration;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -95,7 +93,6 @@ public class Servidor extends Thread{
                 //encenem el servidor dedicat
                 dsClient.startDedicatedServer();
                 mostraClients();
-
 
                 /*for (ServidorDedicat dServer : dServers) {
                     dServer.startDedicatedServer();
