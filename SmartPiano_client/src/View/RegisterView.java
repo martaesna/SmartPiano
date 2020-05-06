@@ -94,8 +94,9 @@ public class RegisterView extends JFrame {
 
         getContentPane().add(jpsuperior, BorderLayout.NORTH); //coloquem els panels on necesitem
         getContentPane().add(jpInferior, BorderLayout.SOUTH);
-
     }
+
+    //HOLA
 
     public void registerControllerR(ActionListener actionListener) {
         jbcancel.addActionListener(actionListener);// creamos las realciones con el controlador
@@ -106,7 +107,14 @@ public class RegisterView extends JFrame {
         return jllogin2.getText();
     }
 
-    public int Getpasword() throws NumberFormatException {
-        return Integer.valueOf(jlpasword2.getText());
+    public String Getpassword() {
+        return jlpasword2.getText();
     }
+
+    public String Getmail(){
+        return jlmail2.getText();
+    }
+
+    public String Getconfirma () {return jlconfirma2.getText();}
+
 }

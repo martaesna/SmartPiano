@@ -8,19 +8,17 @@ import java.util.ArrayList;
 
 public class ReadJson {
     private Data data;
-    final String PATH ="/Users/mariorodriguez/Desktop/uni/haciendo/DPO/Haciendo/Project Piano/SmartPiano/SmartPiano_client/files/config.json";
+    final String PATH ="SmartPiano_client\\files\\config.json";
 
     public void llegeixJSON(){
         Gson gson = new Gson();
         com.google.gson.stream.JsonReader reader;
         try{
 
-
             reader = new com.google.gson.stream.JsonReader(new FileReader(PATH));
             data = gson.fromJson(reader, Data.class);
 
             System.out.println("\nLectura JSON finalitzada.\n");
-
 
 
         }catch(Exception e){

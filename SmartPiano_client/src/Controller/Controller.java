@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Network.ServerComunication;
+import Model.User;
 import View.*;
 
 
@@ -8,13 +9,9 @@ public class Controller {
 
     //relacio vista
     private MainView view;
-
+    private User usuari;
     //realcio server
     private ServerComunication sComunication;
-
-    public Controller(MainView v){
-        this.view = v;
-    }
 
     public Controller(MainView vista,ServerComunication sComunication) {
 
@@ -24,5 +21,6 @@ public class Controller {
         // de la graella
         sComunication.startServerComunication();
     }
+
 
 }
