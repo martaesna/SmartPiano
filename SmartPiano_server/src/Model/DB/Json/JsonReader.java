@@ -22,6 +22,7 @@ public class JsonReader {
 
     }
 
+
     public Data getDades() {
         return data;
     }
