@@ -4,14 +4,13 @@ import java.io.FileReader;
 import com.google.gson.Gson;
 
 public class JsonReader {
-    private Data data;
-    final String PATH = "SmartPiano_server\\files\\config.json";
-    public void llegeixJSON(){
-        Gson gson = new Gson();
-        com.google.gson.stream.JsonReader reader;
+    static Data data = new Data();
+    // String PATH = 'C:\Users\marta\Desktop\SmartPiano\SmartPiano_server\src\assets\config.json';
+    public static Data llegeixJSON(){
         try{
-
-            reader = new com.google.gson.stream.JsonReader(new FileReader(PATH));
+            Gson gson = new Gson();
+            com.google.gson.stream.JsonReader reader;
+            reader = new com.google.gson.stream.JsonReader(new FileReader("SmartPiano_server\\files\\config.json"));
             data = gson.fromJson(reader, Data.class);
 
             System.out.println("\nLectura JSON finalitzada.\n");
@@ -19,13 +18,9 @@ public class JsonReader {
         }catch(Exception e){
             System.out.println("No s'ha pogut llegir el fitxer JSON: " + e.getMessage());
         }
-
+        return data;
     }
-
-
     public Data getDades() {
         return data;
     }
-
-
 }

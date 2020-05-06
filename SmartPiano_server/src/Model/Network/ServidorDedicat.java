@@ -43,23 +43,23 @@ public class ServidorDedicat extends Thread {
     public void run () {
         try {
             ois = new ObjectInputStream(sClient.getInputStream());
-            //while is running(bucle infinit)
-            System.out.println("estem al run");
-            //dos = new DataOutputStream(sClient.getOutputStream());
-            try {
-                Object object = ois.readObject();
-                //si el object es "tipus" User entra al if
-                if (object instanceof User){
-                    User usuari = (User) object;
-                    System.out.println(usuari.getName());
+            while (isRunning) {
+                //while is running(bucle infinit)
+                System.out.println("estem al run");
+                //dos = new DataOutputStream(sClient.getOutputStream());
+                try {
+                    Object object = ois.readObject();
+                    //si el object es "tipus" User entra al if
+                    if (object instanceof User) {
+                        User usuari = (User) object;
+                        System.out.println(usuari.getName());
+                    }
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
                 }
-
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
