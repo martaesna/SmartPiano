@@ -15,7 +15,6 @@ public class ServerComunication extends Thread  {
     private Socket socketToServer;
     private ObjectOutputStream objectOut;
     private DataInputStream dataIn;
-    private User usuari;
 
     public ServerComunication() {
         try {
@@ -47,8 +46,12 @@ public class ServerComunication extends Thread  {
     //------------------------------
     //------------PETA--------------
     //------------------------------
-    public void enviaRegistre (User usuari) throws IOException{
+    public void enviaRegistre (User usuari){
+        try {
             objectOut.writeObject(usuari);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void run() {

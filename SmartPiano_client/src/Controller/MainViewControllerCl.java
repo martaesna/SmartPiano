@@ -53,11 +53,8 @@ public class MainViewControllerCl implements ActionListener {
             if (rv.Getpassword().equals(rv.Getconfirma())) {
                 User usuari = new User(rv.Getusername(), rv.Getmail(), rv.Getpassword());
 
-                try {
-                    sc.enviaRegistre(usuari);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+                sc.enviaRegistre(usuari);
+
                 /*usuari.setName(rv.Getusername());
                 usuari.setMail(rv.Getmail());
                 usuari.setPassword(rv.Getpassword());
