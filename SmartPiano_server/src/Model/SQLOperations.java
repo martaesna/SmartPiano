@@ -1,6 +1,6 @@
-package Model.DB;
+package Model;
 
-import Model.DB.DDBB.ConectorDB;
+import Model.DDBB.ConectorDB;
 
 public class SQLOperations {
     public static void registreUsuari (String name, String password, String mail) {

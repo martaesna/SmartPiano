@@ -1,13 +1,9 @@
-import Model.DB.Json.Data;
-import Model.DB.Json.JsonReader;
-import Model.DB.Network.Servidor;
-import Model.DB.SQLOperations;
+import Model.Json.JsonReader;
+import Model.Network.Servidor;
+import Model.SQLOperations;
 import Controller.*;
 import View.MainView;
 import com.mysql.fabric.Server;
-
-
-import javax.swing.*;
 
 public class Main {
 

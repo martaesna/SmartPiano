@@ -1,4 +1,4 @@
-package Model.DB;
+package Model;
 import java.io.Serializable;
 
 

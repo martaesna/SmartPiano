@@ -1,4 +1,4 @@
-package Model.DB.DDBB;
+package Model.DDBB;
 
 import com.mysql.jdbc.Connection;
 

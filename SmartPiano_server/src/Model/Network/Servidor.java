@@ -1,22 +1,18 @@
-package Model.DB.Network;
+package Model.Network;
 import Controller.MainViewController;
-import Model.DB.Json.Data;
-import Model.DB.Json.JsonReader;
-import Model.DB.Usuari;
+import Model.Json.Data;
+import Model.Json.JsonReader;
+import Model.User;
 import View.MainView;
-import Model.NetworkConfiguration;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
 
 public class Servidor extends Thread{
 
-    private String user;
+    private User user;
     private String password;
     private int portPeticions;
     private ServerSocket sSocket;
@@ -29,8 +25,8 @@ public class Servidor extends Thread{
 
 
     /////////////NO ESTAN AL UML/////////////
-    private ObjectInputStream objectIn;
-    private ObjectOutputStream objectOut;
+    private ObjectInputStream ois;
+    private DataOutputStream dos;
     private Socket sClient;
     /////////////NO ESTAN AL UML/////////////
 
@@ -76,12 +72,12 @@ public class Servidor extends Thread{
         isRunning = false;
         this.interrupt();
     }
+
     public void mostraClients(){
         System.out.println("El servidor te " + dServers.size() + " clients connectats");
     }
 
     public void run() {
-        Usuari user;
         while (isRunning) {
             try {
                 // esperem peticions de connexio de clients
@@ -97,12 +93,14 @@ public class Servidor extends Thread{
                 //encenem el servidor dedicat
                 dsClient.startDedicatedServer();
                 mostraClients();
-                dsClient.run();
 
+                /*for (ServidorDedicat dServer : dServers) {
+                    dServer.startDedicatedServer();
+                }
+                */
 
                 // llegim objecte usuari
-                objectIn = new ObjectInputStream(sClient.getInputStream());
-                user = (Usuari)objectIn.readObject();
+
 
 
                 // tanquem la connexio amb el client
@@ -112,8 +110,6 @@ public class Servidor extends Thread{
 
 
             } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }

@@ -1,4 +1,4 @@
-package Model.DB.Json;
+package Model.Json;
 
 import java.io.FileReader;
 import com.google.gson.Gson;
