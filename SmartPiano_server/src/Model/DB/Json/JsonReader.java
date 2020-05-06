@@ -16,16 +16,12 @@ public class JsonReader {
 
             System.out.println("\nLectura JSON finalitzada.\n");
 
-
-
-
-
         }catch(Exception e){
             System.out.println("No s'ha pogut llegir el fitxer JSON: " + e.getMessage());
         }
 
-
     }
+
 
     public Data getDades() {
         return data;

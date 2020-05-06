@@ -51,11 +51,8 @@ public class MainViewControllerCl implements ActionListener {
         if (e.getActionCommand().equals(rv.REG)) {
             System.out.println("Vols registrarte");
             if (rv.Getpassword().equals(rv.Getconfirma())) {
-                User usuari = new User(rv.getName(), rv.Getmail(), rv.Getpassword());
+                User usuari = new User(rv.Getusername(), rv.Getmail(), rv.Getpassword());
 
-                //-------------------------------
-                //-----------ERROR---------------
-                //-------------------------------
                 try {
                     sc.enviaRegistre(usuari);
                 } catch (IOException ex) {

@@ -94,8 +94,9 @@ public class RegisterView extends JFrame {
 
         getContentPane().add(jpsuperior, BorderLayout.NORTH); //coloquem els panels on necesitem
         getContentPane().add(jpInferior, BorderLayout.SOUTH);
-
     }
+
+    //HOLA
 
     public void registerControllerR(ActionListener actionListener) {
         jbcancel.addActionListener(actionListener);// creamos las realciones con el controlador
