@@ -1,4 +1,4 @@
-package Model.DB.Json;
+package Model.Json;
 
 public class Data {
 

@@ -1,7 +1,7 @@
-package Model.DB;
+package Model;
 
 
-import Model.DB.Network.Servidor;
+import Model.Network.Servidor;
 
 public class Manager {
     Servidor servidor;
