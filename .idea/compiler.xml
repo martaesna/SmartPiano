@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="SmartPiano_client" target="12" />
+      <module name="SmartPiano_client" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

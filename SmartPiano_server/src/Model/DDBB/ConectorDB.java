@@ -1,8 +1,8 @@
 package Model.DDBB;
 
 import com.mysql.jdbc.Connection;
-
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -28,20 +28,19 @@ public class ConectorDB {
     public boolean connect() {
         try {
             Class.forName("com.mysql.jdbc.Connection");
-            conn = (Connection) DriverManager.getConnection(url, userName, password);
+            conn = (Connection)DriverManager.getConnection(url, userName, password);
             if (conn != null) {
-                System.out.println("Conexió a base de dades "+url+" ... Ok");
+                System.out.println("Conexió a base de dades " + url + " ... Ok");
             }
             return true;
         }
         catch(SQLException ex) {
-            System.out.println("Problema al connecta-nos a la BBDD --> "+url);
+            System.out.println("Problema al connectar-nos a la BBDD --> " + url);
         }
         catch(ClassNotFoundException ex) {
             System.out.println(ex);
         }
         return false;
-
     }
 
     public void disconnect(){
@@ -60,5 +59,16 @@ public class ConectorDB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ResultSet selectQuery(String query){
+        ResultSet rs = null;
+        try {
+            s =(Statement) conn.createStatement();
+            rs = s.executeQuery (query);
+        } catch (SQLException ex) {
+            System.out.println("Problema al Recuperar les dades --> " + ex.getSQLState());
+        }
+        return rs;
     }
 }
