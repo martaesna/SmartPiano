@@ -52,19 +52,14 @@ public class MainViewControllerCl implements ActionListener {
             System.out.println("Vols registrarte");
             if (rv.Getpassword().equals(rv.Getconfirma())) {
                 User usuari = new User(rv.Getusername(), rv.Getmail(), rv.Getpassword());
-
                 sc.enviaRegistre(usuari);
-
                 /*usuari.setName(rv.Getusername());
                 usuari.setMail(rv.Getmail());
                 usuari.setPassword(rv.Getpassword());
                 */
-
             }
-
             // Recorrem el json comparan
             //if()sdaadasdasd
-
         }
         if (e.getActionCommand().equals(lv.LOGIN)) {
             System.out.println("Vols fer log in");
