@@ -28,20 +28,14 @@ public class Main {
 
 
     public static void main(String[] args) {
-
-
         //Reading the JSON file
         ReadJson Rj = new ReadJson();
         Rj.llegeixJSON();
-
-
-
 
         MainView v = new MainView();
         LoginView lv = new LoginView();
         RegisterView rv = new RegisterView ();
         ServerComunication sc = new ServerComunication();
-
 
         Controller c = new Controller(v,sc);
         System.out.println("estem abans de la vista");

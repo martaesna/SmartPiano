@@ -1,6 +1,5 @@
-import Model.Json.JsonReader;
 import Model.Network.Servidor;
-import Model.SQLOperations;
+import Model.DDBB.SQLOperations;
 import Controller.*;
 import View.MainView;
 import com.mysql.fabric.Server;

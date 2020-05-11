@@ -7,6 +7,8 @@ import java.io.*;
 import java.net.Socket;
 import java.util.LinkedList;
 
+import static Model.DDBB.SQLOperations.registreUsuari;
+
 
 public class ServidorDedicat extends Thread {
     private boolean isRunning;
@@ -52,7 +54,7 @@ public class ServidorDedicat extends Thread {
                     //si el object es "tipus" User entra al if
                     if (object instanceof User) {
                         User usuari = (User) object;
-                        System.out.println(usuari.getName());
+                        registreUsuari(usuari.getName(), usuari.getMail(), usuari.getPassword());
                     }
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
