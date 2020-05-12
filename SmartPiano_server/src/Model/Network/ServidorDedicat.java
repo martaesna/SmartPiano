@@ -1,12 +1,15 @@
 package Model.Network;
 
 import Controller.MainViewController;
+import Model.Missatge;
 import Model.User;
 
 import java.io.*;
 import java.net.Socket;
 import java.util.LinkedList;
 
+import static Model.DDBB.SQLOperations.existeixUsuari;
+import static Model.DDBB.SQLOperations.loginUsuariCorrecte;
 import static Model.DDBB.SQLOperations.registreUsuari;
 
 
@@ -51,11 +54,29 @@ public class ServidorDedicat extends Thread {
                 //dos = new DataOutputStream(sClient.getOutputStream());
                 try {
                     Object object = ois.readObject();
-                    //si el object es "tipus" User entra al if
-                    if (object instanceof User) {
-                        User usuari = (User) object;
-                        registreUsuari(usuari.getName(), usuari.getMail(), usuari.getPassword());
+                    Missatge missatge;
+                    missatge = (Missatge) object;
+                    String accio = missatge.getAccio();
+                    switch (accio) {
+                        case "registre":
+                            usuari = (User)missatge.getData();
+                            if (existeixUsuari(usuari.getName())) {
+                                System.out.println("registre incorrecte");
+                            } else {
+                                registreUsuari(usuari.getName(), usuari.getMail(), usuari.getPassword());
+                            }
+                            break;
+                        case "login":
+                            //retornar info al client
+                            usuari = (User)missatge.getData();
+                            if (loginUsuariCorrecte(usuari.getName(), usuari.getPassword())) {
+                                System.out.println("log in correcte");
+                            } else {
+                                System.out.println("log in incorrecte");
+                            }
+                            break;
                     }
+                    //si el object es "tipus" User entra al if
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }

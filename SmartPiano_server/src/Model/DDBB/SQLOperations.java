@@ -36,7 +36,7 @@ public class SQLOperations {
         data = llegeixJSON();
         ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
-        ResultSet rs = conn.selectQuery("SELECT u.nickname FROM User AS u WHERE u.nickname LIKE '" + name + "' AND u.password LIKE '" + password + "'");
+        ResultSet rs = conn.selectQuery("SELECT u.nickname FROM User AS u WHERE (u.nickname LIKE '" + name + "' OR u.email LIKE '" + name + "') AND u.password LIKE '" + password + "'");
         try {
             if (rs.isBeforeFirst()) {
                 return true;

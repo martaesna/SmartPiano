@@ -1,10 +1,10 @@
 package Model.Network;
 
+import Model.Missatge;
 import Model.NetworkConfiguration;
 import View.MainView;
-import java.io.ObjectOutputStream;
-import java.io.IOException;
-import java.io.DataInputStream;
+
+import java.io.*;
 import java.net.Socket;
 import Model.Json.*;
 import Model.User;
@@ -14,6 +14,7 @@ public class ServerComunication extends Thread  {
     private MainView view;
     private Socket socketToServer;
     private ObjectOutputStream objectOut;
+    private DataOutputStream dataOut;
     private DataInputStream dataIn;
 
     public ServerComunication() {
@@ -46,9 +47,11 @@ public class ServerComunication extends Thread  {
     //------------------------------
     //------------PETA--------------
     //------------------------------
-    public void enviaRegistre (User usuari){
+    public void enviaMissatge (Object missatge){
         try {
-            objectOut.writeObject(usuari);
+            objectOut.writeObject(missatge);
+        } catch (NotSerializableException e) {
+            System.out.println("error");
         } catch (IOException e) {
             e.printStackTrace();
         }

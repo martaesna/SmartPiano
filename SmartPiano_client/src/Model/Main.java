@@ -45,13 +45,10 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-
                 v.registerController(controller);
                 lv.registerControllerL(controller);
                 rv.registerControllerR(controller);
-
                 v.setVisible(true);
-
             }
         });
     }
