@@ -3,11 +3,11 @@ package Model.Network;
 import Model.Missatge;
 import Model.NetworkConfiguration;
 import View.MainView;
-
 import java.io.*;
 import java.net.Socket;
 import Model.Json.*;
 import Model.User;
+
 public class ServerComunication extends Thread  {
 
     private boolean isOn;
