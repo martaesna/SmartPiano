@@ -18,6 +18,7 @@ public class ServidorDedicat extends Thread {
     private Socket sClient;
     private DataInputStream dataInput;
     private ObjectInputStream ois;
+    private ObjectOutputStream objectOut;
     private DataOutputStream dos;
     private LinkedList<ServidorDedicat> clients;
     private Servidor servidor;
@@ -43,6 +44,15 @@ public class ServidorDedicat extends Thread {
         this.interrupt();
     }
 
+    public void enviaMissatge (Object missatge){
+        try {
+            objectOut = new ObjectOutputStream(sClient.getOutputStream());
+            objectOut.writeObject(missatge);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void run () {
@@ -57,23 +67,30 @@ public class ServidorDedicat extends Thread {
                     Missatge missatge;
                     missatge = (Missatge) object;
                     String accio = missatge.getAccio();
+                    String accioResposta;
+                    Missatge missatgeResposta;
                     switch (accio) {
                         case "registre":
                             usuari = (User)missatge.getData();
                             if (existeixUsuari(usuari.getName())) {
-                                System.out.println("registre incorrecte");
+                                accioResposta = "errorRegistre";
                             } else {
                                 registreUsuari(usuari.getName(), usuari.getMail(), usuari.getPassword());
+                                accioResposta = "registreCorrecte";
                             }
+                            missatgeResposta = new Missatge(accioResposta, missatge.getData());
+                            enviaMissatge((Object) missatgeResposta);
                             break;
                         case "login":
                             //retornar info al client
                             usuari = (User)missatge.getData();
-                            if (loginUsuariCorrecte(usuari.getName(), usuari.getPassword())) {
-                                System.out.println("log in correcte");
+                            if (!loginUsuariCorrecte(usuari.getName(), usuari.getPassword())) {
+                                accioResposta = "errorLogin";
                             } else {
-                                System.out.println("log in incorrecte");
+                                accioResposta = "loginCorrecte";
                             }
+                            missatgeResposta = new Missatge(accioResposta, missatge.getData());
+                            enviaMissatge((Object)missatgeResposta);
                             break;
                     }
                     //si el object es "tipus" User entra al if

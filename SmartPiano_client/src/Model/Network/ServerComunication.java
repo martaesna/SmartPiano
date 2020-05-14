@@ -13,6 +13,7 @@ public class ServerComunication extends Thread  {
     private boolean isOn;
     private MainView view;
     private Socket socketToServer;
+    private ObjectInputStream objectIn;
     private ObjectOutputStream objectOut;
     private DataOutputStream dataOut;
     private DataInputStream dataIn;
@@ -50,8 +51,6 @@ public class ServerComunication extends Thread  {
     public void enviaMissatge (Object missatge){
         try {
             objectOut.writeObject(missatge);
-        } catch (NotSerializableException e) {
-            System.out.println("error");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -59,10 +58,15 @@ public class ServerComunication extends Thread  {
 
     public void run() {
         while (isOn) {
+            try {
+                objectIn = new ObjectInputStream(socketToServer.getInputStream());
+                Object object = objectIn.readObject();
+                System.out.println("skr");
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
             //System.out.println("sembla que funciona");
         }
         stopServerComunication();
     }
-
-
 }
