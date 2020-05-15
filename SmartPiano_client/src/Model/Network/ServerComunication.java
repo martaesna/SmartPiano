@@ -1,19 +1,21 @@
 package Model.Network;
 
+import Model.Missatge;
 import Model.NetworkConfiguration;
 import View.MainView;
-import java.io.ObjectOutputStream;
-import java.io.IOException;
-import java.io.DataInputStream;
+import java.io.*;
 import java.net.Socket;
 import Model.Json.*;
 import Model.User;
+
 public class ServerComunication extends Thread  {
 
     private boolean isOn;
     private MainView view;
     private Socket socketToServer;
+    private ObjectInputStream objectIn;
     private ObjectOutputStream objectOut;
+    private DataOutputStream dataOut;
     private DataInputStream dataIn;
 
     public ServerComunication() {
@@ -46,9 +48,9 @@ public class ServerComunication extends Thread  {
     //------------------------------
     //------------PETA--------------
     //------------------------------
-    public void enviaRegistre (User usuari){
+    public void enviaMissatge (Object missatge){
         try {
-            objectOut.writeObject(usuari);
+            objectOut.writeObject(missatge);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,10 +58,15 @@ public class ServerComunication extends Thread  {
 
     public void run() {
         while (isOn) {
+            try {
+                objectIn = new ObjectInputStream(socketToServer.getInputStream());
+                Object object = objectIn.readObject();
+                System.out.println("skr");
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
             //System.out.println("sembla que funciona");
         }
         stopServerComunication();
     }
-
-
 }
