@@ -84,7 +84,7 @@ public class LoginView extends JFrame {
         return jllogin2.getText();
     }
 
-    public int Getpasword() throws NumberFormatException {
-        return Integer.valueOf(jlpasword2.getText());
+    public String Getpasword() {
+        return jlpasword2.getText();
     }
 }
