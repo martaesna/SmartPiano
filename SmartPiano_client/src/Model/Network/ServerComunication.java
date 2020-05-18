@@ -55,6 +55,13 @@ public class ServerComunication extends Thread  {
             e.printStackTrace();
         }
     }
+    public void enviaLogin (User usuari){
+        try{
+            objectOut.writeObject(usuari);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
     public void run() {
         while (isOn) {
