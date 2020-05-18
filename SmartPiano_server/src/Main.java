@@ -4,6 +4,8 @@ import Controller.*;
 import View.MainView;
 import com.mysql.fabric.Server;
 
+import javax.swing.*;
+
 public class Main {
 
     private Server server;
@@ -16,5 +18,13 @@ public class Main {
 
         Servidor server = new Servidor();
         server.startServer();
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                v.mainController(controller);
+                v.setVisible(true);
+            }
+        });
     }
 }

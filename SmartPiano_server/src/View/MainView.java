@@ -1,5 +1,6 @@
 package View;
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class MainView extends JFrame {
 
@@ -47,4 +48,10 @@ public class MainView extends JFrame {
 
         getContentPane().add(jpVista);
     }
+    public void mainController(ActionListener actionListener) {
+        jbgestionacançons.addActionListener(actionListener);// creamos las realciones con el controlador
+        jbmostratop5.addActionListener(actionListener);// creamos las realciones con el controlador
+        jbmostraevolucio.addActionListener(actionListener);// creamos las realciones con el controlador
+    }
+
 }
