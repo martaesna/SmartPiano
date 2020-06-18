@@ -7,9 +7,12 @@ import java.awt.event.ActionListener;
 public class MenuViewController implements ActionListener{
 
     private MenuView mv;
+    private AmicView amicsv;
 
-    public MenuViewController (MenuView mv) {
+
+    public MenuViewController (MenuView mv,AmicView amicsv) {
         this.mv = mv;
+        this.amicsv = amicsv;
     }
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(mv.ACTION)) {
@@ -25,7 +28,7 @@ public class MenuViewController implements ActionListener{
         if (e.getActionCommand().equals(mv.ACTION4)) {
             System.out.println("Amics");
             mv.setVisible(false);
-            //amicsv.setVisible(true);
+            amicsv.setVisible(true);
         }
         if (e.getActionCommand().equals(mv.ACTION5)) {
             System.out.println("Tanca sessió");

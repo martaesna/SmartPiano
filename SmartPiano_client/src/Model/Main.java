@@ -3,9 +3,7 @@ package Model;
 import Controller.Controller;
 import Model.Json.ReadJson;
 import Model.Json.Data;
-import View.LoginView;
-import View.MainView;
-import View.MenuView;
+import View.*;
 import Controller.MainViewControllerCl;
 import Controller.MenuViewController;
 import Model.Network.ServerComunication;
@@ -38,12 +36,13 @@ public class Main {
         LoginView lv = new LoginView();
         RegisterView rv = new RegisterView ();
         MenuView mv = new MenuView();
+        AmicView amicsv = new AmicView();
         ServerComunication sc = new ServerComunication();
 
         Controller c = new Controller(v,sc);
         System.out.println("estem abans de la vista");
         MainViewControllerCl controllerMain = new MainViewControllerCl(v, lv, rv, sc);
-        MenuViewController controllerMenu = new MenuViewController(mv);
+        MenuViewController controllerMenu = new MenuViewController(mv,amicsv);
 
 
         SwingUtilities.invokeLater(new Runnable() {

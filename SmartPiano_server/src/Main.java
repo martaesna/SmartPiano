@@ -23,7 +23,7 @@ public class Main {
             @Override
             public void run() {
                 v.mainController(controller);
-                v.setVisible(true);
+
             }
         });
     }

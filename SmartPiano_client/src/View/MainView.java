@@ -11,6 +11,8 @@ public class MainView extends JFrame {
     private JButton jblogin;
     private JButton jbregistre;
     private JPanel jpInferior;
+    private JLabel jlfoto;
+
 
 
 
@@ -28,7 +30,7 @@ public class MainView extends JFrame {
         jpInferior = new JPanel();
 
         //Creem l esquema de diseny
-        jpInferior.setLayout(new GridLayout(1, 2));
+        jpInferior.setLayout(new GridLayout(2, 2));
 
         jblogin = new JButton("Log in"); // fiquem un boto
         jblogin.setActionCommand(ACTION); // creamos el comando de accion.
@@ -43,7 +45,9 @@ public class MainView extends JFrame {
         //setVisible(true);
         jpInferior.add(jbregistre);
 
+
         getContentPane().add(jpInferior, BorderLayout.SOUTH);
+
 
     }
 
