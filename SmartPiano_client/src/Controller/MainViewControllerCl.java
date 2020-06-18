@@ -1,9 +1,6 @@
 package Controller;
 import Model.Missatge;
-import View.ErrorView;
-import View.MainView;
-import View.LoginView;
-import View.RegisterView;
+import View.*;
 import Model.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

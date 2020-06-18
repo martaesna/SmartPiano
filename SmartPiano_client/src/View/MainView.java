@@ -18,7 +18,7 @@ public class MainView extends JFrame {
 
         setVisible(true);
         setTitle("Selecciona una opció"); // titol
-        setSize(300, 110); // tamaño de la caja
+        setSize(1024, 600); // tamaño de la caja
         setResizable(false); //para que no se pueda mover
         setLocationRelativeTo(null); //Centrarlo
         setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x

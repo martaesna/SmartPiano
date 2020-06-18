@@ -4,6 +4,8 @@ import Model.Network.ServerComunication;
 import Model.User;
 import View.*;
 
+import java.awt.*;
+
 
 public class Controller {
 
@@ -13,7 +15,7 @@ public class Controller {
     //realcio server
     private ServerComunication sComunication;
 
-    public Controller(MainView vista,ServerComunication sComunication) {
+    public Controller(MainView vista, ServerComunication sComunication) {
 
         this.view = vista;
         this.sComunication = sComunication;
