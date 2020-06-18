@@ -1,17 +1,23 @@
 package Controller;
-import View.ErrorView;
-import View.MainView;
+import View.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainViewController implements ActionListener {
     private MainView view;
     private MainView v;
+    private CançonsView gc;
+    private EvolucioView me;
+    private Top5View mt;
 
-    public MainViewController(MainView v) {
+
+    public MainViewController(MainView v, CançonsView gc, EvolucioView me, Top5View mt) {
         this.v = v;
+        this.gc = gc;
+        this.me = me;
+        this.mt = mt;
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
