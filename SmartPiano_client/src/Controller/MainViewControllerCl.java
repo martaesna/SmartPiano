@@ -8,6 +8,7 @@ import Model.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 import Model.Network.ServerComunication;
 
@@ -59,8 +60,10 @@ public class MainViewControllerCl implements ActionListener {
                 usuari.setMail(rv.Getmail());
                 usuari.setPassword(rv.Getpassword());
                 */
+                JOptionPane.showMessageDialog(null, "T'has registrat amb èxit!", "Registre Correcte", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 System.out.println("La contrasenya no coincideix.");
+                JOptionPane.showMessageDialog(null, "La contrasenya no coincideix", "Error Registre", JOptionPane.ERROR_MESSAGE);
             }
             // Recorrem el json comparan
             //if()sdaadasdasd

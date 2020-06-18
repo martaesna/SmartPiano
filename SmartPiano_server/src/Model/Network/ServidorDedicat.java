@@ -58,8 +58,8 @@ public class ServidorDedicat extends Thread {
     public void run () {
         try {
             ois = new ObjectInputStream(sClient.getInputStream());
+            //while is running(bucle infinit)
             while (isRunning) {
-                //while is running(bucle infinit)
                 System.out.println("estem al run");
                 //dos = new DataOutputStream(sClient.getOutputStream());
                 try {
@@ -69,14 +69,20 @@ public class ServidorDedicat extends Thread {
                     String accio = missatge.getAccio();
                     String accioResposta;
                     Missatge missatgeResposta;
+                    boolean comprovacio;
+
                     switch (accio) {
                         case "registre":
                             usuari = (User)missatge.getData();
                             if (existeixUsuari(usuari.getName())) {
                                 accioResposta = "errorRegistre";
+                                System.out.println(accioResposta);
+
                             } else {
                                 registreUsuari(usuari.getName(), usuari.getMail(), usuari.getPassword());
                                 accioResposta = "registreCorrecte";
+                                System.out.println(accioResposta);
+
                             }
                             missatgeResposta = new Missatge(accioResposta, missatge.getData());
                             enviaMissatge((Object) missatgeResposta);
@@ -86,8 +92,12 @@ public class ServidorDedicat extends Thread {
                             usuari = (User)missatge.getData();
                             if (!loginUsuariCorrecte(usuari.getName(), usuari.getPassword())) {
                                 accioResposta = "errorLogin";
+                                System.out.println(accioResposta);
+
                             } else {
                                 accioResposta = "loginCorrecte";
+                                System.out.println(accioResposta);
+
                             }
                             missatgeResposta = new Missatge(accioResposta, missatge.getData());
                             enviaMissatge((Object)missatgeResposta);
@@ -98,6 +108,7 @@ public class ServidorDedicat extends Thread {
                     e.printStackTrace();
                 }
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
