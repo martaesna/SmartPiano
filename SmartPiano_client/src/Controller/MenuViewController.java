@@ -22,11 +22,6 @@ public class MenuViewController implements ActionListener{
             mv.setVisible(false);
             //canconcsv.setVisible(true);
         }
-        if (e.getActionCommand().equals(mv.ACTION3)) {
-            System.out.println("Ajustos");
-            mv.setVisible(false);
-            //ajustosv.setVisible(true);
-        }
         if (e.getActionCommand().equals(mv.ACTION4)) {
             System.out.println("Amics");
             mv.setVisible(false);
