@@ -67,6 +67,7 @@ public class MainViewControllerCl implements ActionListener {
         }
         if (e.getActionCommand().equals(lv.LOGIN)) {
             System.out.println("Vols fer log in");
+
             accio = "login";
             User usuari = new User(lv.Getusername(), "null", lv.Getpasword());
             Missatge missatge = new Missatge(accio, usuari);

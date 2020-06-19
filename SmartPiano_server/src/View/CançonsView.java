@@ -1,9 +1,12 @@
 package View;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class CançonsView extends JFrame{
     private JPanel jpVista;
+    public static final String ACTION = "Tornar";
+    private javax.swing.JButton tornar;
 
     public CançonsView(){
         setVisible(true);
@@ -17,5 +20,14 @@ public class CançonsView extends JFrame{
         jpVista = new JPanel();
         jpVista.setLayout(null);
         jpVista.setBounds(0,0,500,500);
+
+        tornar = new javax.swing.JButton("tornar");
+        tornar.setFont(new Font("Bauhaus 93", Font.BOLD, 20));
+        tornar.setActionCommand(ACTION);
+        tornar.setBounds(5,5,120,30);
+        jpVista.add(tornar);
+
+        getContentPane().add(jpVista);
+
     }
 }

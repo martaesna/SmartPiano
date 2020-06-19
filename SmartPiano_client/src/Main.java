@@ -1,5 +1,3 @@
-package Model;
-
 import Controller.Controller;
 import Model.Json.ReadJson;
 import Model.Json.Data;
