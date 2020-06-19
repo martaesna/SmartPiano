@@ -3,9 +3,9 @@ package Model;
 import Controller.Controller;
 import Model.Json.ReadJson;
 import Model.Json.Data;
-import View.LoginView;
-import View.MainView;
+import View.*;
 import Controller.MainViewControllerCl;
+import Controller.MenuViewController;
 import Model.Network.ServerComunication;
 import View.RegisterView;
 
@@ -35,19 +35,24 @@ public class Main {
         MainView v = new MainView();
         LoginView lv = new LoginView();
         RegisterView rv = new RegisterView ();
+        MenuView mv = new MenuView();
+        AmicView amicsv = new AmicView();
         ServerComunication sc = new ServerComunication();
 
         Controller c = new Controller(v,sc);
         System.out.println("estem abans de la vista");
-        MainViewControllerCl controller = new MainViewControllerCl(v, lv, rv, sc);
+        MainViewControllerCl controllerMain = new MainViewControllerCl(v, lv, rv, sc);
+        MenuViewController controllerMenu = new MenuViewController(mv,amicsv);
 
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                v.registerController(controller);
-                lv.registerControllerL(controller);
-                rv.registerControllerR(controller);
+                v.registerController(controllerMain);
+                lv.registerControllerL(controllerMain);
+                rv.registerControllerR(controllerMain);
+
+                mv.registerControllerM(controllerMenu);
                 v.setVisible(true);
             }
         });

@@ -1,8 +1,10 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 
 public class Song implements Serializable {
+    private LinkedList<Note> notes;
     private String name;
     private int numRep;
     private int duration;
