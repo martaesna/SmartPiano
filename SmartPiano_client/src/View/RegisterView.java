@@ -23,7 +23,7 @@ public class RegisterView extends JFrame {
     public RegisterView() {
         setVisible(false);
         setTitle("Register"); // titol
-        setSize(1024, 600); // tamaño de la caja
+        setSize(720, 480); // tamaño de la caja
         setResizable(false); //para que no se pueda mover
         setLocationRelativeTo(null); //Centrarlo
         setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x
