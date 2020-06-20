@@ -69,6 +69,7 @@ public class ServerComunication extends Thread  {
                 objectIn = new ObjectInputStream(socketToServer.getInputStream());
                 Object object = objectIn.readObject();
                 System.out.println("skr");
+
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }

@@ -99,11 +99,7 @@ public class Servidor extends Thread{
                     dServer.startDedicatedServer();
                 }
                 */
-
                 // llegim objecte usuari
-
-
-
                 // tanquem la connexio amb el client
                 //sClient.close();
 

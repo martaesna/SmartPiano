@@ -70,7 +70,7 @@ public class MainViewControllerCl implements ActionListener {
             accio = "login";
             User usuari = new User(lv.Getusername(), "null", lv.Getpasword());
             Missatge missatge = new Missatge(accio, usuari);
-            sc.enviaMissatge((Object)missatge);
+                sc.enviaMissatge((Object)missatge);
+            }
         }
     }
-}
