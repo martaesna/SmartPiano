@@ -57,7 +57,6 @@ public class MainViewControllerCl implements ActionListener {
                 usuari.setMail(rv.Getmail());
                 usuari.setPassword(rv.Getpassword());
                 */
-                JOptionPane.showMessageDialog(null, "T'has registrat amb èxit!", "Registre Correcte", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 System.out.println("La contrasenya no coincideix.");
                 JOptionPane.showMessageDialog(null, "La contrasenya no coincideix", "Error Registre", JOptionPane.ERROR_MESSAGE);

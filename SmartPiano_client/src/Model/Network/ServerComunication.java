@@ -7,6 +7,9 @@ import java.io.*;
 import java.net.Socket;
 import Model.Json.*;
 import Model.User;
+import View.MenuView;
+
+import javax.swing.JOptionPane;
 
 public class ServerComunication extends Thread  {
 
@@ -66,9 +69,36 @@ public class ServerComunication extends Thread  {
     public void run() {
         while (isOn) {
             try {
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 objectIn = new ObjectInputStream(socketToServer.getInputStream());
                 Object object = objectIn.readObject();
                 System.out.println("skr");
+                Missatge missatge;
+                missatge = (Missatge) object;
+                String accio = missatge.getAccio();
+                String accioResposta;
+                Missatge missatgeResposta;
+                MenuView mv = new MenuView();
+
+                switch (accio) {
+                    case "errorRegistre":
+                        JOptionPane.showMessageDialog(null, "L'usuari ja existeix", "Error Registre", JOptionPane.ERROR_MESSAGE);
+                        break;
+                    case "errorLogin":
+                        JOptionPane.showMessageDialog(null, "L'usuari o contrasenya no son correctes", "Error Login", JOptionPane.ERROR_MESSAGE);
+                        mv.setVisible(false);
+                        break;
+
+                    case "loginCorrecte":
+                        mv.setVisible(true);
+                        break;
+                    case "registreCorrecte":
+                        JOptionPane.showMessageDialog(null, "T'has registrat amb èxit!", "Registre Correcte", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                }
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
