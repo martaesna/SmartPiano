@@ -11,7 +11,6 @@ public class MainViewController implements ActionListener {
     private EvolucioView me;
     private Top5View mt;
 
-
     public MainViewController(MainView v, CançonsView gc, EvolucioView me, Top5View mt) {
         this.v = v;
         this.gc = gc;
@@ -35,6 +34,13 @@ public class MainViewController implements ActionListener {
             System.out.println("has apretat mostra evolucio");
             me.setVisible(true);
             v.setVisible(false);
+        }
+        if (e.getActionCommand().equals(v.ACTION4)) {
+            System.out.println("has apretat tornar");
+            gc.setVisible(false);
+            mt.setVisible(false);
+            me.setVisible(false);
+            v.setVisible(true);
         }
     }
 }

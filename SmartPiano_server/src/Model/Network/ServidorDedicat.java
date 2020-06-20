@@ -69,7 +69,7 @@ public class ServidorDedicat extends Thread {
                     String accio = missatge.getAccio();
                     String accioResposta;
                     Missatge missatgeResposta;
-                    boolean comprovacio;
+
 
                     switch (accio) {
                         case "registre":

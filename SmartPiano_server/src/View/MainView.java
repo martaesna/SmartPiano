@@ -9,6 +9,7 @@ public class MainView extends JFrame {
     public static final String ACTION = "Gestiona cançons";
     public static final String ACTION2 = "Mostrar top 5";
     public static final String ACTION3 = "Mostrar evolucio";
+    public static final String ACTION4 = "Tornar";
     private JPanel jpVista;
     private javax.swing.JButton jbgestionacançons;
     private javax.swing.JButton jbmostratop5;
