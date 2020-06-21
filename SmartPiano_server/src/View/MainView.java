@@ -1,8 +1,11 @@
 package View;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class MainView extends JFrame {
 
@@ -11,6 +14,7 @@ public class MainView extends JFrame {
     public static final String ACTION3 = "Mostrar evolucio";
     public static final String ACTION4 = "Tornar";
     private JPanel jpVista;
+    private JLabel background;
     private javax.swing.JButton jbgestionacançons;
     private javax.swing.JButton jbmostratop5;
     private javax.swing.JButton jbmostraevolucio;
@@ -26,8 +30,20 @@ public class MainView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x
         setLayout(null);
 
+
+        try {
+            BufferedImage image = ImageIO.read(getClass().getResourceAsStream("/Images/disco.jpg"));
+            Image scaled = image.getScaledInstance(515, 550, Image.SCALE_DEFAULT);
+            ImageIcon backgroundImage = new ImageIcon(scaled);
+            background = new JLabel("", backgroundImage, JLabel.CENTER);
+            background.setBounds(0,0,515,550);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         //Creem un panell
         jpVista = new JPanel();
+        jpVista.setOpaque(false);
         jpVista.setLayout(null);
         jpVista.setBounds(0,0,500,500);
 
@@ -51,6 +67,7 @@ public class MainView extends JFrame {
         jbmostraevolucio.setBounds(125,350,250,100);
         jpVista.add(jbmostraevolucio);
 
+        setContentPane(background);
         getContentPane().add(jpVista);
     }
     public void mainController(ActionListener actionListener) {

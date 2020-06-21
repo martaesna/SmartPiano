@@ -29,7 +29,7 @@ public class KeyboardController implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) { //al deixar anar la tecla
-
+        s.stopNotebyShortcut(e.getKeyChar(), s.getNotes());
     }
 
     public void changeShortcut() {

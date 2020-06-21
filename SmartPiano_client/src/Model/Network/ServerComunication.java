@@ -97,8 +97,6 @@ public class ServerComunication extends Thread  {
                         break;
                 }
                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }

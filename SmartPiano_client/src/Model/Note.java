@@ -5,10 +5,12 @@ import javax.sound.midi.*;
 public class Note extends Thread{
     private String scale;
     private char shortcut;
+    private boolean isSustaining;
 
     public Note(String scale, char shortcut) {
         this.scale = scale;
         this.shortcut = shortcut;
+        this.isSustaining = false;
     }
 
     public String getScale() {
@@ -46,6 +48,7 @@ public class Note extends Thread{
 
     public void play() {
         try{
+            isSustaining = true;
             Synthesizer midiSynth = MidiSystem.getSynthesizer();
             midiSynth.open();
 
@@ -63,11 +66,15 @@ public class Note extends Thread{
              * no s'acabi el temps en ms posat en el sleep, no es podra tocar una altre tecla. Descomentar per probar.
 
              */
-            try { Thread.sleep(1000);
-            } catch( InterruptedException e ) { }
+            try {
+                while (isSustaining) {
+                    Thread.sleep(100);
+                    if (!isSustaining) {
+                        break;
+                    }
+                }
+            } catch(InterruptedException ignore) { }
             mChannels[0].noteOff(midiNote); //Apaguem la nota un cop acabat el temps (s'hauria de fer aixo On Key Release)
-
-
         } catch (MidiUnavailableException e) {}
     }
 
@@ -156,5 +163,9 @@ public class Note extends Thread{
         }
 
         return n;
+    }
+
+    public void setisSustaining(boolean b) {
+        this.isSustaining = b;
     }
 }

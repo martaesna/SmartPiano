@@ -48,10 +48,18 @@ public class Sound {
     }
 
 
-    public void playNotebyShortcut (char shortcurt, Note[] n) {
+    public void playNotebyShortcut (char shortcut, Note[] n) {
         for (int i = 0; i < n.length; i++) {
-            if (n[i].getShortcut() == shortcurt) {
+            if (n[i].getShortcut() == shortcut) {
                 n[i].play();
+            }
+        }
+    }
+
+    public void stopNotebyShortcut(char shortcut, Note[] n) {
+        for (int i = 0; i < n.length; i++) {
+            if (n[i].getShortcut() == shortcut) {
+                n[i].setisSustaining(false);
             }
         }
     }
