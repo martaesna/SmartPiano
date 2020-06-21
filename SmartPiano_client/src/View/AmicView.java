@@ -31,7 +31,7 @@ public class AmicView extends JFrame {
 
     public AmicView() {
 
-        setVisible(true);
+        setVisible(false);
         setTitle("Amics"); // titol
         setSize(1024, 635); // tamaño de la caja
         setResizable(false); //para que no se pueda mover

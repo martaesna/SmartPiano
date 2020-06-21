@@ -17,11 +17,13 @@ public class MainViewControllerCl implements ActionListener {
     private ServerComunication sc;
     private String accio;
 
+
     public MainViewControllerCl(MainView v, LoginView lv, RegisterView rv, ServerComunication sc) {
         this.v = v;
         this.lv = lv;
         this.rv = rv;
         this.sc = sc;
+
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -46,6 +48,7 @@ public class MainViewControllerCl implements ActionListener {
             lv.setVisible(false);
             v.setVisible(true);
         }
+
         if (e.getActionCommand().equals(rv.REG)) {
             System.out.println("Vols registrarte");
             accio = "registre";

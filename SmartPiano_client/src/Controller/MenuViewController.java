@@ -16,6 +16,7 @@ public class MenuViewController implements ActionListener{
         this.mv = mv;
         this.amicsv = amicsv;
     }
+    ///
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(mv.ACTION)) {
             System.out.println("Piano lliure");
@@ -43,6 +44,11 @@ public class MenuViewController implements ActionListener{
             System.out.println("Borra conta");
             mv.setVisible(false);
             //contav.setVisible(true);
+        }
+        if (e.getActionCommand().equals(amicsv.ACTION)) {
+            System.out.println("Tornar");
+            amicsv.setVisible(false);
+            mv.setVisible(true);
         }
     }
 }
