@@ -29,11 +29,12 @@ public class AmicView extends JFrame {
     private JButton jbamic5;
 
 
+
     public AmicView() {
 
         setVisible(false);
         setTitle("Amics"); // titol
-        setSize(1024, 635); // tamaño de la caja
+        setSize(700, 635); // tamaño de la caja
         setResizable(false); //para que no se pueda mover
         setLocationRelativeTo(null); //Centrarlo
         setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x
@@ -71,17 +72,53 @@ public class AmicView extends JFrame {
         jpinferior = new JPanel();
         jpinferior.setLayout(new GridLayout(5,2));
         jpinferior.setBounds(10,50,500,750);
+        jpinferior.setLayout(null);
 
         //Creem les etiquetes per els amics
         jlamic1 = new JLabel("Amic1");
-        jlamic2 = new JLabel("Amic2");
-        jlamic3 = new JLabel("Amic3");
-        jlamic4 = new JLabel("Amic4");
-        jlamic5 = new JLabel("Amic5");
+        jbamic1 =  new JButton("Chat");
+        jbamic1.setActionCommand(ACTION4);
+        jlamic1.setBounds(20,50,650,90);
+        jbamic1.setBounds(350,82,100,30);
         jpinferior.add(jlamic1);
+        jpinferior.add(jbamic1);
+
+
+        jlamic2 = new JLabel("Amic2");
+        jbamic2 =  new JButton("Chat");
+        jbamic2.setActionCommand(ACTION4);
+        jlamic2.setBounds(20,140,650,90);
+        jbamic2.setBounds(350,172,100,30);
         jpinferior.add(jlamic2);
+        jpinferior.add(jbamic2);
+
+
+        jlamic3 = new JLabel("Amic3");
+        jbamic3 =  new JButton("Chat");
+        jbamic3.setActionCommand(ACTION4);
+        jlamic3.setBounds(20,230,650,90);
+        jbamic3.setBounds(350,262,100,30);
+        jbamic3.setSize(100,30);
         jpinferior.add(jlamic3);
+        jpinferior.add(jbamic3);
+
+
+        jlamic4 = new JLabel("Amic4");
+        jbamic4 =  new JButton("Chat");
+        jbamic4.setActionCommand(ACTION4);
+        jlamic4.setBounds(20,320,650,90);
+        jbamic4.setBounds(350,352,100,30);
+        jbamic4.setSize(100,30);
         jpinferior.add(jlamic4);
+        jpinferior.add(jbamic4);
+
+        jlamic5 = new JLabel("Amic5");
+        jbamic5 =  new JButton("Chat");
+        jbamic5.setActionCommand(ACTION4);
+        jlamic5.setBounds(20,410,650,90);
+        jbamic5.setBounds(350,442,100,30);
+        jbamic5.setSize(100,30);
+        jpinferior.add(jbamic5);
         jpinferior.add(jlamic5);
 
 
