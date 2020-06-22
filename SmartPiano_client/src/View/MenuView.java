@@ -32,7 +32,7 @@ public class MenuView extends JFrame {
     private JLabel background;
 
     public MenuView() {
-        setVisible(true);
+        setVisible(false);
         setTitle("Selecciona una opció"); // titol
         setSize(1024, 635); // tamaño de la caja
         setResizable(false); //para que no se pueda mover
