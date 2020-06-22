@@ -23,7 +23,6 @@ public class MainViewControllerCl implements ActionListener {
         this.lv = lv;
         this.rv = rv;
         this.sc = sc;
-
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -56,6 +55,12 @@ public class MainViewControllerCl implements ActionListener {
                 User usuari = new User(rv.Getusername(), rv.Getmail(), rv.Getpassword());
                 Missatge missatge = new Missatge(accio, usuari);
                 sc.enviaMissatge((Object)missatge);
+
+                rv.setVisible(false);
+                lv.setVisible(true);
+
+                //Guardem user a la BDD
+
                 /*usuari.setName(rv.Getusername());
                 usuari.setMail(rv.Getmail());
                 usuari.setPassword(rv.Getpassword());

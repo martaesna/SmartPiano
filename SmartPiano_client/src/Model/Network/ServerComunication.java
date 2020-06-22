@@ -2,6 +2,7 @@ package Model.Network;
 
 import Model.Missatge;
 import Model.NetworkConfiguration;
+import View.LoginView;
 import View.MainView;
 import java.io.*;
 import java.net.Socket;
@@ -79,6 +80,7 @@ public class ServerComunication extends Thread  {
                 String accioResposta;
                 Missatge missatgeResposta;
                 MenuView mv = new MenuView();
+                LoginView lv = new LoginView();
 
                 switch (accio) {
                     case "errorRegistre":
@@ -88,11 +90,11 @@ public class ServerComunication extends Thread  {
                         JOptionPane.showMessageDialog(null, "L'usuari o contrasenya no son correctes", "Error Login", JOptionPane.ERROR_MESSAGE);
                         mv.setVisible(false);
                         break;
-
                     case "loginCorrecte":
                         mv.setVisible(true);
                         break;
                     case "registreCorrecte":
+                        lv.setVisible(true);
                         JOptionPane.showMessageDialog(null, "T'has registrat amb èxit!", "Registre Correcte", JOptionPane.INFORMATION_MESSAGE);
                         break;
                 }

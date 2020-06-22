@@ -10,7 +10,7 @@ public class MenuViewController implements ActionListener{
     private AmicView amicsv;
     PianoView pv = new PianoView();
     KeyboardController keyboardController = new KeyboardController(pv);
-    PianoController controller = new PianoController(pv, keyboardController);
+    PianoController pianoController = new PianoController(pv, keyboardController);
 
     public MenuViewController (MenuView mv,AmicView amicsv) {
         this.mv = mv;
@@ -21,7 +21,7 @@ public class MenuViewController implements ActionListener{
         if (e.getActionCommand().equals(mv.ACTION)) {
             System.out.println("Piano lliure");
             mv.setVisible(false);
-            pv.registerController(controller);
+            pv.registerController(pianoController);
             pv.registerKeyboard(keyboardController);
             pv.setVisible(true);
         }
