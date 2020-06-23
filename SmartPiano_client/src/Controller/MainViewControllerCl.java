@@ -17,12 +17,35 @@ public class MainViewControllerCl implements ActionListener {
     private ServerComunication sc;
     private String accio;
 
-
     public MainViewControllerCl(MainView v, LoginView lv, RegisterView rv, ServerComunication sc) {
         this.v = v;
         this.lv = lv;
         this.rv = rv;
         this.sc = sc;
+    }
+
+    public static boolean isValidEmail(String email)
+    {
+        String endPattern = "@gmail.com";
+        String endPattern2 = "@students.salle.url.edu";
+
+        if(null == email){
+            return false;
+        }
+        if(!email.endsWith(endPattern) && !email.endsWith(endPattern2)){
+            return false;
+        } else if (email.endsWith(endPattern)) {
+            String[] strArr = email.split(endPattern);
+            if(!strArr[0].isEmpty() && strArr[0] != null) {
+                return true;
+            }
+        } else {
+            String[] strArr2 = email.split(endPattern2);
+            if(!strArr2[0].isEmpty() && strArr2[0] != null) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -51,13 +74,15 @@ public class MainViewControllerCl implements ActionListener {
         if (e.getActionCommand().equals(rv.REG)) {
             System.out.println("Vols registrarte");
             accio = "registre";
+
+            String password = rv.Getpassword();
+
             if (rv.Getpassword().equals(rv.Getconfirma())) {
                 User usuari = new User(rv.Getusername(), rv.Getmail(), rv.Getpassword());
                 Missatge missatge = new Missatge(accio, usuari);
                 sc.enviaMissatge((Object)missatge);
 
                 rv.setVisible(false);
-                lv.setVisible(true);
 
                 //Guardem user a la BDD
 
@@ -82,3 +107,4 @@ public class MainViewControllerCl implements ActionListener {
             }
         }
     }
+

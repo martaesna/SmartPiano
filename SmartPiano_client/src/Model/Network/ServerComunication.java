@@ -9,21 +9,27 @@ import java.net.Socket;
 import Model.Json.*;
 import Model.User;
 import View.MenuView;
+import View.RegisterView;
 
 import javax.swing.JOptionPane;
 
 public class ServerComunication extends Thread  {
 
     private boolean isOn;
-    private MainView view;
     private Socket socketToServer;
     private ObjectInputStream objectIn;
     private ObjectOutputStream objectOut;
     private DataOutputStream dataOut;
     private DataInputStream dataIn;
+    private MenuView mv;
+    private LoginView lv;
+    private RegisterView rv;
 
-    public ServerComunication() {
+    public ServerComunication(MenuView mv, LoginView lv, RegisterView rv) {
         try {
+            this.rv = rv;
+            this.mv = mv;
+            this.lv = lv;
             ReadJson Rj = new ReadJson();
             Rj.llegeixJSON();
             this.isOn = false;
@@ -77,13 +83,10 @@ public class ServerComunication extends Thread  {
                 Missatge missatge;
                 missatge = (Missatge) object;
                 String accio = missatge.getAccio();
-                String accioResposta;
-                Missatge missatgeResposta;
-                MenuView mv = new MenuView();
-                LoginView lv = new LoginView();
 
                 switch (accio) {
                     case "errorRegistre":
+                        rv.setVisible(true);
                         JOptionPane.showMessageDialog(null, "L'usuari ja existeix", "Error Registre", JOptionPane.ERROR_MESSAGE);
                         break;
                     case "errorLogin":
@@ -92,6 +95,7 @@ public class ServerComunication extends Thread  {
                         break;
                     case "loginCorrecte":
                         mv.setVisible(true);
+                        lv.setVisible(false);
                         break;
                     case "registreCorrecte":
                         lv.setVisible(true);
@@ -102,7 +106,6 @@ public class ServerComunication extends Thread  {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            //System.out.println("sembla que funciona");
         }
         stopServerComunication();
     }

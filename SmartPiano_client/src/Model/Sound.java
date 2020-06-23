@@ -38,7 +38,6 @@ public class Sound {
         return notes;
     }
 
-
     public void setCustomNote(Note n) {
         for (int i = 0; i < notes.length; i++) {
             if (n.getScale().equals(notes[i].getScale())) {
@@ -46,7 +45,6 @@ public class Sound {
             }
         }
     }
-
 
     public void playNotebyShortcut (char shortcut, Note[] n) {
         for (int i = 0; i < n.length; i++) {

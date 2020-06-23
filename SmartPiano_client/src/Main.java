@@ -32,16 +32,16 @@ public class Main {
 
         MainView v = new MainView();
         LoginView lv = new LoginView();
-        RegisterView rv = new RegisterView ();
+        RegisterView rv = new RegisterView();
         MenuView mv = new MenuView();
         AmicView amicsv = new AmicView();
-        ServerComunication sc = new ServerComunication();
+
+        ServerComunication sc = new ServerComunication(mv, lv, rv);
 
         Controller c = new Controller(v,sc);
         System.out.println("estem abans de la vista");
         MainViewControllerCl controllerMain = new MainViewControllerCl(v, lv, rv, sc);
         MenuViewController controllerMenu = new MenuViewController(mv,amicsv);
-
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override

@@ -11,7 +11,6 @@ public class Controller {
 
     //relacio vista
     private MainView view;
-    private User usuari;
     //realcio server
     private ServerComunication sComunication;
 
