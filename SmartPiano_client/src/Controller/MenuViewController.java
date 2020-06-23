@@ -18,13 +18,7 @@ public class MenuViewController implements ActionListener{
     }
 
 
-    /////////////////
-    private MenuView j;
-    private AmicView r;
-    PianoView s = new PianoView();
-    KeyboardController d = new KeyboardController(pv);
-    PianoController as = new PianoController(pv, keyboardController);
-    //
+
 
 
     /////////////////
