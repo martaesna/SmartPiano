@@ -16,7 +16,12 @@ public class MenuViewController implements ActionListener{
         this.mv = mv;
         this.amicsv = amicsv;
     }
-    ///
+
+
+
+
+
+    /////////////////
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(mv.ACTION)) {
             System.out.println("Piano lliure");
