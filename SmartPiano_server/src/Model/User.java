@@ -1,11 +1,14 @@
 package Model;
 import java.io.Serializable;
+import java.util.LinkedList;
 
 
 public class User implements Serializable {
     private String name;
     private String mail;
     private String password;
+    private String codi;
+    private LinkedList<String> amics;
 
     public User(String name, String mail, String password) {
         this.name = name;
@@ -36,4 +39,6 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setCodi(String codi) {this.codi = codi;}
 }

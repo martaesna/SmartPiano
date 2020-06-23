@@ -1,4 +1,5 @@
 package Controller;
+import Model.GeneradorCodi;
 import Model.Missatge;
 import View.*;
 import Model.User;
@@ -23,12 +24,14 @@ public class MainViewControllerCl implements ActionListener {
     private String accio;
     private Boolean validEmail;
     private Boolean validPassword;
+    private GeneradorCodi generadorCodi;
 
     public MainViewControllerCl(MainView v, LoginView lv, RegisterView rv, ServerComunication sc) {
         this.v = v;
         this.lv = lv;
         this.rv = rv;
         this.sc = sc;
+        generadorCodi = new GeneradorCodi();
     }
 
     public static boolean isValidEmail(String email)
@@ -105,6 +108,7 @@ public class MainViewControllerCl implements ActionListener {
                 } else {
                     if (rv.Getpassword().equals(rv.Getconfirma())) {
                         User usuari = new User(rv.Getusername(), rv.Getmail(), rv.Getpassword());
+                        usuari.setCodi(generadorCodi.RandomString());
                         Missatge missatge = new Missatge(accio, usuari);
                         sc.enviaMissatge((Object)missatge);
                         rv.setVisible(false);
