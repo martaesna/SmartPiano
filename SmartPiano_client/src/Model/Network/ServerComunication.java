@@ -79,7 +79,6 @@ public class ServerComunication extends Thread  {
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 objectIn = new ObjectInputStream(socketToServer.getInputStream());
                 Object object = objectIn.readObject();
-                System.out.println("skr");
                 Missatge missatge;
                 missatge = (Missatge) object;
                 String accio = missatge.getAccio();
