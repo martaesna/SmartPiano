@@ -6,6 +6,7 @@ public class UserDAO implements Serializable {
     public String nickname;
     public String email;
     public String password;
+    public String codi;
 
     public UserDAO (String nickname, String email, String password) {
         this.nickname = nickname;
@@ -37,6 +38,8 @@ public class UserDAO implements Serializable {
         this.password = password;
     }
 
-    //changes are here!
+    public void setCodi(String codi) {this.codi = codi;}
+
+    public String getCodi() {return codi;}
 }
 

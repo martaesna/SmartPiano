@@ -9,12 +9,12 @@ import java.sql.SQLException;
 import static Model.Json.JsonReader.llegeixJSON;
 
 public class SQLOperations {
-    public static void registreUsuari (String name, String mail, String password) {
+    public static void registreUsuari (String name, String mail, String password, String codi) {
         Data data;
         data = llegeixJSON();
         ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
-        conn.insertQuery("INSERT INTO User(nickname, email, password) VALUES (" + "'" + name + "'" + "," + "'" + mail + "'" + "," + "'" + password + "'" + ")");
+        conn.insertQuery("INSERT INTO User(nickname, email, password, codi) VALUES (" + "'" + name + "'" + "," + "'" + mail + "'" + "," + "'" + password + "'" + "," + "'" + codi + "'" +")");
     }
     public static boolean existeixUsuari (String name) {
         Data data;

@@ -79,7 +79,7 @@ public class ServidorDedicat extends Thread {
                                 System.out.println(accioResposta);
 
                             } else {
-                                registreUsuari(usuari.getName(), usuari.getMail(), usuari.getPassword());
+                                registreUsuari(usuari.getName(), usuari.getMail(), usuari.getPassword(), usuari.getCodi());
                                 accioResposta = "registreCorrecte";
                                 System.out.println(accioResposta);
 

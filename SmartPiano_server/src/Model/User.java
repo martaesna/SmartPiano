@@ -1,7 +1,7 @@
 package Model;
+
 import java.io.Serializable;
 import java.util.LinkedList;
-
 
 public class User implements Serializable {
     private String name;
@@ -41,4 +41,7 @@ public class User implements Serializable {
     }
 
     public void setCodi(String codi) {this.codi = codi;}
+
+    public String getCodi() {return codi;}
 }
+

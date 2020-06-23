@@ -41,4 +41,6 @@ public class User implements Serializable {
     }
 
     public void setCodi(String codi) {this.codi = codi;}
+
+    public String getCodi() {return codi;}
 }
