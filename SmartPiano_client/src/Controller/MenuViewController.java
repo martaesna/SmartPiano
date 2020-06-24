@@ -18,9 +18,6 @@ public class MenuViewController implements ActionListener{
     }
 
 
-
-
-
     /////////////////
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(mv.ACTION)) {

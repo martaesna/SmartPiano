@@ -112,6 +112,7 @@ public class MainViewControllerCl implements ActionListener {
                         Missatge missatge = new Missatge(accio, usuari);
                         sc.enviaMissatge((Object)missatge);
                         rv.setVisible(false);
+                        lv.setVisible(true);
 
                         //Guardem user a la BDD
 
