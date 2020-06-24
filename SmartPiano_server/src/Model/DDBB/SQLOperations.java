@@ -55,7 +55,7 @@ public class SQLOperations {
         data = llegeixJSON();
         ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
-        //String query =
+        //String query = Marta maca
     }
 
     public static ArrayList<Song> demanaCançons() {
