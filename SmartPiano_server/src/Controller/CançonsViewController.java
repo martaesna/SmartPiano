@@ -1,11 +1,13 @@
 package Controller;
 
+import Model.DDBB.SQLOperations;
 import View.CançonsView;
 import View.MainView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class CançonsViewController implements ActionListener {
     private CançonsView v;
@@ -27,6 +29,16 @@ public class CançonsViewController implements ActionListener {
                     v.setVisible(true);
                 }
             });
+        }
+        if (e.getActionCommand().equals("Eliminar")) {
+            System.out.println("has apretat eliminar");
+            try {
+                ArrayList<String> canço;
+                canço = v.songSeleccionada();
+                SQLOperations.eliminaCanço(canço.get(0), canço.get(1));
+            } catch (IndexOutOfBoundsException ex) {
+                System.out.println("no s'ha seleccionat cap canço");
+            }
         }
     }
 }

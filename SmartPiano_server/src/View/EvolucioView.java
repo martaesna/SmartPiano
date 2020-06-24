@@ -1,20 +1,25 @@
 package View;
 
 import Controller.EvolucioViewController;
+import Model.Song;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class EvolucioView extends JFrame {
     private JPanel jpVista;
     private static final String ACTION = "Tornar";
     private javax.swing.JButton tornar;
     private JLabel background;
+    private JTable taula;
+    private String[] titols;
 
-    public EvolucioView(){
+    public EvolucioView(ArrayList<String> evolucio){
         setTitle("Selecciona una opció"); // titol
         setSize(515, 550); // tamaño de la caja
         setResizable(false); //para que no se pueda mover
@@ -47,7 +52,29 @@ public class EvolucioView extends JFrame {
         setContentPane(background);
         getContentPane().add(jpVista);
 
+        taula = new JTable();
+        titols = new String[]{"Reproduccions totals", "Minuts totals"};
+        taula =  crearTaula(taula, titols, evolucio);
+        taula.setBounds(50,50,415,40);
+        JScrollPane js = new JScrollPane(taula);
+        js.setBounds(50,50,415,40);
+        js.setVisible(true);
+        getContentPane().add(js);
     }
+
+    public static JTable crearTaula(JTable taula, String[] header, ArrayList<String> rows) {
+        DefaultTableModel tablemodel = (DefaultTableModel) taula.getModel();
+        tablemodel.setRowCount(0);
+        for (String col : header) {
+            tablemodel.addColumn(col);
+        }
+        tablemodel.addRow(new String[]{rows.get(0), rows.get(1)});
+
+        taula.setModel(tablemodel);
+        return taula;
+    }
+
+
     public void registerController(EvolucioViewController c) {
         tornar.addActionListener(c);
     }
