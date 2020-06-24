@@ -22,14 +22,16 @@ public class ServerComunication extends Thread  {
     private DataOutputStream dataOut;
     private DataInputStream dataIn;
     private MenuView mv;
+    private MainView mnv;
     private LoginView lv;
     private RegisterView rv;
 
-    public ServerComunication(MenuView mv, LoginView lv, RegisterView rv) {
+    public ServerComunication(MenuView mv, LoginView lv, RegisterView rv,MainView mnv) {
         try {
             this.rv = rv;
             this.mv = mv;
             this.lv = lv;
+            this.mnv = mnv;
             ReadJson Rj = new ReadJson();
             Rj.llegeixJSON();
             this.isOn = false;
@@ -100,6 +102,8 @@ public class ServerComunication extends Thread  {
                         lv.setVisible(true);
                         JOptionPane.showMessageDialog(null, "T'has registrat amb èxit!", "Registre Correcte", JOptionPane.INFORMATION_MESSAGE);
                         break;
+                    case "delete":
+                        mnv.setVisible(true);
                 }
                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             } catch (IOException | ClassNotFoundException e) {

@@ -1,11 +1,10 @@
-package Controller;
+/*package Controller;
 
 import Model.Sound;
 import View.PianoView;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 public class KeyboardController implements KeyListener {
     private PianoView v;
     private Sound s;
@@ -36,3 +35,4 @@ public class KeyboardController implements KeyListener {
         s.setCustomNote(s.changeNote());
     }
 }
+*/

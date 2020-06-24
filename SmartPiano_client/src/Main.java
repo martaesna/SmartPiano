@@ -1,11 +1,12 @@
-import Controller.Controller;
-import Model.Json.ReadJson;
-import Model.Json.Data;
+
+
+import Model.Json.*;
 import View.*;
 import Controller.MainViewControllerCl;
 import Controller.MenuViewController;
 import Model.Network.ServerComunication;
 import View.RegisterView;
+import Controller.*;
 
 
 import com.google.gson.Gson;
@@ -35,13 +36,16 @@ public class Main {
         RegisterView rv = new RegisterView();
         MenuView mv = new MenuView();
         AmicView amicsv = new AmicView();
+        ViewTeclado viewTeclado = new ViewTeclado();
 
-        ServerComunication sc = new ServerComunication(mv, lv, rv);
+
+        ServerComunication sc = new ServerComunication(mv, lv, rv,v);
 
         Controller c = new Controller(v,sc);
         System.out.println("estem abans de la vista");
         MainViewControllerCl controllerMain = new MainViewControllerCl(v, lv, rv, sc);
-        MenuViewController controllerMenu = new MenuViewController(mv,amicsv);
+        MenuViewController controllerMenu = new MenuViewController(mv,amicsv,v);
+        ControllerTeclado controllerTeclado = new ControllerTeclado(viewTeclado);
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -51,6 +55,7 @@ public class Main {
                 rv.registerControllerR(controllerMain);
 
                 mv.registerControllerM(controllerMenu);
+                viewTeclado.registerController(controllerTeclado, controllerTeclado);
                 v.setVisible(true);
             }
         });

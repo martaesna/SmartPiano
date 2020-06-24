@@ -1,8 +1,4 @@
-package Controller;
-
-import Model.Note;
-import Model.Sound;
-import View.PianoView;
+/*package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,3 +22,4 @@ public class PianoController implements ActionListener{
     }
 
 }
+*/

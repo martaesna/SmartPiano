@@ -47,4 +47,12 @@ public class SQLOperations {
         }
         return false;
     }
+
+    public static void BorrarUsuari(String name){
+        Data data;
+        data = llegeixJSON();
+        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+        conn.connect();
+        //String query =
+    }
 }

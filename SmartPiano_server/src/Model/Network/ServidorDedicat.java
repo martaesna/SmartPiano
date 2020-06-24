@@ -73,15 +73,15 @@ public class ServidorDedicat extends Thread {
 
                     switch (accio) {
                         case "registre":
-                            usuari = (User)missatge.getData();
-                            if (existeixUsuari(usuari.getName())) {
+                            usuari = (User)missatge.getData(); // rep la informacio del client
+                            if (existeixUsuari(usuari.getName())) { //mirem si existeix el nom
                                 accioResposta = "errorRegistre";
-                                System.out.println(accioResposta);
+                                System.out.println(accioResposta); //enviem la resposta
 
                             } else {
-                                registreUsuari(usuari.getName(), usuari.getMail(), usuari.getPassword(), usuari.getCodi());
+                                registreUsuari(usuari.getName(), usuari.getMail(), usuari.getPassword(), usuari.getCodi()); //registrem el usuari
                                 accioResposta = "registreCorrecte";
-                                System.out.println(accioResposta);
+                                System.out.println(accioResposta); //resposta de correcte
 
                             }
                             missatgeResposta = new Missatge(accioResposta, missatge.getData());
@@ -102,6 +102,16 @@ public class ServidorDedicat extends Thread {
                             missatgeResposta = new Missatge(accioResposta, missatge.getData());
                             enviaMissatge((Object)missatgeResposta);
                             break;
+
+                        case "delete":
+                            //Borrar la conta de la base de dades
+                            usuari = (User)missatge.getData();
+                            //BorrarUsuari(usuari.getName());
+                            accioResposta = "Usuari Borrat";
+                            System.out.println(accioResposta);
+                            missatgeResposta = new Missatge(accioResposta, missatge.getData());
+                            enviaMissatge((Object)missatgeResposta);
+
                     }
                     //si el object es "tipus" User entra al if
                 } catch (ClassNotFoundException e) {

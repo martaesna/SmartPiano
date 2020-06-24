@@ -1,6 +1,8 @@
 package Controller;
 
 import View.*;
+import com.sun.tools.javac.Main;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,13 +10,15 @@ public class MenuViewController implements ActionListener{
 
     private MenuView mv;
     private AmicView amicsv;
+    private MainView mnv;
     PianoView pv = new PianoView();
     KeyboardController keyboardController = new KeyboardController(pv);
     PianoController pianoController = new PianoController(pv, keyboardController);
 
-    public MenuViewController (MenuView mv,AmicView amicsv) {
+    public MenuViewController (MenuView mv,AmicView amicsv, MainView mnv) {
         this.mv = mv;
         this.amicsv = amicsv;
+        this.mnv = mnv;
     }
 
 
@@ -40,11 +44,16 @@ public class MenuViewController implements ActionListener{
         if (e.getActionCommand().equals(mv.ACTION5)) {
             System.out.println("Tanca sessió");
             mv.setVisible(false);
+            mnv.setVisible(true);
+
             //sessiov.setVisible(true);
         }
         if (e.getActionCommand().equals(mv.ACTION6)) {
             System.out.println("Borra conta");
             mv.setVisible(false);
+
+
+
             //contav.setVisible(true);
         }
         if (e.getActionCommand().equals(amicsv.ACTION)) {
