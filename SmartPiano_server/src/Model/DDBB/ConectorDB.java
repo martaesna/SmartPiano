@@ -71,4 +71,13 @@ public class ConectorDB {
         }
         return rs;
     }
+
+    public void deleteQuery(String query) {
+        try {
+            s = conn.createStatement();
+            s.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
