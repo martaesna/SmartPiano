@@ -10,7 +10,7 @@ public class JsonReader {
         try{
             Gson gson = new Gson();
             com.google.gson.stream.JsonReader reader;
-            reader = new com.google.gson.stream.JsonReader(new FileReader("/Users/mariorodriguez/Desktop/SmartPiano/SmartPiano_client/files/config.json"));
+            reader = new com.google.gson.stream.JsonReader(new FileReader("SmartPiano_server\\files\\config.json"));
             data = gson.fromJson(reader, Data.class);
 
             System.out.println("\nLectura JSON finalitzada.\n");

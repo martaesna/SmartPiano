@@ -1,3 +1,6 @@
+/**
+ * Controlador del Teclado, permite formato libre, grabar y reproduccir una canción
+ */
 package Controller;
 import Model.Cancion;
 import Model.FiguraMusical;
@@ -5,7 +8,6 @@ import Model.Modo;
 import Model.Nota;
 import View.ViewTeclado;
 
-import javax.sound.midi.Instrument;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Synthesizer;
@@ -23,7 +25,7 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
     private Synthesizer midiSynth;
 
 
-    public ControllerTeclado (ViewTeclado viewTeclado){
+    public ControllerTeclado(ViewTeclado viewTeclado){
         this.viewTeclado = viewTeclado;
         this.viewTeclado.addKeyListener(this);
     }

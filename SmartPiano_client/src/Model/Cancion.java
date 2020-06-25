@@ -1,16 +1,13 @@
 package Model;
 
 import java.util.LinkedList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
 
 public class Cancion {
     private String nombre;
 
     private LinkedList<FiguraMusical> figurasMusicales;
 
-    public Cancion (){
+    public Cancion(){
         figurasMusicales = new LinkedList<>();
     }
 
