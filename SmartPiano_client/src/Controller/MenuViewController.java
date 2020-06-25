@@ -12,7 +12,8 @@ public class MenuViewController implements ActionListener{
     private AmicView amicsv;
     private MainView mnv;
     ViewTeclado pv = new ViewTeclado();
-    ControllerTeclado pianoController = new ControllerTeclado(pv);
+    ControllerTeclado controllerTeclado = new ControllerTeclado(pv);
+
 
     public MenuViewController (MenuView mv,AmicView amicsv, MainView mnv) {
         this.mv = mv;
@@ -27,6 +28,8 @@ public class MenuViewController implements ActionListener{
             System.out.println("Piano lliure");
             mv.setVisible(false);
             pv.setVisible(true);
+            pv.registerController(controllerTeclado, controllerTeclado);
+
         }
         if (e.getActionCommand().equals(mv.ACTION2)) {
             System.out.println("Cançons");
