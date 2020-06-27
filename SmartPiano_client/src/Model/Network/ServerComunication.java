@@ -119,6 +119,25 @@ public class ServerComunication extends Thread  {
                         av.amicController(avc);
                         av.setVisible(true);
                         break;
+                    case "amicAfegit":
+                        try {
+                            amics = (LinkedList<Amic>)missatge.getData();
+                            av = new AmicView(amics);
+                            avc = new AmicViewController(av);
+                            av.amicController(avc);
+                            av.setVisible(true);
+                        } catch (ClassCastException ignore) {}
+                        break;
+                    case "amicJaExisteix":
+                        try {
+                            //mostra error amic ja existeix
+                            amics = (LinkedList<Amic>)missatge.getData();
+                            av = new AmicView(amics);
+                            avc = new AmicViewController(av);
+                            av.amicController(avc);
+                            av.setVisible(true);
+                        } catch (ClassCastException ignore) {}
+                        break;
                 }
                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             } catch (IOException | ClassNotFoundException e) {

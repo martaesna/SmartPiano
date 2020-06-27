@@ -179,5 +179,49 @@ public class SQLOperations {
         String query = "DELETE FROM Friend AS f WHERE f.nickname2 LIKE '" + amic + "'AND f.nickname1 LIKE '" + usuari + "';";
         conn.deleteQuery(query);
     }
+
+    public static void afegeixAmic(String nomAmic, String nomUsuari) {
+        Data data;
+        data = llegeixJSON();
+        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+        conn.connect();
+        String query = "INSERT INTO Friend VALUES('" + nomUsuari + "','" + nomAmic + "')";
+        conn.insertQuery(query);
+    }
+
+    public static String repNomAmic(String codiAmic) {
+        String nickname = null;
+        Data data;
+        data = llegeixJSON();
+        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+        conn.connect();
+        String query = "SELECT u.nickname FROM User AS u WHERE codi LIKE '" + codiAmic + "'";
+        ResultSet rs = conn.selectQuery(query);
+        try {
+            while (rs.next()) {
+                nickname = (rs.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nickname;
+    }
+
+    public static boolean amicExisteix(String nickname, String nomUsuari) {
+        Data data;
+        data = llegeixJSON();
+        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+        conn.connect();
+        String query = "SELECT f.nickname2 FROM Friend AS f WHERE nickname2 LIKE '" + nickname + "' AND nickname1 LIKE '" + nomUsuari + "'";
+        ResultSet rs = conn.selectQuery(query);
+        try {
+            if (rs.isBeforeFirst()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
 

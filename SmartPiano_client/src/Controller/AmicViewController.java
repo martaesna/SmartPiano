@@ -49,11 +49,16 @@ public class AmicViewController implements ActionListener {
         if (e.getActionCommand().equals("Chat")) {
             System.out.println("has apretat chat");
         }
-        if (e.getActionCommand().equals("Buscar")) {
-            System.out.println("has apretat buscar");
-        }
         if (e.getActionCommand().equals("Afegir")) {
-            System.out.println("has apretat Afegir");
+            String codiAmic = v.getCodiAmic();
+            if (codiAmic.length() == 9) {
+                Missatge missatge = new Missatge("afegeixAmic", codiAmic);
+                enviaMissatge(missatge);
+                System.out.println("has apretat Afegir");
+                v.setVisible(false);
+            } else {
+                //missatge error codi erroni
+            }
         }
     }
 }

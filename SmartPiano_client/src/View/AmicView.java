@@ -23,6 +23,7 @@ public class AmicView extends JFrame {
     private JButton afegir;
     private JButton buscar;
     private JButton chat;
+    private JTextField codiAmic;
 
     public AmicView(LinkedList<Amic> amics) {
         this.amics = amics;
@@ -48,16 +49,15 @@ public class AmicView extends JFrame {
         jpVista.add(tornar);
         tornar.setBounds(0,15,100,30); //fiquem les cordenades
 
+        codiAmic = new JTextField();
+        codiAmic.setBounds(210, 15, 150, 30);
+        jpVista.add(codiAmic);
+
+
         afegir = new JButton("Afegir"); // fiquem un boto
         afegir.setActionCommand("Afegir"); // creamos el comando de accion.
-        afegir.setBounds(255,15,100,30);
+        afegir.setBounds(360,15,100,30);
         jpVista.add(afegir);
-
-        buscar = new javax.swing.JButton("Buscar"); // fiquem un boto
-        buscar.setActionCommand("Buscar"); // creamos el comando de accion.
-        buscar.setBounds(360,15,100,30);
-        jpVista.add(buscar);
-
 
         eliminar = new javax.swing.JButton("Eliminar");
         eliminar.setActionCommand("Eliminar");
@@ -105,7 +105,6 @@ public class AmicView extends JFrame {
     public void amicController(AmicViewController c) {
         tornar.addActionListener(c);
         afegir.addActionListener(c);
-        buscar.addActionListener(c);
         eliminar.addActionListener(c);
         chat.addActionListener(c);
     }
@@ -119,4 +118,7 @@ public class AmicView extends JFrame {
         av.setVisible(true);
     }
 
+    public String getCodiAmic() {
+        return codiAmic.getText();
+    }
 }

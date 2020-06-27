@@ -11,9 +11,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.LinkedList;
 
-import static Model.DDBB.SQLOperations.existeixUsuari;
-import static Model.DDBB.SQLOperations.loginUsuariCorrecte;
-import static Model.DDBB.SQLOperations.registreUsuari;
+import static Model.DDBB.SQLOperations.*;
 
 
 public class ServidorDedicat extends Thread {
@@ -116,13 +114,13 @@ public class ServidorDedicat extends Thread {
                         case "delete":
                             //Borrar la conta de la base de dades
                             usuari = (User)missatge.getData();
+                            borraUsuari(nomUsuari);
                             //BorrarUsuari(usuari.getName());
-                            accioResposta = "Usuari Borrat";
+                            accioResposta = "usuariBorrat";
                             System.out.println(accioResposta);
                             missatgeResposta = new Missatge(accioResposta, missatge.getData());
                             enviaMissatge((Object)missatgeResposta);
                             break;
-
                         case "song":
                             song = (Song)missatge.getData();
                             SQLOperations.guardaCanço(song);
@@ -137,6 +135,23 @@ public class ServidorDedicat extends Thread {
                         case "eliminaAmic":
                             String amic = (String)missatge.getData();
                             SQLOperations.eliminaAmic(amic, nomUsuari);
+                            accioResposta = "amicEliminat";
+                            missatgeResposta = new Missatge(accioResposta, missatge.getData());
+                            enviaMissatge((Object)missatgeResposta);
+                            break;
+                        case "afegeixAmic":
+                            String codiAmic = (String)missatge.getData();
+                            String nomAmic = SQLOperations.repNomAmic(codiAmic);
+                            if (!SQLOperations.amicExisteix(nomAmic, nomUsuari)) {
+                                SQLOperations.afegeixAmic(nomAmic, nomUsuari);
+                                accioResposta = "amicAfegit";
+                                missatge.setData(SQLOperations.amicsUsuari(nomUsuari));
+                            } else {
+                                accioResposta = "amicJaExisteix";
+                                missatge.setData(SQLOperations.amicsUsuari(nomUsuari));
+                            }
+                            missatgeResposta = new Missatge(accioResposta, missatge.getData());
+                            enviaMissatge((Object)missatgeResposta);
                             break;
                     }
                     //si el object es "tipus" User entra al if
