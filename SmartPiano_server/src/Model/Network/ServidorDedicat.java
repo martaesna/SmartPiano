@@ -1,7 +1,10 @@
 package Model.Network;
 
 import Controller.MainViewController;
+import Model.Amic;
+import Model.DDBB.SQLOperations;
 import Model.Missatge;
+import Model.Song;
 import Model.User;
 
 import java.io.*;
@@ -23,7 +26,9 @@ public class ServidorDedicat extends Thread {
     private LinkedList<ServidorDedicat> clients;
     private Servidor servidor;
     private MainViewController controller;
+    private String nomUsuari;
     private User usuari;
+    private Song song;
 
 
     public ServidorDedicat(Socket sClient, MainViewController controller, Servidor servidor) {
@@ -67,9 +72,9 @@ public class ServidorDedicat extends Thread {
                     Missatge missatge;
                     missatge = (Missatge) object;
                     String accio = missatge.getAccio();
+                    System.out.println(accio);
                     String accioResposta;
                     Missatge missatgeResposta;
-
 
                     switch (accio) {
                         case "registre":
@@ -96,6 +101,11 @@ public class ServidorDedicat extends Thread {
 
                             } else {
                                 accioResposta = "loginCorrecte";
+                                if (usuari.getName().contains("@")) {
+                                    nomUsuari = SQLOperations.trobaNickname(usuari.getName());
+                                } else {
+                                    nomUsuari = usuari.getName();
+                                }
                                 System.out.println(accioResposta);
 
                             }
@@ -111,14 +121,29 @@ public class ServidorDedicat extends Thread {
                             System.out.println(accioResposta);
                             missatgeResposta = new Missatge(accioResposta, missatge.getData());
                             enviaMissatge((Object)missatgeResposta);
+                            break;
 
+                        case "song":
+                            song = (Song)missatge.getData();
+                            SQLOperations.guardaCanço(song);
+                            break;
+                        case "amicsUsuari":
+                            LinkedList<Amic> amics = new LinkedList<>();
+                            amics = SQLOperations.amicsUsuari(nomUsuari);
+                            accioResposta = "amicsTrobats";
+                            missatgeResposta = new Missatge(accioResposta, amics);
+                            enviaMissatge((Object)missatgeResposta);
+                            break;
+                        case "eliminaAmic":
+                            String amic = (String)missatge.getData();
+                            SQLOperations.eliminaAmic(amic, nomUsuari);
+                            break;
                     }
                     //si el object es "tipus" User entra al if
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }

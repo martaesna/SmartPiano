@@ -5,27 +5,28 @@ import Model.Nota;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.util.LinkedList;
 
-public class ViewTeclado extends JFrame {
+public class PianoView extends JFrame {
     //MENU
-    JMenuBar jMenuBar;
-    JMenu jMenuModo;
-    JMenuItem jMenuItemEstiloLibre;
-    JMenuItem jMenuItemGrabar;
-    JMenuItem jMenuItemTocarCancion;
-    JMenu jMenuOpciones;
-    JMenuItem jMenuItemCambiarBotones;
-    JMenuItem jMenuItemSalir;
+    private JMenuBar jMenuBar;
+    private JMenu jMenuModo;
+    private JMenuItem jMenuItemEstiloLibre;
+    private JMenuItem jMenuItemGrabar;
+    private JMenuItem jMenuItemTocarCancion;
+    private JMenu jMenuOpciones;
+    private JMenuItem jMenuItemCambiarBotones;
+    private JMenuItem jMenuItemSalir;
     //CENTRO - GENERAL
-    JPanel centro;
-    LinkedList<JButton> teclas;
-    JPanel miscelanea;
-    JButton pausarGrabacion;
-    JButton pausarReproducion;
+    private JPanel centro;
+    private LinkedList<JButton> teclas;
+    private JPanel miscelanea;
+    private JButton pausarGrabacion;
+    private JButton pausarReproducion;
 
-    public ViewTeclado() {
+    public PianoView() {
         //Configuración básica de la pantalla
         setTitle("Piano");
         setSize(1000, 400);
@@ -164,7 +165,7 @@ public class ViewTeclado extends JFrame {
         }
     }
 
-    public void registerController (ActionListener actionListener, MouseListener mouseListener){
+    public void registerController (ActionListener actionListener, MouseListener mouseListener, KeyListener keyListener){
         jMenuItemEstiloLibre.addActionListener(actionListener);
         jMenuItemGrabar.addActionListener(actionListener);
         jMenuItemTocarCancion.addActionListener(actionListener);
@@ -173,6 +174,7 @@ public class ViewTeclado extends JFrame {
 
         for (JButton tecla : teclas){
             tecla.addMouseListener(mouseListener);
+            tecla.addKeyListener(keyListener);
         }
         pausarGrabacion.addMouseListener(mouseListener);
 

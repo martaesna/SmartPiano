@@ -1,37 +1,31 @@
 package View;
 
+import Controller.AmicViewController;
+import Model.Amic;
+import Model.Song;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.stream.IntStream;
 
 public class AmicView extends JFrame {
 
-    public static final String ACTION = "Torna";
-    public static final String ACTION2 = "Afegueix";
-    public static final String ACTION3 = "Buscar";
-    public static final String ACTION4 = "Chat";
+    private final LinkedList<Amic> amics;
+    private String[] titols;
+    private static JTable taula;
+    private JPanel jpVista;
+    private JButton eliminar;
+    private JButton tornar;
+    private JButton afegir;
+    private JButton buscar;
+    private JButton chat;
 
-
-    private JPanel jpsuperior;
-    private JPanel jpinferior;
-    private JButton jbexit;
-    private JButton jbadd;
-    private JButton jbfind;
-    private JLabel jlamic1;
-    private JLabel jlamic2;
-    private JLabel jlamic3;
-    private JLabel jlamic4;
-    private JLabel jlamic5;
-    private JButton jbamic1;
-    private JButton jbamic2;
-    private JButton jbamic3;
-    private JButton jbamic4;
-    private JButton jbamic5;
-
-
-
-    public AmicView() {
-
+    public AmicView(LinkedList<Amic> amics) {
+        this.amics = amics;
         setVisible(false);
         setTitle("Amics"); // titol
         setSize(700, 635); // tamaño de la caja
@@ -41,91 +35,88 @@ public class AmicView extends JFrame {
         setLayout(null);
 
 
-        //Creem el panell pel boto de back , afegir amics i buscarlos.
-        jpsuperior = new JPanel();
-
-        //Creem l esquema
-        jpsuperior.setLayout(new GridLayout(1,3));
-        jpsuperior.setBounds(10,20,500,30);
+        jpVista = new JPanel();
+        jpVista.setOpaque(false);
+        jpVista.setLayout(null);
+        jpVista.setBounds(0,0,700,635);
 
 
 
         //Creem els botons
-        jbexit = new JButton("Tornar"); // fiquem un boto
-        jbexit.setActionCommand(ACTION); // creamos el comando de accion.
-        jpsuperior.add(jbexit);
-        jpsuperior.setLayout(null); //per poder editar la posicio dels botons
-        jbexit.setBounds(0,0,100,30); //fiquem les cordenades
+        tornar = new javax.swing.JButton("Tornar"); // fiquem un boto
+        tornar.setActionCommand("Tornar"); // creamos el comando de accion.
+        jpVista.add(tornar);
+        tornar.setBounds(0,15,100,30); //fiquem les cordenades
 
-        jbadd = new JButton("Afegir"); // fiquem un boto
-        jbadd.setActionCommand(ACTION2); // creamos el comando de accion.
-        jbadd.setBounds(275,0,100,30);
-        jpsuperior.add(jbadd);
+        afegir = new JButton("Afegir"); // fiquem un boto
+        afegir.setActionCommand("Afegir"); // creamos el comando de accion.
+        afegir.setBounds(255,15,100,30);
+        jpVista.add(afegir);
 
-        jbfind = new JButton("Buscar"); // fiquem un boto
-        jbfind.setActionCommand(ACTION3); // creamos el comando de accion.
-        jbfind.setBounds(380,0,100,30);
-        jpsuperior.add(jbfind);
-
-
-        //Creem en un altre panell
-        jpinferior = new JPanel();
-        jpinferior.setLayout(new GridLayout(5,2));
-        jpinferior.setBounds(10,50,500,750);
-        jpinferior.setLayout(null);
-
-        //Creem les etiquetes per els amics
-        jlamic1 = new JLabel("Amic1");
-        jbamic1 =  new JButton("Chat");
-        jbamic1.setActionCommand(ACTION4);
-        jlamic1.setBounds(20,50,650,90);
-        jbamic1.setBounds(350,82,100,30);
-        jpinferior.add(jlamic1);
-        jpinferior.add(jbamic1);
+        buscar = new javax.swing.JButton("Buscar"); // fiquem un boto
+        buscar.setActionCommand("Buscar"); // creamos el comando de accion.
+        buscar.setBounds(360,15,100,30);
+        jpVista.add(buscar);
 
 
-        jlamic2 = new JLabel("Amic2");
-        jbamic2 =  new JButton("Chat");
-        jbamic2.setActionCommand(ACTION4);
-        jlamic2.setBounds(20,140,650,90);
-        jbamic2.setBounds(350,172,100,30);
-        jpinferior.add(jlamic2);
-        jpinferior.add(jbamic2);
+        eliminar = new javax.swing.JButton("Eliminar");
+        eliminar.setActionCommand("Eliminar");
+        eliminar.setBounds(465, 15, 100, 30);
+        jpVista.add(eliminar);
 
+        chat =  new javax.swing.JButton("Chat");
+        chat.setActionCommand("Chat");
+        chat.setBounds(570,15,100,30);
+        jpVista.add(chat);
 
-        jlamic3 = new JLabel("Amic3");
-        jbamic3 =  new JButton("Chat");
-        jbamic3.setActionCommand(ACTION4);
-        jlamic3.setBounds(20,230,650,90);
-        jbamic3.setBounds(350,262,100,30);
-        jbamic3.setSize(100,30);
-        jpinferior.add(jlamic3);
-        jpinferior.add(jbamic3);
+        getContentPane().add(jpVista);
 
+        taula = new JTable();
+        titols = new String[]{"Nº", "Nickname"};
+        taula =  crearTaula(taula, titols, amics);
+        taula.setBounds(50,75,650,500);
+        JScrollPane js = new JScrollPane(taula);
+        js.setBounds(50,75,600,500);
+        js.setVisible(true);
 
-        jlamic4 = new JLabel("Amic4");
-        jbamic4 =  new JButton("Chat");
-        jbamic4.setActionCommand(ACTION4);
-        jlamic4.setBounds(20,320,650,90);
-        jbamic4.setBounds(350,352,100,30);
-        jbamic4.setSize(100,30);
-        jpinferior.add(jlamic4);
-        jpinferior.add(jbamic4);
-
-        jlamic5 = new JLabel("Amic5");
-        jbamic5 =  new JButton("Chat");
-        jbamic5.setActionCommand(ACTION4);
-        jlamic5.setBounds(20,410,650,90);
-        jbamic5.setBounds(350,442,100,30);
-        jbamic5.setSize(100,30);
-        jpinferior.add(jbamic5);
-        jpinferior.add(jlamic5);
-
-
-        getContentPane().add(jpsuperior);
-        getContentPane().add(jpinferior);
+        getContentPane().add(js);
+    }
+    public static JTable crearTaula(JTable taula, String[] header, LinkedList<Amic> amics) {
+        DefaultTableModel tablemodel = (DefaultTableModel) taula.getModel();
+        tablemodel.setRowCount(0);
+        for (String col : header) {
+            tablemodel.addColumn(col);
+        }
+        int posicio = 1;
+        for (Amic row : amics) {
+            String[] a = new String[]{String.valueOf(posicio), row.getNickName()};
+            tablemodel.addRow(a);
+            posicio++;
+        }
+        taula.setModel(tablemodel);
+        return taula;
     }
 
+    public static String amicSeleccionat() {
+        String amic = (String) taula.getValueAt(taula.getSelectedRow(), 1);
+        return amic;
+    }
 
+    public void amicController(AmicViewController c) {
+        tornar.addActionListener(c);
+        afegir.addActionListener(c);
+        buscar.addActionListener(c);
+        eliminar.addActionListener(c);
+        chat.addActionListener(c);
+    }
+
+    public void refresh(String amic) {
+        IntStream.range(0, amics.size()).filter(i -> amics.get(i).getNickName().equals(amic)).forEach(amics::remove);
+        AmicView av = new AmicView(amics);
+        AmicViewController avc = new AmicViewController(av);
+        av.amicController(avc);
+        this.setVisible(false);
+        av.setVisible(true);
+    }
 
 }

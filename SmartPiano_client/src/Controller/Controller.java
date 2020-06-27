@@ -15,7 +15,6 @@ public class Controller {
     private ServerComunication sComunication;
 
     public Controller(MainView vista, ServerComunication sComunication) {
-
         this.view = vista;
         this.sComunication = sComunication;
         // iniciem la recepcio dactualitzacions de lestat

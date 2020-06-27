@@ -1,15 +1,16 @@
 package Model.Network;
 
+import Controller.AmicViewController;
+import Model.Amic;
 import Model.Missatge;
-import Model.NetworkConfiguration;
-import View.LoginView;
-import View.MainView;
+import View.*;
+
 import java.io.*;
 import java.net.Socket;
+import java.util.LinkedList;
+
 import Model.Json.*;
 import Model.User;
-import View.MenuView;
-import View.RegisterView;
 
 import javax.swing.JOptionPane;
 
@@ -18,13 +19,14 @@ public class ServerComunication extends Thread  {
     private boolean isOn;
     private Socket socketToServer;
     private ObjectInputStream objectIn;
-    private ObjectOutputStream objectOut;
+    private static ObjectOutputStream objectOut;
     private DataOutputStream dataOut;
     private DataInputStream dataIn;
     private MenuView mv;
     private MainView mnv;
     private LoginView lv;
     private RegisterView rv;
+    private AmicView av;
 
     public ServerComunication(MenuView mv, LoginView lv, RegisterView rv,MainView mnv) {
         try {
@@ -60,7 +62,7 @@ public class ServerComunication extends Thread  {
     //------------------------------
     //------------PETA--------------
     //------------------------------
-    public void enviaMissatge (Object missatge){
+    public static void enviaMissatge(Object missatge){
         try {
             objectOut.writeObject(missatge);
         } catch (IOException e) {
@@ -76,11 +78,16 @@ public class ServerComunication extends Thread  {
     }
 
     public void run() {
+
+
         while (isOn) {
             try {
                 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
                 objectIn = new ObjectInputStream(socketToServer.getInputStream());
                 Object object = objectIn.readObject();
+
+                System.out.println("skr");
                 Missatge missatge;
                 missatge = (Missatge) object;
                 String accio = missatge.getAccio();
@@ -104,6 +111,14 @@ public class ServerComunication extends Thread  {
                         break;
                     case "delete":
                         mnv.setVisible(true);
+                    case "amicsTrobats":
+                        LinkedList<Amic> amics = new LinkedList<>();
+                        amics = (LinkedList<Amic>)missatge.getData();
+                        AmicView av = new AmicView(amics);
+                        AmicViewController avc = new AmicViewController(av);
+                        av.amicController(avc);
+                        av.setVisible(true);
+                        break;
                 }
                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             } catch (IOException | ClassNotFoundException e) {
@@ -112,4 +127,5 @@ public class ServerComunication extends Thread  {
         }
         stopServerComunication();
     }
+
 }

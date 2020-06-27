@@ -8,6 +8,7 @@ public class Amic implements Serializable {
     public Amic(String nickName) {
         this.nickName = nickName;
     }
+
     public String getNickName() {
         return nickName;
     }

@@ -1,24 +1,26 @@
 package Controller;
 
+import Model.Missatge;
+import Model.Network.ServerComunication;
 import View.*;
 import com.sun.tools.javac.Main;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static Model.Network.ServerComunication.enviaMissatge;
+
 public class MenuViewController implements ActionListener{
 
+    private ServerComunication sc;
     private MenuView mv;
-    private AmicView amicsv;
-    private MainView mnv;
-    ViewTeclado pv = new ViewTeclado();
-    ControllerTeclado controllerTeclado = new ControllerTeclado(pv);
+    private MainView mnv = new MainView();
+    private PianoView pv = new PianoView();
+    private ControllerTeclado controllerTeclado = new ControllerTeclado(pv);
 
 
-    public MenuViewController (MenuView mv,AmicView amicsv, MainView mnv) {
+    public MenuViewController (MenuView mv) {
         this.mv = mv;
-        this.amicsv = amicsv;
-        this.mnv = mnv;
     }
 
 
@@ -28,7 +30,7 @@ public class MenuViewController implements ActionListener{
             System.out.println("Piano lliure");
             mv.setVisible(false);
             pv.setVisible(true);
-            pv.registerController(controllerTeclado, controllerTeclado);
+            pv.registerController(controllerTeclado, controllerTeclado, controllerTeclado);
 
         }
         if (e.getActionCommand().equals(mv.ACTION2)) {
@@ -38,28 +40,26 @@ public class MenuViewController implements ActionListener{
         }
         if (e.getActionCommand().equals(mv.ACTION4)) {
             System.out.println("Amics");
+            Missatge missatge = new Missatge("amicsUsuari", null);
+            enviaMissatge(missatge);
             mv.setVisible(false);
-            amicsv.setVisible(true);
         }
         if (e.getActionCommand().equals(mv.ACTION5)) {
             System.out.println("Tanca sessió");
             mv.setVisible(false);
             mnv.setVisible(true);
-
-            //sessiov.setVisible(true);
         }
         if (e.getActionCommand().equals(mv.ACTION6)) {
-            System.out.println("Borra conta");
+            System.out.println("Borra compte");
+            Missatge missatge = new Missatge("borra compte", null);
+            enviaMissatge(missatge);
             mv.setVisible(false);
-
-
-
-            //contav.setVisible(true);
+            System.exit(0);
         }
-        if (e.getActionCommand().equals(amicsv.ACTION)) {
+     /*   if (e.getActionCommand().equals(amicsv.ACTION)) {
             System.out.println("Tornar");
             amicsv.setVisible(false);
             mv.setVisible(true);
-        }
+        }*/
     }
 }

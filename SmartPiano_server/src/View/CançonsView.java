@@ -6,10 +6,13 @@ import Model.Song;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import static Model.DDBB.SQLOperations.demanaCançons;
 
 public class CançonsView extends JFrame{
     private JPanel jpVista;
@@ -98,5 +101,14 @@ public class CançonsView extends JFrame{
         canço.add(nom);
         canço.add(autor);
         return canço;
+    }
+
+    public void refresh() {
+        ArrayList<Song> songs = demanaCançons();
+        CançonsView gc = new CançonsView(songs);
+        CançonsViewController c = new CançonsViewController(gc);
+        gc.registerController(c);
+        this.setVisible(false);
+        gc.setVisible(true);
     }
 }

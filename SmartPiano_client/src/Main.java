@@ -9,15 +9,7 @@ import View.RegisterView;
 import Controller.*;
 
 
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
-
-
-
 import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 
 public class Main {
     private static ReadJson rj;
@@ -32,11 +24,11 @@ public class Main {
         Rj.llegeixJSON();
 
         MainView v = new MainView();
+        v.setVisible(true);
         LoginView lv = new LoginView();
         RegisterView rv = new RegisterView();
         MenuView mv = new MenuView();
-        AmicView amicsv = new AmicView();
-        ViewTeclado viewTeclado = new ViewTeclado();
+        PianoView pianoView = new PianoView();
 
 
         ServerComunication sc = new ServerComunication(mv, lv, rv,v);
@@ -44,8 +36,8 @@ public class Main {
         Controller c = new Controller(v,sc);
         System.out.println("estem abans de la vista");
         MainViewControllerCl controllerMain = new MainViewControllerCl(v, lv, rv, sc);
-        MenuViewController controllerMenu = new MenuViewController(mv,amicsv,v);
-        ControllerTeclado controllerTeclado = new ControllerTeclado(viewTeclado);
+        MenuViewController controllerMenu = new MenuViewController(mv);
+        ControllerTeclado controllerTeclado = new ControllerTeclado(pianoView);
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -55,7 +47,7 @@ public class Main {
                 rv.registerControllerR(controllerMain);
 
                 mv.registerControllerM(controllerMenu);
-                viewTeclado.registerController(controllerTeclado, controllerTeclado);
+                pianoView.registerController(controllerTeclado, controllerTeclado, controllerTeclado);
                 v.setVisible(true);
             }
         });

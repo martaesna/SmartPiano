@@ -15,7 +15,7 @@ public class MenuView extends JFrame {
     public static final String ACTION2 = "Cançons";
     public static final String ACTION4 = "Amics";
     public static final String ACTION5 = "Tanca sessio";
-    public static final String ACTION6 = "Borra conta";
+    public static final String ACTION6 = "Borra compte";
 
     private JPanel jpVista;
     private JPanel jpUser;
@@ -122,7 +122,7 @@ public class MenuView extends JFrame {
         jbtancasessio.setActionCommand(ACTION5);
         jpVista.add(jbtancasessio);
 
-        jbborraconta = new JButton("Borra conta");
+        jbborraconta = new JButton("Borra compte");
         jbborraconta.setFont(font);
         jbborraconta.setBounds(40, 420, 300, 50);
         jbborraconta.setBorder(border);

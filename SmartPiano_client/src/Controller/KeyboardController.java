@@ -1,17 +1,19 @@
 /*package Controller;
 
-import Model.Sound;
+import Model.FiguraMusical;
 import View.PianoView;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.security.Key;
+
 public class KeyboardController implements KeyListener {
     private PianoView v;
-    private Sound s;
+    private FiguraMusical s;
 
     public KeyboardController(PianoView v) {
         this.v = v;
-        this.s = new Sound();
+        this.s = new FiguraMusical();
     }
 
     @Override
@@ -34,5 +36,4 @@ public class KeyboardController implements KeyListener {
     public void changeShortcut() {
         s.setCustomNote(s.changeNote());
     }
-}
-*/
+}*/

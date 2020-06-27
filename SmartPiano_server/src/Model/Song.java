@@ -11,7 +11,9 @@ public class Song implements Serializable {
     private int numRep;
     private int duration;
     private boolean publico;
+    private int times_played;
     private int minutesListened;
+    private boolean privacity;
 
     public Song(String name, String autor, int numRep, int duration, boolean publico, int minutesListened) {
         this.name = name;
@@ -68,11 +70,27 @@ public class Song implements Serializable {
         this.publico = publico;
     }
 
+    public int getTimes_played() {
+        return times_played;
+    }
+
+    public void setTimes_played(int times_played) {
+        this.times_played = times_played;
+    }
+
     public int getMinutesListened() {
         return minutesListened;
     }
 
     public void setMinutesListened(int minutesListened) {
         this.minutesListened = minutesListened;
+    }
+
+    public boolean isPrivacity() {
+        return privacity;
+    }
+
+    public void setPrivacity(boolean privacity) {
+        this.privacity = privacity;
     }
 }

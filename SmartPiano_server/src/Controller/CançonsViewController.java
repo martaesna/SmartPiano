@@ -36,6 +36,7 @@ public class CançonsViewController implements ActionListener {
                 ArrayList<String> canço;
                 canço = v.songSeleccionada();
                 SQLOperations.eliminaCanço(canço.get(0), canço.get(1));
+                v.refresh();
             } catch (IndexOutOfBoundsException ex) {
                 System.out.println("no s'ha seleccionat cap canço");
             }

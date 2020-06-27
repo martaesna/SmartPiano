@@ -13,7 +13,6 @@ public class MainView extends JFrame {
     private JPanel jpInferior;
 
     public MainView() {
-        setVisible(true);
         setTitle("Selecciona una opció"); // titol
         setSize(1024, 635); // tamaño de la caja
         setResizable(false); //para que no se pueda mover

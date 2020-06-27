@@ -1,7 +1,7 @@
 {
   "port": 3306,
   "user": "root",
-  "password": "12345",
+  "password": "SmartPiano99",
   "db": "Piano",
   "serverIP": "127.0.0.1",
   "listeningPort": 2222

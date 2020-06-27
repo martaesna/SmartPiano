@@ -1,12 +1,13 @@
 package Model.DDBB;
 
-import Model.DDBB.ConectorDB;
+import Model.Amic;
 import Model.Json.Data;
 import Model.Song;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import static Model.Json.JsonReader.llegeixJSON;
 
@@ -16,6 +17,7 @@ public class SQLOperations {
         data = llegeixJSON();
         ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
+        System.out.println("skr");
         conn.insertQuery("INSERT INTO User(nickname, email, password, codi) VALUES (" + "'" + name + "'" + "," + "'" + mail + "'" + "," + "'" + password + "'" + "," + "'" + codi + "'" +")");
     }
     public static boolean existeixUsuari (String name) {
@@ -50,12 +52,13 @@ public class SQLOperations {
         return false;
     }
 
-    public static void BorrarUsuari(String name){
+    public static void borraUsuari(String name){
         Data data;
         data = llegeixJSON();
         ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
-        //String query = Marta maca
+        String query = "DELETE FROM User AS u WHERE (u.nickname LIKE '" + name + "' OR u.email LIKE '" + name;
+        conn.deleteQuery(query);
     }
 
     public static ArrayList<Song> demanaCançons() {
@@ -121,4 +124,60 @@ public class SQLOperations {
         }
         return songs;
     }
+
+    public static void guardaCanço(Song song) {
+        Data data;
+        data = llegeixJSON();
+        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+        conn.connect();
+        String query = "INSERT INTO Song(name, author, duration, times_played, minutes_listened, privacity) VALUES('" + song.getName() + "','" + song.getAutor()
+        + "'," + song.getDuration() + "," + song.getTimes_played() + "," + song.getMinutesListened() + ",'" + song.isPrivacity() + "')";
+        conn.insertQuery(query);
+    }
+
+    public static LinkedList<Amic> amicsUsuari(String usuari) {
+        LinkedList<Amic> amics = new LinkedList<>();
+        Data data;
+        data = llegeixJSON();
+        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+        conn.connect();
+        String query = "SELECT f.nickname2 FROM Friend AS f WHERE f.nickname1 LIKE '" + usuari + "'";
+        ResultSet rs = conn.selectQuery(query);
+        try {
+            while (rs.next()) {
+                amics.add(new Amic(rs.getString(1)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return amics;
+    }
+
+    public static String trobaNickname(String usuari) {
+        String nickname = null;
+        Data data;
+        data = llegeixJSON();
+        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+        conn.connect();
+        String query = "SELECT u.nickname FROM User AS u WHERE u.email LIKE '" + usuari + "'";
+        ResultSet rs = conn.selectQuery(query);
+        try {
+            while (rs.next()) {
+                nickname = (rs.getString(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nickname;
+    }
+
+    public static void eliminaAmic(String amic, String usuari) {
+        Data data;
+        data = llegeixJSON();
+        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+        conn.connect();
+        String query = "DELETE FROM Friend AS f WHERE f.nickname2 LIKE '" + amic + "'AND f.nickname1 LIKE '" + usuari + "';";
+        conn.deleteQuery(query);
+    }
 }
+

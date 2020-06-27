@@ -110,9 +110,10 @@ public class MainViewControllerCl implements ActionListener {
                         User usuari = new User(rv.Getusername(), rv.Getmail(), rv.Getpassword());
                         usuari.setCodi(generadorCodi.RandomString());
                         Missatge missatge = new Missatge(accio, usuari);
-                        sc.enviaMissatge((Object)missatge);
+                        sc.enviaMissatge((Missatge)missatge);
                         rv.setVisible(false);
                         lv.setVisible(true);
+                        System.out.println("hola que tal");
 
                         //Guardem user a la BDD
 
@@ -132,8 +133,8 @@ public class MainViewControllerCl implements ActionListener {
             accio = "login";
             User usuari = new User(lv.Getusername(), "null", lv.Getpasword());
             Missatge missatge = new Missatge(accio, usuari);
-                sc.enviaMissatge((Object)missatge);
-            }
+            sc.enviaMissatge((Object)missatge);
         }
     }
+}
 
