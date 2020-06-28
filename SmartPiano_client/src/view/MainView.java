@@ -10,7 +10,9 @@ public class MainView extends JFrame {
     private JButton jblogin;
     private JButton jbregistre;
     private JPanel jpInferior;
-
+    /**
+     * Constructor de la vista on afegim tots els elements necessaris
+     */
     public MainView() {
         setTitle("Selecciona una opció"); // titol
         setSize(1024, 635); // tamaño de la caja
@@ -38,7 +40,10 @@ public class MainView extends JFrame {
 
         getContentPane().add(jpInferior, BorderLayout.SOUTH);
     }
-
+    /**
+     * Assignem el actionlistener que rebrà els accions quan toquem els botons login o registre
+     * @param actionListener
+     */
     public void registerController(ActionListener actionListener) {
         jblogin.addActionListener(actionListener);
         jbregistre.addActionListener(actionListener);// creamos las realciones con el controlador

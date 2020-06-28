@@ -29,7 +29,9 @@ public class MenuView extends JFrame {
     private JLabel userEmail;
     private JLabel espai;
     private JLabel background;
-
+    /**
+     * Constructor de la vista on afegim tots els elements necessaris
+     */
     public MenuView() {
         setVisible(false);
         setTitle("Selecciona una opció"); // titol
@@ -116,7 +118,10 @@ public class MenuView extends JFrame {
         getContentPane().add(jpUser);
         getContentPane().add(jpVista);
     }
-
+    /**
+     * Assignem el actionlistener que rebrà els accions quan toquem els botons de la vista piano
+     * @param actionListener
+     */
     public void registerControllerM(ActionListener actionListener) {
         jbpianolliure.addActionListener(actionListener);
         jbamics.addActionListener(actionListener);

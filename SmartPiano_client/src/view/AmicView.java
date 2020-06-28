@@ -23,6 +23,10 @@ public class AmicView extends JFrame {
     private JTextField codiAmic;
     private JLabel codi;
 
+    /**
+     * Constructor de la vista on afegim tots els elements necessaris
+     */
+
     public AmicView(LinkedList<Amic> amics, ServerComunication sc) {
         this.amics = amics;
         this.sc = sc;

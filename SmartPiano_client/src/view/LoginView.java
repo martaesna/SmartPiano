@@ -16,6 +16,9 @@ public class LoginView extends JFrame {
     private JPanel jpsuperior;
 
 
+    /**
+     * Constructor de la vista on afegim tots els elements necessaris
+     */
     public LoginView() {
         setVisible(false);
         setTitle("Login"); // titol
@@ -73,7 +76,10 @@ public class LoginView extends JFrame {
         getContentPane().add(jpInferior, BorderLayout.SOUTH);
 
     }
-
+    /**
+     * Assignem el actionlistener que rebrà els accions quan toquem els botons cancel o login
+     * @param actionListener
+     */
     public void registerControllerL(ActionListener actionListener)
     {
         jbcancel.addActionListener(actionListener);

@@ -19,6 +19,9 @@ public class RegisterView extends JFrame {
     private JPanel jpInferior;
     private JPanel jpsuperior;
 
+    /**
+     * Constructor de la vista on afegim tots els elements necessaris
+     */
 
     public RegisterView() {
         setVisible(false);
@@ -96,7 +99,10 @@ public class RegisterView extends JFrame {
         getContentPane().add(jpInferior, BorderLayout.SOUTH);
     }
 
-
+    /**
+     * Assignem el actionlistener que rebrà els accions quan toquem els botons cancel o registre
+     * @param actionListener
+     */
     public void registerControllerR(ActionListener actionListener) {
         jbcancel.addActionListener(actionListener);// creamos las realciones con el controlador
         jbregistre.addActionListener(actionListener);// creamos las realciones con el controlador

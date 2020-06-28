@@ -25,6 +25,9 @@ public class PianoView extends JFrame {
     private JPanel miscelanea;
     private JButton pausarGrabacion;
     private JButton pausarReproducion;
+    /**
+     * Constructor de la vista on afegim tots els elements necessaris
+     */
 
     public PianoView() {
         //Configuración básica de la pantalla
@@ -164,6 +167,10 @@ public class PianoView extends JFrame {
             }
         }
     }
+    /**
+     * Assignem el actionlistener que rebrà els accions quan toquem els botons del piano
+     * @param actionListener
+     */
 
     public void registerController (ActionListener actionListener, MouseListener mouseListener, KeyListener keyListener){
         jMenuItemEstiloLibre.addActionListener(actionListener);
