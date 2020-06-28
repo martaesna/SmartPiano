@@ -1,6 +1,7 @@
 package controller;
 
 import model.Missatge;
+import model.network.ServerComunication;
 import view.AmicView;
 import view.MenuView;
 
@@ -11,10 +12,12 @@ import java.awt.event.ActionListener;
 import static model.network.ServerComunication.enviaMissatge;
 
 public class AmicViewController implements ActionListener {
+    private ServerComunication sc;
     private AmicView v;
 
-    public AmicViewController(AmicView v) {
+    public AmicViewController(AmicView v, ServerComunication sc) {
         this.v = v;
+        this.sc = sc;
     }
 
     @Override
@@ -37,7 +40,7 @@ public class AmicViewController implements ActionListener {
                 @Override
                 public void run() {
                     MenuView mv = new MenuView();
-                    MenuViewController mvc = new MenuViewController(mv);
+                    MenuViewController mvc = new MenuViewController(mv, sc);
                     mv.registerControllerM(mvc);
                     mv.setVisible(true);
                 }

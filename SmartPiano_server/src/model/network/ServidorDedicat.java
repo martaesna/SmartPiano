@@ -3,6 +3,7 @@ package model.network;
 import controller.MainViewController;
 import model.*;
 import model.ddbb.SQLoperations;
+import model.json.JsonCançons;
 
 import java.io.*;
 import java.net.Socket;
@@ -86,11 +87,10 @@ public class ServidorDedicat extends Thread {
                                 System.out.println(accioResposta); //resposta de correcte
 
                             }
-                            missatgeResposta = new Missatge(accioResposta, missatge.getData());
+                            missatgeResposta = new Missatge(accioResposta, usuari.getCodi());
                             enviaMissatge((Object) missatgeResposta);
                             break;
                         case "login":
-                            //retornar info al client
                             usuari = (User)missatge.getData();
                             if (!loginUsuariCorrecte(usuari.getName(), usuari.getPassword())) {
                                 accioResposta = "errorLogin";
@@ -106,15 +106,14 @@ public class ServidorDedicat extends Thread {
                                 System.out.println(accioResposta);
 
                             }
-                            missatgeResposta = new Missatge(accioResposta, missatge.getData());
+                            missatgeResposta = new Missatge(accioResposta, usuari);
                             enviaMissatge((Object)missatgeResposta);
                             break;
 
-                        case "delete":
+                        case "borraCompte":
                             //Borrar la conta de la base de dades
                             usuari = (User)missatge.getData();
                             borraUsuari(nomUsuari);
-                            //BorrarUsuari(usuari.getName());
                             accioResposta = "usuariBorrat";
                             System.out.println(accioResposta);
                             missatgeResposta = new Missatge(accioResposta, missatge.getData());
@@ -153,11 +152,10 @@ public class ServidorDedicat extends Thread {
                             enviaMissatge((Object)missatgeResposta);
                             break;
                         case "cançonsReproduir":
-                            HashMap<Integer, String> cançons;
+                            LinkedList<Song> cançons;
                             cançons = SQLoperations.demanaCançonsReproduir(nomUsuari);
-
-                           // missatgeResposta = new Missatge("cançonsPerReproduir", );
-                           // enviaMissatge((Object)missatgeResposta);
+                            missatgeResposta = new Missatge("cançonsPerReproduir", cançons);
+                            enviaMissatge((Object)missatgeResposta);
                             break;
                         case "afegeixCançoPublica":
                             Cancion canço = (Cancion) missatge.getData();
@@ -169,6 +167,13 @@ public class ServidorDedicat extends Thread {
                             id = SQLoperations.afegeixCanço(canço, nomUsuari);
                             jsonSongs(canço, id);
                             break;
+                        case "buscaCançoJson":
+                            Song buscaCanço;
+                            buscaCanço = (Song) missatge.getData();
+                            System.out.println("hola k tal");
+                            Cancion cançoTrobada = JsonCançons.buscaCançoJson(buscaCanço);
+                            missatgeResposta = new Missatge("cançoPerReproduirTrobada", cançoTrobada);
+                            enviaMissatge((Object)missatgeResposta);
                     }
                     //si el object es "tipus" User entra al if
                 } catch (ClassNotFoundException e) {

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 
 public class Cancion implements Serializable {
+    private int id;
     private String nombre;
     private LinkedList<FiguraMusical> figurasMusicales;
     private boolean privada;
@@ -57,6 +58,14 @@ public class Cancion implements Serializable {
             strb.append(fm.toStringToSend() + "/");
         }
         return strb.toString();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     private enum Privacidad {

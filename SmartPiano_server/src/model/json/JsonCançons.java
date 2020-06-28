@@ -1,22 +1,27 @@
 package model.json;
 
+import com.google.gson.Gson;
 import model.Cancion;
 import model.FiguraMusical;
+import model.Song;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class JsonCançons {
+    private Cancion cancion;
     public static void jsonSongs(Cancion c, int id){
         JSONObject songObj = new JSONObject();
         songObj.put("Id", id);
         songObj.put("Nom", c.getNombre());
         songObj.put("Privacitat", c.isPrivada());
 
-        JSONArray locationArray = new JSONArray();
+        JSONArray notasArray = new JSONArray();
         for(FiguraMusical i : c.getFigurasMusicales()){
             JSONObject figura = new JSONObject();
             figura.put("nota", i.getNota());
@@ -24,17 +29,37 @@ public class JsonCançons {
             figura.put("tiempoFinal", i.getTiempoFinal());
             figura.put("tiempo", i.getTiempo());
             figura.put("escala", i.getEscala());
-            locationArray.put(figura);
+            notasArray.put(figura);
         }
-        songObj.put("Llista cançons", locationArray);
+        songObj.put("Notas", notasArray);
 
         String f = new File("").getAbsolutePath();
         try (FileWriter file = new FileWriter(f.concat  ("/SmartPiano_server/src/model/cançons/cançons.json"))) {
             file.write(songObj.toString());
-            System.out.println("skrrrrrrrr");
             file.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    public static Cancion buscaCançoJson(Song canço) {
+        LinkedList<Cancion> cançoTrobada = new LinkedList<>();
+        String path = new File("").getAbsolutePath();
+        try{
+            Gson gson = new Gson();
+            com.google.gson.stream.JsonReader reader;
+            reader = new com.google.gson.stream.JsonReader(new FileReader(path.concat("/Smartpiano_server/src/model/cançons/cançons.json")));
+            cançoTrobada = gson.fromJson(reader, Cancion.class);
+
+            System.out.println("\nLectura JSON finalitzada.\n");
+
+        }catch(Exception e){
+            System.out.println("No s'ha pogut llegir el fitxer JSON: " + e.getMessage());
+        }
+        for (Cancion c: cançoTrobada) {
+            if(canço.getId() == c.getId()) {
+                return c;
+            }
+        }
+        return null;
     }
 }

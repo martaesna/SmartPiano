@@ -3,8 +3,8 @@
  */
 package controller;
 import model.*;
-import view.MenuView;
-import view.PianoView;
+import model.network.ServerComunication;
+import view.*;
 
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
@@ -20,15 +20,18 @@ import static model.network.ServerComunication.enviaMissatge;
 
 
 public class ControllerTeclado implements ActionListener, MouseListener, KeyListener {
+    private ServerComunication sc;
     private PianoView pv;
     private Modo modo;
+    private Song song;
     private Cancion cancion;
     private Synthesizer midiSynth;
     private HashMap<Integer, String> keyBinding;
     private HashMap<Nota, Integer> sustainingKeys;
 
-    public ControllerTeclado(PianoView pv){
+    public ControllerTeclado(PianoView pv, ServerComunication sc){
         this.pv = pv;
+        this.sc = sc;
         this.pv.addKeyListener(this);
         keyBinding = new HashMap<>();
         keyBinding = initKeyBinding();
@@ -81,34 +84,43 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
                 modo = Modo.REPRODUCCIR;
                 Missatge missatge = new Missatge("cançonsReproduir", cancion);
                 enviaMissatge(missatge);
-                //TODO: SOCKET -> MANDAR MENSAJE CON RECIBIR CANCIONES ejemplo: "CANCIONESUSUARIO"
-                //TODO: SOCKET -> RECIBIR SOCKET CON LAS CANCIONES
-                LinkedList<Cancion> canciones = new LinkedList<>();
-                String[] nombreCanciones = new String[canciones.size()];
-                for (int i = 0; i < canciones.size(); i++){
-                    nombreCanciones[i] = canciones.get(i).getNombre();
-                }
-                for (Cancion c: canciones) {
-                    if (pv.popUpSeleccionarCancion(nombreCanciones).equals(c.getNombre())){
-                        this.cancion = c;
-                        reproducirCancion();
-                        break;
-                    }
-                }
-                modo = Modo.LIBRE;
                 break;
             case "salir":
                 pv.setVisible(false);
                 MenuView mv = new MenuView();
-                MenuViewController mvc = new MenuViewController(mv);
+                System.out.println("peta aqui :(");
+                LoginView lv = new LoginView();
+                RegisterView rv = new RegisterView();
+                MainView mnv = new MainView();
+                ServerComunication sc = new ServerComunication(mv,lv,rv,mnv);
+                MenuViewController mvc = new MenuViewController(mv, sc);
                 mv.registerControllerM(mvc);
                 mv.setVisible(true);
                 break;
         }
     }
+    public void cançonsReproduir (LinkedList<Song> canciones) {
+        String[] nombreCanciones = new String[canciones.size()];
+        for (int i = 0; i < canciones.size(); i++) {
+            nombreCanciones[i] = canciones.get(i).getName() + " - " + canciones.get(i).getAutor();
+        }
+        for (Song c: canciones) {
+            System.out.println("valecrack");
+            try {
+                if (pv.popUpSeleccionarCancion(nombreCanciones).equals(c.getName() + " - " + c.getAutor())){
+                    System.out.println("Stitch<3");
+                    this.song = c;
+                    Missatge missatge = new Missatge("buscaCançoJson", c);
+                    enviaMissatge(missatge);
+                    break;
+                }
+            } catch (java.lang.NullPointerException ignore) { }
+        }
+        modo = Modo.LIBRE;
+    }
 
-    private void reproducirCancion()  {
-        LinkedList<FiguraMusical> figurasMusical = cancion.getFigurasMusicales();
+    public void reproducirCancion(Cancion cançoTrobada)  {
+        LinkedList<FiguraMusical> figurasMusical = cançoTrobada.getFigurasMusicales();
         Timer timerPintar = new Timer();
         long tiempoPintar = 0L;
 

@@ -2,6 +2,7 @@ package view;
 
 import controller.AmicViewController;
 import model.Amic;
+import model.network.ServerComunication;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -9,7 +10,7 @@ import java.util.LinkedList;
 import java.util.stream.IntStream;
 
 public class AmicView extends JFrame {
-
+    private ServerComunication sc;
     private final LinkedList<Amic> amics;
     private String[] titols;
     private static JTable taula;
@@ -20,9 +21,11 @@ public class AmicView extends JFrame {
     private JButton buscar;
     private JButton chat;
     private JTextField codiAmic;
+    private JLabel codi;
 
-    public AmicView(LinkedList<Amic> amics) {
+    public AmicView(LinkedList<Amic> amics, ServerComunication sc) {
         this.amics = amics;
+        this.sc = sc;
         setVisible(false);
         setTitle("Amics"); // titol
         setSize(700, 635); // tamaño de la caja
@@ -44,6 +47,10 @@ public class AmicView extends JFrame {
         tornar.setActionCommand("Tornar"); // creamos el comando de accion.
         jpVista.add(tornar);
         tornar.setBounds(0,15,100,30); //fiquem les cordenades
+
+        codi = new JLabel(sc.getCodiAmic());
+        codi.setBounds(115,15,100,30);
+        getContentPane().add(codi);
 
         codiAmic = new JTextField();
         codiAmic.setBounds(210, 15, 150, 30);
@@ -107,8 +114,8 @@ public class AmicView extends JFrame {
 
     public void refresh(String amic) {
         IntStream.range(0, amics.size()).filter(i -> amics.get(i).getNickName().equals(amic)).forEach(amics::remove);
-        AmicView av = new AmicView(amics);
-        AmicViewController avc = new AmicViewController(av);
+        AmicView av = new AmicView(amics, sc);
+        AmicViewController avc = new AmicViewController(av, sc);
         av.amicController(avc);
         this.setVisible(false);
         av.setVisible(true);

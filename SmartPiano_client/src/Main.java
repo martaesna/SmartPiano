@@ -30,14 +30,13 @@ public class Main {
         MenuView mv = new MenuView();
         PianoView pianoView = new PianoView();
 
-
         ServerComunication sc = new ServerComunication(mv, lv, rv,v);
 
         Controller c = new Controller(v,sc);
         System.out.println("estem abans de la vista");
         MainViewControllerCl controllerMain = new MainViewControllerCl(v, lv, rv, sc);
-        MenuViewController controllerMenu = new MenuViewController(mv);
-        ControllerTeclado controllerTeclado = new ControllerTeclado(pianoView);
+        MenuViewController controllerMenu = new MenuViewController(mv, sc);
+        ControllerTeclado controllerTeclado = new ControllerTeclado(pianoView, sc);
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override

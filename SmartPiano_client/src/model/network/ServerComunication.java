@@ -1,8 +1,9 @@
 package model.network;
 
 import controller.AmicViewController;
-import model.Amic;
-import model.Missatge;
+import controller.Controller;
+import controller.ControllerTeclado;
+import model.*;
 import view.*;
 
 import java.io.*;
@@ -10,7 +11,6 @@ import java.net.Socket;
 import java.util.LinkedList;
 
 import model.json.*;
-import model.User;
 
 import javax.swing.JOptionPane;
 
@@ -27,6 +27,8 @@ public class ServerComunication extends Thread  {
     private LoginView lv;
     private RegisterView rv;
     private AmicView av;
+    private ControllerTeclado ct;
+    private String codiAmic;
 
     public ServerComunication(MenuView mv, LoginView lv, RegisterView rv,MainView mnv) {
         try {
@@ -108,35 +110,51 @@ public class ServerComunication extends Thread  {
                     case "registreCorrecte":
                         lv.setVisible(true);
                         JOptionPane.showMessageDialog(null, "T'has registrat amb èxit!", "Registre Correcte", JOptionPane.INFORMATION_MESSAGE);
+                        this.codiAmic = (String) missatge.getData();
                         break;
                     case "delete":
                         mnv.setVisible(true);
                     case "amicsTrobats":
                         LinkedList<Amic> amics = new LinkedList<>();
                         amics = (LinkedList<Amic>)missatge.getData();
-                        AmicView av = new AmicView(amics);
-                        AmicViewController avc = new AmicViewController(av);
+                        AmicView av = new AmicView(amics, this);
+                        AmicViewController avc = new AmicViewController(av, this);
                         av.amicController(avc);
                         av.setVisible(true);
                         break;
                     case "amicAfegit":
                         try {
+                            JOptionPane.showMessageDialog(null, "Ja sou amics!!", "Amistat Correcte", JOptionPane.INFORMATION_MESSAGE);
                             amics = (LinkedList<Amic>)missatge.getData();
-                            av = new AmicView(amics);
-                            avc = new AmicViewController(av);
+                            av = new AmicView(amics, this);
+                            avc = new AmicViewController(av, this);
                             av.amicController(avc);
                             av.setVisible(true);
                         } catch (ClassCastException ignore) {}
                         break;
                     case "amicJaExisteix":
                         try {
-                            //mostra error amic ja existeix
+                            JOptionPane.showMessageDialog(null, "Aquest amic ja el tens afegit", "Amic Existent", JOptionPane.ERROR_MESSAGE);
                             amics = (LinkedList<Amic>)missatge.getData();
-                            av = new AmicView(amics);
-                            avc = new AmicViewController(av);
+                            av = new AmicView(amics,this);
+                            avc = new AmicViewController(av, this);
                             av.amicController(avc);
                             av.setVisible(true);
                         } catch (ClassCastException ignore) {}
+                        break;
+                    case "cançonsPerReproduir":
+                        LinkedList<Song> cançons = new LinkedList<>();
+                        cançons = (LinkedList<Song>) missatge.getData();
+                        ct.cançonsReproduir(cançons);
+                        break;
+                    case "cançoPerReproduirTrobada":
+                        Cancion cançoTrobada;
+                        cançoTrobada = (Cancion) missatge.getData();
+                        System.out.println("skrrrrrr");
+                        ct.reproducirCancion(cançoTrobada);
+                        break;
+                    case "usuariBorrat":
+                        JOptionPane.showMessageDialog(null, "Has eliminat el teu compte amb èxit.", "Compte borrat", JOptionPane.INFORMATION_MESSAGE);
                         break;
                 }
                 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -147,4 +165,15 @@ public class ServerComunication extends Thread  {
         stopServerComunication();
     }
 
+    public void registerControllerTeclado (ControllerTeclado ct) {
+        this.ct = ct;
+    }
+
+    public String getCodiAmic() {
+        return codiAmic;
+    }
+
+    public void setCodiAmic(String codiAmic) {
+        this.codiAmic = codiAmic;
+    }
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 
 public class Song implements Serializable {
-    private LinkedList<Note> notes;
+    private int id;
     private String name;
     private String autor;
     private int numRep;
@@ -14,7 +14,8 @@ public class Song implements Serializable {
     private int minutesListened;
     private boolean privacity;
 
-    public Song(String name, String autor, int numRep, int duration, boolean publico, int minutesListened) {
+    public Song(int id, String name, String autor, int numRep, int duration, boolean publico, int minutesListened) {
+        this.id = id;
         this.name = name;
         this.autor = autor;
         this.numRep = numRep;
@@ -27,6 +28,10 @@ public class Song implements Serializable {
         this.name = name;
         this.autor = author;
         this.numRep = numRep;
+    }
+
+    public Song() {
+
     }
 
     public String getName() {
@@ -91,5 +96,13 @@ public class Song implements Serializable {
 
     public void setPrivacity(boolean privacity) {
         this.privacity = privacity;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

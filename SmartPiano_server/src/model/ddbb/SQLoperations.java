@@ -59,7 +59,7 @@ public class SQLoperations {
         data = llegeixJSON();
         conectorDB conn = new conectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
-        String query = "DELETE FROM User AS u WHERE (u.nickname LIKE '" + name + "' OR u.email LIKE '" + name;
+        String query = "DELETE FROM User WHERE nickname LIKE '" + name + "' OR email LIKE '" + name + "'";
         conn.deleteQuery(query);
     }
 
@@ -226,17 +226,21 @@ public class SQLoperations {
         return false;
     }
 
-    public static HashMap<Integer, String> demanaCançonsReproduir(String nomUsuari) {
-        HashMap<Integer, String> cançons = new HashMap<>();
+    public static LinkedList<Song> demanaCançonsReproduir(String nomUsuari) {
+        LinkedList<Song> cançons = new LinkedList<>();
         Data data;
         data = llegeixJSON();
         conectorDB conn = new conectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
-        String query = "SELECT s.idSong, s.name FROM Song AS s WHERE s.privacity LIKE 'true' OR s.author LIKE '" + nomUsuari + "'";
+        String query = "SELECT s.songId, s.name, s.author FROM Song AS s WHERE s.privacity = true OR s.author LIKE '" + nomUsuari + "'";
         ResultSet rs = conn.selectQuery(query);
         try {
             while (rs.next()) {
-                cançons.put(rs.getInt(1), rs.getString(2));
+                Song canço = new Song();
+                canço.setId(rs.getInt(1));
+                canço.setName(rs.getString(2));
+                canço.setAutor(rs.getString(3));
+                cançons.add(canço);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -249,7 +253,6 @@ public class SQLoperations {
         long duration = calculaDuracio(canço);
         Data data;
         data = llegeixJSON();
-        System.out.println("F");
         conectorDB conn = new conectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         String query = "INSERT INTO Song(name,author,duration,times_played,minutes_listened,privacity) VALUES('" + canço.getNombre() + "','"

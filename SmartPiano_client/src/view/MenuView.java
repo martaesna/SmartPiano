@@ -74,15 +74,6 @@ public class MenuView extends JFrame {
         espai = new JLabel(" ");
         jpUser.add(espai);
 
-        userName = new JLabel("Username: <User_Name>");
-        userName.setFont(fontUser);
-        jpUser.add(userName);
-
-        userEmail = new JLabel("Email: <User_Email>");
-        userEmail.setFont(fontUser);
-        jpUser.add(userEmail);
-
-
         //VISTA DE LES OPCIONS
         jpVista = new JPanel();
         jpVista.setOpaque(false);
@@ -95,35 +86,28 @@ public class MenuView extends JFrame {
         jbpianolliure = new JButton("Piano Lliure"); // fiquem un boto
         jbpianolliure.setFont(font);
         jpVista.setLayout(null);
-        jbpianolliure.setBounds(40, 20, 300, 50);
+        jbpianolliure.setBounds(40, 85, 300, 50);
         jbpianolliure.setBorder(border);
         jbpianolliure.setActionCommand(ACTION); // creamos el comando de accion.
         jpVista.add(jbpianolliure);
 
-        jbcancons = new JButton("Cançons");
-        jbcancons.setFont(font);
-        jbcancons.setBounds(40, 120, 300, 50);
-        jbcancons.setBorder(border);
-        jbcancons.setActionCommand(ACTION2);
-        jpVista.add(jbcancons);
-
         jbamics = new JButton("Amics");
         jbamics.setFont(font);
-        jbamics.setBounds(40, 220, 300, 50);
+        jbamics.setBounds(40, 185, 300, 50);
         jbamics.setBorder(border);
         jbamics.setActionCommand(ACTION4);
         jpVista.add(jbamics);
 
         jbtancasessio = new JButton("Tanca sessió");
         jbtancasessio.setFont(font);
-        jbtancasessio.setBounds(40, 320, 300, 50);
+        jbtancasessio.setBounds(40, 285, 300, 50);
         jbtancasessio.setBorder(border);
         jbtancasessio.setActionCommand(ACTION5);
         jpVista.add(jbtancasessio);
 
-        jbborraconta = new JButton("Borra compte");
+        jbborraconta = new JButton("Borrar compte");
         jbborraconta.setFont(font);
-        jbborraconta.setBounds(40, 420, 300, 50);
+        jbborraconta.setBounds(40, 385, 300, 50);
         jbborraconta.setBorder(border);
         jbborraconta.setActionCommand(ACTION6);
         jpVista.add(jbborraconta);
@@ -135,7 +119,6 @@ public class MenuView extends JFrame {
 
     public void registerControllerM(ActionListener actionListener) {
         jbpianolliure.addActionListener(actionListener);
-        jbcancons.addActionListener(actionListener);
         jbamics.addActionListener(actionListener);
         jbtancasessio.addActionListener(actionListener);
         jbborraconta.addActionListener(actionListener);
