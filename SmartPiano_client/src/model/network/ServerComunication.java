@@ -48,22 +48,28 @@ public class ServerComunication extends Thread  {
             System.out.println("** ESTA EL SERVIDOR EN EXECUCIO? ***");
         }
     }
-
+    /**
+     * iniciem la comunicacio amb el servidor
+     *
+     */
     public void startServerComunication() {
-        // iniciem la comunicacio amb el servidor
+
         isOn = true;
         this.start();
     }
-
+    /**
+     * aturem la comunicacio amb el servidor
+     *
+     */
     public void stopServerComunication() {
-        // aturem la comunicacio amb el servidor
         this.isOn = false;
         this.interrupt();
     }
 
-    //------------------------------
-    //------------PETA--------------
-    //------------------------------
+    /**
+     * Enviem missatge
+     * @param missatge Missatge a enviar
+     */
     public static void enviaMissatge(Object missatge){
         try {
             objectOut.writeObject(missatge);
@@ -78,9 +84,11 @@ public class ServerComunication extends Thread  {
             e.printStackTrace();
         }
     }
-
+    /**
+     * executem el sevidor
+     *
+     */
     public void run() {
-
 
         while (isOn) {
             try {

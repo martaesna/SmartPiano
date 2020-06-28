@@ -48,6 +48,7 @@ public class Cancion implements Serializable {
         this.privada = privada;
     }
 
+
     //Creacion de la string de la cancion: nombrecancion|privacidad|cancion
     public String toStringToSend () {
         StringBuilder strb = new StringBuilder();

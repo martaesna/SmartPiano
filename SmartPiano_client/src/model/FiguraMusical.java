@@ -59,7 +59,10 @@ public class FiguraMusical implements Serializable {
     public void setEscala(int escala) {
         this.escala = escala;
     }
-
+    /**
+     * Passem la figura musical a format string
+     *
+     */
     @Override
     public String toString() {
         return "FiguraMusical{" +
@@ -68,8 +71,10 @@ public class FiguraMusical implements Serializable {
                 ", escala=" + escala +
                 '}';
     }
-
-    //Creacion de la string de las figuras musicales: nota&escala&tiempo
+    /**
+     * Creacio de la string de les figures musicals
+     *
+     */
     public String toStringToSend (){
         StringBuilder strb = new StringBuilder();
         strb.append(nota.toString()).append("&").append(escala).append("&").append(tiempo);

@@ -11,6 +11,10 @@ public class GeneradorCodi {
         codisGenerats = new LinkedList<>();
     }
 
+    /**
+     * Genera un codi alfanumèric amb majuscules, minuscules i numeros, amb un minim de 9 caràcters.
+     *
+     */
     public String RandomString() {
         do {
             // chose a Character random from this String

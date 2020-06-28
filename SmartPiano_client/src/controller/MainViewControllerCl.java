@@ -31,7 +31,10 @@ public class MainViewControllerCl implements ActionListener {
         this.sc = sc;
         generadorCodi = new GeneradorCodi();
     }
-
+    /**
+     * Comprova si el format del mail es valid
+     * @param email Contrasenya del usuari
+     */
     public static boolean isValidEmail(String email)
     {
         String endPattern = "@gmail.com";
@@ -55,6 +58,10 @@ public class MainViewControllerCl implements ActionListener {
         }
         return false;
     }
+    /**
+     * Comprova si el format de la contrasenya es valid
+     * @param password Contrasenya del usuari
+     */
 
     public static boolean isValidPassword(String password) {
         String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
