@@ -15,6 +15,14 @@ public class conectorDB {
     static Connection conn = null;
     static Statement s;
 
+    /**
+     * Monta la url amb els paràmetres necessaris per connectarnos a la base de dades
+     * @param usr Nom usuari
+     * @param pass Contrasenya
+     * @param db    Nom de la base de dades
+     * @param port  Port de connexió a la base de dades
+     */
+
     public conectorDB(String usr, String pass, String db, int port) {
         conectorDB.userName = usr;
         conectorDB.password = pass;
@@ -25,6 +33,9 @@ public class conectorDB {
         conectorDB.url += "?verifyServerCertificate=false&useSSL=true";
     }
 
+    /**
+     * S'efectua la connexió a la base de dades amb la url anterior
+     */
     public boolean connect() {
         try {
             Class.forName("com.mysql.jdbc.Connection");
@@ -42,7 +53,9 @@ public class conectorDB {
         }
         return false;
     }
-
+    /**
+     * Ens desconectem de la bbdd
+     */
     public void disconnect(){
         try {
             conn.close();
@@ -51,7 +64,9 @@ public class conectorDB {
             System.out.println("Problema al tancar la connexió --> " + e.getSQLState());
         }
     }
-
+    /**
+     * Realitzem la query de tipus insert
+     */
     public void insertQuery(String query) {
         try {
             s = conn.createStatement();
@@ -60,7 +75,9 @@ public class conectorDB {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Realitzem la query de tipus select
+     */
     public ResultSet selectQuery(String query){
         ResultSet rs = null;
         try {
@@ -71,7 +88,9 @@ public class conectorDB {
         }
         return rs;
     }
-
+    /**
+     * Realitzem la query de tipus delete
+     */
     public void deleteQuery(String query) {
         try {
             s = conn.createStatement();
