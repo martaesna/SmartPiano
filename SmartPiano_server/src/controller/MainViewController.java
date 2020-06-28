@@ -12,7 +12,10 @@ public class MainViewController implements ActionListener {
     public MainViewController(MainView v) {
         this.v = v;
     }
-
+    /**
+     * Registra les accions que succeeixen dins de AmicViewController
+     * @param e Event que succeeix al interactuar amb algun element
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(v.ACTION)) { //cuando apretamos el boton

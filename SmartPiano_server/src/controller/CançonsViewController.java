@@ -15,6 +15,10 @@ public class CançonsViewController implements ActionListener {
     public CançonsViewController(CançonsView v) {
         this.v = v;
     }
+    /**
+     * Registra les accions que succeeixen dins de AmicViewController
+     * @param e Event que succeeix al interactuar amb algun element
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {

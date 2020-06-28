@@ -37,7 +37,10 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
         keyBinding = initKeyBinding();
         sustainingKeys = new HashMap<>();
     }
-
+    /**
+     * Assigna a cada nota un enter que representa el to de la nota
+     *
+     */
     private HashMap<Integer, String> initKeyBinding() {
         HashMap<Integer, String> hash = new HashMap<>();
         hash.put(81,"Do0");
@@ -102,6 +105,10 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
                 break;
         }
     }
+    /**
+     * Mostra una llista de les cançons que es poden reproduir
+     * @param canciones  Llista que conté les cançons
+     */
     public void cançonsReproduir (LinkedList<Song> canciones) {
         String[] nombreCanciones = new String[canciones.size()];
         for (int i = 0; i < canciones.size(); i++) {
@@ -121,7 +128,10 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
         }
         modo = Modo.LIBRE;
     }
-
+    /**
+     * Reproduim la canço desitjada iniciant el temps de reproducció, tot canviant el color de les tecles per indicar la nota que sona
+     * @param cançoTrobada Canço a reproduir
+     */
     public void reproducirCancion(Cancion cançoTrobada)  {
         LinkedList<FiguraMusical> figurasMusical = cançoTrobada.getFigurasMusicales();
         Timer timerPintar = new Timer();
@@ -153,7 +163,10 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
             timerPintar.schedule(timerTaskpintarNegro, tiempoPintar);
         }
     }
-
+    /**
+     * Retorna la nota quan es selecciona la tecla amb el ratoli
+     * @param nombre Nom de la nota
+     */
     private Nota getNotaFromMouseEvent(String nombre){
         String notaString = nombre.substring(0, nombre.length() - 1);
         Nota notaNota = null;
@@ -162,7 +175,10 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
         }
         return notaNota;
     }
-
+    /**
+     * Retorna la nota quan es selecciona la tecla amb el teclat
+     * @param keyCode Nom de la tecla
+     */
     private Nota getNotaFromKeyEvent(int keyCode) {
         String nota = keyBinding.get(keyCode);
         String notaString = nota.substring(0, nota.length() - 1);
@@ -173,11 +189,18 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
         }
         return notaNota;
     }
-
+    /**
+     * Retorna la escala
+     * @param nombre Nom de la escala
+     */
     private int getEscalaFromMouseEvent(String nombre){
         return Integer.parseInt(nombre.substring(nombre.length() - 1));
     }
 
+    /**
+     * Registra les accions que succeeixen quan clickem amb el ratoí algun botó
+     * @param e Event que succeeix al interactuar amb algun element
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         System.out.println(e.getComponent().getName());
@@ -207,6 +230,10 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
             pv.unenablePausarGrabacionBoton();
         }
     }
+    /**
+     * Registra les accions que succeeixen quan apretem amb el ratoí
+     * @param e Event que succeeix al interactuar amb algun element
+     */
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -227,7 +254,10 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
             }
         }
     }
-
+    /**
+     * Registra les accions que succeeixen quan descliquem amb el ratoí
+     * @param e Event que succeeix al interactuar amb algun element
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         if (!e.getComponent().getName().equals("pausargrabacion")) {
@@ -253,7 +283,10 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
     public void keyTyped(KeyEvent e) {
         System.out.println("code: " + e.getKeyCode());
     }
-
+    /**
+     * Registra les accions que succeeixen quan apretem una tecla
+     * @param e Event que succeeix al interactuar amb algun element
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         if(sustainingKeys.get(getNotaFromKeyEvent(e.getKeyCode())) == null) {
@@ -277,7 +310,10 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
             }
         }
     }
-
+    /**
+     * Registra les accions que succeeixen quan desapretem una tecla
+     * @param e Event que succeeix al interactuar amb algun element
+     */
 
     @Override
     public void keyReleased(KeyEvent e) {
