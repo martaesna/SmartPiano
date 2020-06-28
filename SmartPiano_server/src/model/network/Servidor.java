@@ -61,23 +61,33 @@ public class Servidor extends Thread{
 
     //////////////////A IMPLEMENTAR/////////////////////////
 
-    //iniciem servidor
+    /**
+     * inicialitzem el servidor
+     */
     public void startServer() {
         isRunning = true;
         System.out.println("Servidor iniciat...");
         this.start();
     }
 
-    //aturem servidor
+    /**
+     * aturem el servidor
+     */
     public void stopServer() {
         isRunning = false;
         this.interrupt();
     }
 
+    /**
+     * mostra el nombre de clients connectats al servidor
+     */
     public void mostraClients(){
         System.out.println("El servidor te " + dServers.size() + " clients connectats");
     }
 
+    /**
+     * manté el thread a l'espera de nous clients
+     */
     public void run() {
         while (isRunning) {
             try {
@@ -94,17 +104,6 @@ public class Servidor extends Thread{
                 //encenem el servidor dedicat
                 dsClient.startDedicatedServer();
                 mostraClients();
-
-                /*for (ServidorDedicat dServer : dServers) {
-                    dServer.startDedicatedServer();
-                }
-                */
-                // llegim objecte usuari
-                // tanquem la connexio amb el client
-                //sClient.close();
-
-                //System.out.println(user.getNickname);
-
 
             } catch (IOException e) {
                 e.printStackTrace();

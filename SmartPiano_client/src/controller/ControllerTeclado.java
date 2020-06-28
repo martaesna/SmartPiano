@@ -94,7 +94,6 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
             case "salir":
                 pv.setVisible(false);
                 MenuView mv = new MenuView();
-                System.out.println("peta aqui :(");
                 LoginView lv = new LoginView();
                 RegisterView rv = new RegisterView();
                 MainView mnv = new MainView();
@@ -115,7 +114,6 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
             nombreCanciones[i] = canciones.get(i).getName() + " - " + canciones.get(i).getAutor();
         }
         for (Song c: canciones) {
-            System.out.println("valecrack");
             try {
                 if (pv.popUpSeleccionarCancion(nombreCanciones).equals(c.getName() + " - " + c.getAutor())){
                     System.out.println("Stitch<3");
@@ -184,7 +182,6 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
         String notaString = nota.substring(0, nota.length() - 1);
         Nota notaNota = null;
         for(Nota n : Nota.values()){
-            //System.out.println(n.toString());
             if(n.toString().equals(notaString)) notaNota = n;
         }
         return notaNota;
@@ -203,7 +200,6 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println(e.getComponent().getName());
         if (e.getComponent().getName().equals("pausargrabacion")) {
             switch (pv.popUpGrabacion()) {
                 case 0:
@@ -238,7 +234,6 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
     @Override
     public void mousePressed(MouseEvent e) {
         if (!e.getComponent().getName().equals("pausargrabacion")) {
-            System.out.println(e.getComponent().getName());
             Nota nota = getNotaFromMouseEvent(e.getComponent().getName());
             int escala = getEscalaFromMouseEvent(e.getComponent().getName());
             if (modo == Modo.GRABAR) {
@@ -290,7 +285,6 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
     @Override
     public void keyPressed(KeyEvent e) {
         if(sustainingKeys.get(getNotaFromKeyEvent(e.getKeyCode())) == null) {
-            System.out.println(e.getKeyCode());
             if (!e.getComponent().getName().equals("pausargrabacion")) {
                 System.out.println(e.getComponent().getName());
                 Nota nota = getNotaFromKeyEvent(e.getKeyCode());
@@ -317,7 +311,6 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
 
     @Override
     public void keyReleased(KeyEvent e) {
-        System.out.println(e.getKeyCode());
         if (!e.getComponent().getName().equals("pausargrabacion")) {
             Nota nota = getNotaFromKeyEvent(e.getKeyCode());
             sustainingKeys.remove(nota);

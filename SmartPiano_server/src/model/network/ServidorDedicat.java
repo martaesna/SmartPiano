@@ -36,17 +36,27 @@ public class ServidorDedicat extends Thread {
         this.isRunning = false;
     }
 
+    /**
+     * inicia el servidor dedicat
+     */
     public void startDedicatedServer() {
         isRunning = true;
         this.start();
     }
 
+    /**
+     * atura el servidor dedicat
+     */
     public void stopDedicatedServer() {
         // aturem el servidor dedicat
         this.isRunning = false;
         this.interrupt();
     }
 
+    /**
+     * envia un missatge al client
+     * @param missatge contindra una string amb l'accio a fer i un objecte
+     */
     public void enviaMissatge (Object missatge){
         try {
             objectOut = new ObjectOutputStream(sClient.getOutputStream());
@@ -56,7 +66,9 @@ public class ServidorDedicat extends Thread {
         }
     }
 
-
+    /**
+     * espera la resposta del client i tracta la informació dels objectes rebuts per part del client
+     */
     @Override
     public void run () {
         try {
@@ -170,12 +182,10 @@ public class ServidorDedicat extends Thread {
                         case "buscaCançoJson":
                             Song buscaCanço;
                             buscaCanço = (Song) missatge.getData();
-                            System.out.println("hola k tal");
                             Cancion cançoTrobada = JsonCançons.buscaCançoJson(buscaCanço);
                             missatgeResposta = new Missatge("cançoPerReproduirTrobada", cançoTrobada);
                             enviaMissatge((Object)missatgeResposta);
                     }
-                    //si el object es "tipus" User entra al if
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }

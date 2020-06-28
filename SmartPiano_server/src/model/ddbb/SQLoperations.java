@@ -27,7 +27,6 @@ public class SQLoperations {
         data = llegeixJSON();
         conectorDB conn = new conectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
-        System.out.println("skr");
         conn.insertQuery("INSERT INTO User(nickname, email, password, codi) VALUES (" + "'" + name + "'" + "," + "'" + mail + "'" + "," + "'" + password + "'" + "," + "'" + codi + "'" +")");
     }
     /**
@@ -114,7 +113,7 @@ public class SQLoperations {
         data = llegeixJSON();
         conectorDB conn = new conectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
-        String query = "DELETE FROM Song AS s WHERE s.name LIKE '" + name + "'AND s.author LIKE '" + autor + "';";
+        String query = "DELETE FROM Song AS s WHERE s.name LIKE '" + name + "'AND s.author LIKE '" + autor + "' AND songId NOT LIKE 1 AND songId NOT LIKE 2 AND songId NOT LIKE 3;";
         conn.deleteQuery(query);
     }
     /**

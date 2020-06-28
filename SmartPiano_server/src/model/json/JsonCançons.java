@@ -15,6 +15,12 @@ import java.util.LinkedList;
 
 public class JsonCançons {
     private Cancion cancion;
+
+    /**
+     * crea un json amb la canço creada
+     * @param c canço creada
+     * @param id id de la canço
+     */
     public static void jsonSongs(Cancion c, int id){
         JSONObject songObj = new JSONObject();
         songObj.put("Id", id);
@@ -34,13 +40,19 @@ public class JsonCançons {
         songObj.put("Notas", notasArray);
 
         String f = new File("").getAbsolutePath();
-        try (FileWriter file = new FileWriter(f.concat  ("/SmartPiano_server/src/model/cançons/cançons.json"))) {
+        try (FileWriter file = new FileWriter(f.concat  ("/SmartPiano_server/src/model/cançons/" + id + ".json"))) {
             file.write(songObj.toString());
             file.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    /**
+     * busca la canço a reproduir
+     * @param canço canço que tria l'usuari a reproduir
+     * @return canço sencera a reproduir
+     */
     public static Cancion buscaCançoJson(Song canço) {
         LinkedList<Cancion> cançoTrobada = new LinkedList<>();
         String path = new File("").getAbsolutePath();

@@ -97,7 +97,6 @@ public class ServerComunication extends Thread  {
                 objectIn = new ObjectInputStream(socketToServer.getInputStream());
                 Object object = objectIn.readObject();
 
-                System.out.println("skr");
                 Missatge missatge;
                 missatge = (Missatge) object;
                 String accio = missatge.getAccio();
@@ -158,8 +157,7 @@ public class ServerComunication extends Thread  {
                     case "cançoPerReproduirTrobada":
                         Cancion cançoTrobada;
                         cançoTrobada = (Cancion) missatge.getData();
-                        System.out.println("skrrrrrr");
-                        ct.reproducirCancion(cançoTrobada);
+                        //ct.reproducirCancion(cançoTrobada);
                         break;
                     case "usuariBorrat":
                         JOptionPane.showMessageDialog(null, "Has eliminat el teu compte amb èxit.", "Compte borrat", JOptionPane.INFORMATION_MESSAGE);

@@ -5,7 +5,11 @@ import com.google.gson.Gson;
 
 public class JsonReader {
     static Data data = new Data();
-    // String PATH = 'C:\Users\marta\Desktop\SmartPiano\SmartPiano_server\src\assets\config.json';
+
+    /**
+     * llegeix el json de configuració
+     * @return classe data amb la informacio llegida
+     */
     public static Data llegeixJSON(){
         try{
             Gson gson = new Gson();
@@ -25,4 +29,3 @@ public class JsonReader {
     }
 }
 
-//hola

@@ -121,7 +121,6 @@ public class MainViewControllerCl implements ActionListener {
                         sc.enviaMissatge((Missatge)missatge);
                         rv.setVisible(false);
                         lv.setVisible(true);
-                        System.out.println("hola que tal");
 
                         //Guardem user a la BDD
 

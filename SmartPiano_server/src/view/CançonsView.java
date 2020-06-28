@@ -73,6 +73,13 @@ public class CançonsView extends JFrame{
         getContentPane().add(js);
     }
 
+    /**
+     * Crea una taula per inserir les cançons que hi ha al servidor
+     * @param taula taula a crear
+     * @param header titols que tindran les columnes
+     * @param rows files que tindra la taula
+     * @return taula creada
+     */
     public static JTable crearTaula(JTable taula, String[] header, ArrayList<Song> rows) {
         DefaultTableModel tablemodel = (DefaultTableModel) taula.getModel();
         tablemodel.setRowCount(0);
@@ -92,6 +99,10 @@ public class CançonsView extends JFrame{
         eliminar.addActionListener(c);
     }
 
+    /**
+     * retorna la fila seleccionada
+     * @return el nom i l'autor seleccionats
+     */
     public ArrayList<String> songSeleccionada() {
         ArrayList<String> canço =  new ArrayList<>();
         String nom = (String) taula.getValueAt(taula.getSelectedRow(), 0);
