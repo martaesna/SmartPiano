@@ -1,9 +1,11 @@
 package Model.DDBB;
 
 import Model.Amic;
+import Model.Cancion;
 import Model.Json.Data;
 import Model.Song;
 
+import javax.xml.transform.Result;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -222,6 +224,29 @@ public class SQLOperations {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static ArrayList<Cancion> demanaCançonsReproduir() {
+        ArrayList<Cancion> cançons;
+        Data data;
+        data = llegeixJSON();
+        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+        conn.connect();
+        String query = "HOLA";
+        ResultSet rs = conn.selectQuery(query);
+        try {
+            while (rs.next()) {
+                //cançons.add(new Cancion()
+                //return cançons;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void afegeixCanço(Cancion canço) {
+
     }
 }
 

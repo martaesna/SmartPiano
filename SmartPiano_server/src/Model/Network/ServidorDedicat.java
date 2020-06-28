@@ -1,14 +1,12 @@
 package Model.Network;
 
 import Controller.MainViewController;
-import Model.Amic;
+import Model.*;
 import Model.DDBB.SQLOperations;
-import Model.Missatge;
-import Model.Song;
-import Model.User;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import static Model.DDBB.SQLOperations.*;
@@ -152,6 +150,20 @@ public class ServidorDedicat extends Thread {
                             }
                             missatgeResposta = new Missatge(accioResposta, missatge.getData());
                             enviaMissatge((Object)missatgeResposta);
+                            break;
+                        case "cançonsReproduir":
+                            ArrayList<Cancion> cançons;
+                            cançons = SQLOperations.demanaCançonsReproduir();
+                            missatgeResposta = new Missatge("cançonsPerReproduir", missatge.getData());
+                            enviaMissatge((Object)missatgeResposta);
+                            break;
+                        case "afegeixCançoPublica":
+                            Cancion canço = null;
+                            SQLOperations.afegeixCanço(canço);
+                            break;
+                        case "afegeixCançoPrivada":
+                            canço = null;
+                            SQLOperations.afegeixCanço(canço);
                             break;
                     }
                     //si el object es "tipus" User entra al if

@@ -2,10 +2,7 @@
  * Controlador del Teclado, permite formato libre, grabar y reproduccir una canción
  */
 package Controller;
-import Model.Cancion;
-import Model.FiguraMusical;
-import Model.Modo;
-import Model.Nota;
+import Model.*;
 import View.PianoView;
 
 import javax.sound.midi.MidiSystem;
@@ -17,6 +14,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static Model.Network.ServerComunication.enviaMissatge;
 
 
 public class ControllerTeclado implements ActionListener, MouseListener, KeyListener {
@@ -79,17 +78,11 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
                 break;
             case "reproducir":
                 modo = Modo.REPRODUCCIR;
-                //TODO: llamar servidor para pedir las canciones publicas y las privadas del usuario.
+                Missatge missatge = new Missatge("cançonsReproduir", cancion);
+                enviaMissatge(missatge);
+                //TODO: SOCKET -> MANDAR MENSAJE CON RECIBIR CANCIONES ejemplo: "CANCIONESUSUARIO"
+                //TODO: SOCKET -> RECIBIR SOCKET CON LAS CANCIONES
                 LinkedList<Cancion> canciones = new LinkedList<>();
-                Cancion cancion = new Cancion();
-                cancion.setNombre("ASDF - JKLÑ");
-                cancion.startNewFiguraMusical(0);
-                cancion.endNewFiguraMusical(2000L, Nota.DO, 0);
-                cancion.startNewFiguraMusical(0);
-                cancion.endNewFiguraMusical(2000L, Nota.DOMOD, 0);
-                cancion.startNewFiguraMusical(0);
-                cancion.endNewFiguraMusical(2000L, Nota.RE, 0);
-                canciones.add(cancion);
                 String[] nombreCanciones = new String[canciones.size()];
                 for (int i = 0; i < canciones.size(); i++){
                     nombreCanciones[i] = canciones.get(i).getNombre();
@@ -103,6 +96,7 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
                 }
                 modo = Modo.LIBRE;
                 break;
+
         }
     }
 
@@ -166,22 +160,24 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
     public void mouseClicked(MouseEvent e) {
         System.out.println(e.getComponent().getName());
         if (e.getComponent().getName().equals("pausargrabacion")) {
-            //TODO: hacer lo que se quiera con la canción, guardarla en un archivo o enviarla al servidor
             switch (pv.popUpGrabacion()) {
                 case 0:
-                    //TODO: guardar la canción de forma pública
-                    //TODO: pasar cancion por el scocket
-                    //TODO: servidor guardarla en bbdd como publica
                     cancion.setNombre(pv.popUpNombreCancion());
+                    cancion.setPrivada(false);
+                    Missatge missatge = new Missatge("afegeixCançoPublica", cancion);
+                    enviaMissatge(missatge);
+                    System.out.println("Guardar la canción de manera publica.");
                     break;
                 case 1:
-                    //TODO: guardar la canción de forma privada
-                    //TODO: pasar cancion por el scocket
-                    //TODO: servidor guardarla en bbdd como privada
                     cancion.setNombre(pv.popUpNombreCancion());
+                    cancion.setPrivada(true);
+                    missatge = new Missatge("afegeixCançoPrivada", cancion);
+                    enviaMissatge(missatge);
+                    System.out.println("Guardar la canción de manera privada.");
                     break;
                 case 2:
-                    //TODO: no hacer nada
+                    //No se hace nada, por que no se debe guardar la canción.
+                    System.out.println("No guardar la canción.");
                     break;
             }
             //Volver al modo libre
