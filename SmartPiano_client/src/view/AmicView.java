@@ -83,7 +83,15 @@ public class AmicView extends JFrame {
         js.setVisible(true);
 
         getContentPane().add(js);
+
     }
+
+    /**
+     * Creem la taula on es mostrarà la llista d'amics
+     * @param amics llista d'amics
+     * @param header  capçalera
+     * @param taula Taula on es mostrara els amics
+     */
     public static JTable crearTaula(JTable taula, String[] header, LinkedList<Amic> amics) {
         DefaultTableModel tablemodel = (DefaultTableModel) taula.getModel();
         tablemodel.setRowCount(0);
@@ -99,18 +107,28 @@ public class AmicView extends JFrame {
         taula.setModel(tablemodel);
         return taula;
     }
-
+    /**
+     * Retorna el nom del amic seleccionat
+     *
+     */
     public static String amicSeleccionat() {
         String amic = (String) taula.getValueAt(taula.getSelectedRow(), 1);
         return amic;
     }
-
+    /**
+     * Assignem els controladors a cada boto de la vista
+     * @param c
+     */
     public void amicController(AmicViewController c) {
         tornar.addActionListener(c);
         afegir.addActionListener(c);
         eliminar.addActionListener(c);
         chat.addActionListener(c);
     }
+    /**
+     * Actualitza la taula quan afegim o eliminem un amic
+     * @param amic
+     */
 
     public void refresh(String amic) {
         IntStream.range(0, amics.size()).filter(i -> amics.get(i).getNickName().equals(amic)).forEach(amics::remove);
