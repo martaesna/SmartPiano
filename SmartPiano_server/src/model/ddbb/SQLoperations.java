@@ -79,7 +79,7 @@ public class SQLoperations {
     public static void borraUsuari(String name){
         Data data;
         data = llegeixJSON();
-        conectorDB conn = new conectorD(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+        conectorDB conn = new conectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         String query = "DELETE FROM User WHERE nickname LIKE '" + name + "' OR email LIKE '" + name + "'";
         conn.deleteQuery(query);
@@ -104,7 +104,11 @@ public class SQLoperations {
         }
         return songs;
     }
-
+    /**
+     * Montem la query tipus delete per esborrar una canço de la BBDDD
+     * @param name  Nom canço
+     * @param autor  Autor canço
+     */
     public static void eliminaCanço(String name, String autor) {
         Data data;
         data = llegeixJSON();
@@ -113,7 +117,10 @@ public class SQLoperations {
         String query = "DELETE FROM Song AS s WHERE s.name LIKE '" + name + "'AND s.author LIKE '" + autor + "';";
         conn.deleteQuery(query);
     }
-
+    /**
+     * Montem la query tipus select per mostrar el top5
+     *
+     */
     public static ArrayList<Song> demanaTop5() {
         ArrayList<Song> songs = new ArrayList<>();
         Data data;
@@ -131,7 +138,10 @@ public class SQLoperations {
         }
         return songs;
     }
-
+    /**
+     * Montem la query tipus select per mostrar la evolució
+     *
+     */
     public static ArrayList<String> calculaEvolucio() {
         ArrayList<String> songs = new ArrayList<>();
         Data data;
@@ -150,7 +160,10 @@ public class SQLoperations {
         }
         return songs;
     }
-
+    /**
+     * Montem la query tipus insert per guardar canço a la bbdd
+     * @param song Cansço a guardar
+     */
     public static void guardaCanço(Song song) {
         Data data;
         data = llegeixJSON();
@@ -160,6 +173,11 @@ public class SQLoperations {
         + "'," + song.getDuration() + "," + song.getTimes_played() + "," + song.getMinutesListened() + ",'" + song.isPrivacity() + "')";
         conn.insertQuery(query);
     }
+    /**
+     * Montem la query tipus select per els amics d'un usuari
+     * @param usuari Usuari de qui veurem els seus amics
+     *
+     */
 
     public static LinkedList<Amic> amicsUsuari(String usuari) {
         LinkedList<Amic> amics = new LinkedList<>();
@@ -179,6 +197,11 @@ public class SQLoperations {
         return amics;
     }
 
+    /**
+     * Montem la query tipus select per mostrar el nickname
+     * @param usuari Nom Usuari
+     *
+     */
     public static String trobaNickname(String usuari) {
         String nickname = null;
         Data data;
@@ -196,7 +219,9 @@ public class SQLoperations {
         }
         return nickname;
     }
-
+    /**
+     * Montem la query tipus delete per eliminar un amic
+     */
     public static void eliminaAmic(String amic, String usuari) {
         Data data;
         data = llegeixJSON();
@@ -205,6 +230,10 @@ public class SQLoperations {
         String query = "DELETE FROM Friend AS f WHERE f.nickname2 LIKE '" + amic + "'AND f.nickname1 LIKE '" + usuari + "';";
         conn.deleteQuery(query);
     }
+    /**
+     * Montem la query tipus insert per mostrar afegir un amic al usuari seleccionat
+     *
+     */
 
     public static void afegeixAmic(String nomAmic, String nomUsuari) {
         Data data;
@@ -214,6 +243,10 @@ public class SQLoperations {
         String query = "INSERT INTO Friend VALUES('" + nomUsuari + "','" + nomAmic + "')";
         conn.insertQuery(query);
     }
+    /**
+     * Montem la query tipus select per retornar el nom del amic
+     *
+     */
 
     public static String repNomAmic(String codiAmic) {
         String nickname = null;
@@ -232,7 +265,10 @@ public class SQLoperations {
         }
         return nickname;
     }
-
+    /**
+     * Montem la query tipus select per mostrar comprovar la existencia d'un amic
+     *
+     */
     public static boolean amicExisteix(String nickname, String nomUsuari) {
         Data data;
         data = llegeixJSON();
@@ -249,7 +285,10 @@ public class SQLoperations {
         }
         return false;
     }
-
+    /**
+     * Montem la query tipus select per mostrar les cançons a reproduir
+     *
+     */
     public static LinkedList<Song> demanaCançonsReproduir(String nomUsuari) {
         LinkedList<Song> cançons = new LinkedList<>();
         Data data;
@@ -271,7 +310,10 @@ public class SQLoperations {
         }
         return cançons;
     }
-
+    /**
+     * Montem la query tipus insert per afegir la canço a la llista de cançons del usuari
+     *
+     */
     public static int afegeixCanço(Cancion canço, String nomUsuari) {
         int id = 0;
         long duration = calculaDuracio(canço);
@@ -293,6 +335,10 @@ public class SQLoperations {
         }
         return id;
     }
+    /**
+     * Calulem la duració de la canço
+     *
+     */
 
     private static long calculaDuracio(Cancion canço) {
         long duration = 0;
