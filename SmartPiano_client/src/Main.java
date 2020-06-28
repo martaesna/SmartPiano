@@ -1,19 +1,15 @@
 
 
-import Model.Json.*;
-import View.*;
-import Controller.MainViewControllerCl;
-import Controller.MenuViewController;
-import Model.Network.ServerComunication;
-import View.RegisterView;
-import Controller.*;
+import model.json.*;
+import view.*;
+import controller.MainViewControllerCl;
+import controller.MenuViewController;
+import model.network.ServerComunication;
+import view.RegisterView;
+import controller.*;
 
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class Main {
     private static ReadJson rj;

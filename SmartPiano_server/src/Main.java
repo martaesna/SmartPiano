@@ -1,10 +1,7 @@
-import Model.Network.Servidor;
-import Model.DDBB.SQLOperations;
-import Controller.*;
-import View.CançonsView;
-import View.EvolucioView;
-import View.MainView;
-import View.Top5View;
+import model.network.Servidor;
+import model.ddbb.SQLoperations;
+import controller.*;
+import view.MainView;
 import com.mysql.fabric.Server;
 
 import javax.swing.*;
@@ -16,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         MainView v = new MainView();
         MainViewController controller = new MainViewController(v);
-        SQLOperations sqlOperations = new SQLOperations();
+        SQLoperations sqlOperations = new SQLoperations();
 
         Servidor server = new Servidor();
         server.startServer();
