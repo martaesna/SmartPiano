@@ -27,7 +27,10 @@ public class MenuViewController implements ActionListener{
     }
 
 
-    /////////////////
+    /**
+     * Registra les accions que succeeixen dins de AmicViewController
+     * @param e Event que succeeix al interactuar amb algun element
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(mv.ACTION)) {
             System.out.println("Piano lliure");

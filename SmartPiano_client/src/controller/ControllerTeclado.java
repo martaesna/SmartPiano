@@ -66,7 +66,10 @@ public class ControllerTeclado implements ActionListener, MouseListener, KeyList
         hash.put(10,"Si1");
         return hash;
     }
-
+    /**
+     * Registra les accions que succeeixen dins de AmicViewController
+     * @param e Event que succeeix al interactuar amb algun element
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println(e.getActionCommand());

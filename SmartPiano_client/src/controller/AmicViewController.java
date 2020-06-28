@@ -19,7 +19,10 @@ public class AmicViewController implements ActionListener {
         this.v = v;
         this.sc = sc;
     }
-
+    /**
+     * Registra les accions que succeeixen dins de AmicViewController
+     * @param e Event que succeeix al interactuar amb algun element
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Eliminar")) {
